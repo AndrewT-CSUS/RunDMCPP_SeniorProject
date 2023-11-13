@@ -12,7 +12,7 @@ import com.RunDMCPP.Backend.services.SermonService;
 
 import java.util.List;
 import java.util.Optional;
-
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/api/sermons")
 public class SermonController {
