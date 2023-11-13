@@ -2,52 +2,68 @@ package com.RunDMCPP.Backend.controllers;
 
 import com.RunDMCPP.Backend.models.Event;
 import com.RunDMCPP.Backend.services.EventService;
+import com.RunDMCPP.Backend.utils.BackendErrorException;
+import com.RunDMCPP.Backend.utils.BackendErrorResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/DynamoDbPrototype/events")
+@RequestMapping("/api/events")
 public class EventController {
     @Autowired
     private EventService eventService;
 
     @GetMapping
-    @RequestMapping("get")
-    public ResponseEntity<List<Event>> getAll(){
-        List<Event> events = eventService.findAll();
-        return new ResponseEntity<>(events, HttpStatus.OK);
+    @RequestMapping("/get")
+    public ResponseEntity<Iterable<Event>> getAll(){
+        return new ResponseEntity<>(eventService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping
-    @RequestMapping("get/{id}")
+    @RequestMapping("/get/{id}")
     public Optional<Event> get(@PathVariable String id){
         return eventService.findById(id);
     }
 
-    @PutMapping("/create")
-    public ResponseEntity<Event> create(@RequestBody final Event s){
-        Event result = eventService.createEvent(s);
-        return new ResponseEntity<>(result, HttpStatus.CREATED);
+    @PostMapping("/create")
+    public ResponseEntity create(@RequestBody final Event s){
+        try {
+            return new ResponseEntity<>(eventService.createEvent(s), HttpStatus.CREATED);
+        } catch (BackendErrorException e) {
+            return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
+        }
     }
 
-    @PostMapping("/edit")
-    public ResponseEntity<Event> edit(@RequestBody Event s){
-        return new ResponseEntity<>(eventService.editEvent(s), HttpStatus.OK);
+    @PutMapping("/edit")
+    public ResponseEntity edit(@RequestBody Event s){
+        try {
+            return new ResponseEntity<>(eventService.updateEvent(s), HttpStatus.OK);
+        } catch (BackendErrorException e) {
+            return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
+        }
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<Event> delete(@RequestBody Event s){
+    public ResponseEntity delete(@RequestBody Event s){
+    try{
         eventService.deleteEvent(s);
         return new ResponseEntity<>(HttpStatus.OK);
+    } catch (BackendErrorException e) {
+        return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
+    }
     }
 
-    public ResponseEntity<Event> autoDelete(@RequestBody Event s) {
-        eventService.autoDeleteEvents();
-        return new ResponseEntity<>(HttpStatus.OK);
+    @DeleteMapping("/autoDelete")
+    public ResponseEntity autoDelete() {
+        try{
+            eventService.autoDeleteEvents();
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (BackendErrorException e) {
+            return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
+        }
     }
 }
