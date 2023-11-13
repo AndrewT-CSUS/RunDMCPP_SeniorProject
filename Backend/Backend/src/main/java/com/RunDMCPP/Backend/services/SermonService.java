@@ -1,13 +1,15 @@
 package com.RunDMCPP.Backend.services;
-import com.RunDMCPP.Backend.enums.SermonEnum;
+
+import com.RunDMCPP.Backend.enums.ErrorEnum;
 import com.RunDMCPP.Backend.models.Sermon;
 import com.RunDMCPP.Backend.repositories.SermonRepository;
-import com.RunDMCPP.Backend.controllers.SermonController;
+import com.RunDMCPP.Backend.utils.BackendErrorException;
+import com.RunDMCPP.Backend.validation.SermonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -16,77 +18,99 @@ public class SermonService {
 
     @Autowired
     private SermonRepository sermonRepository;
+    @Autowired
+    private SermonValidator sermonValidator;
 
-    public Optional<Sermon> findById(String id) {
-        return sermonRepository.findById(id);
+    public Iterable<Sermon> findAll() {
+        return sermonRepository.findAll();
     }
 
-    public Sermon createSermon(Sermon s) {
-        //Maybe do some validation here on the input sermon
-        Sermon result;
-        try {
-            result = sermonRepository.save(s);
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, SermonEnum.TRANSACTION_FAIL_E.getValue());
+    public Optional<Sermon> findById(String id) throws BackendErrorException {
+        Optional<Sermon> dbEntity = sermonRepository.findById(id);
+        if(dbEntity.isPresent()){
+            return dbEntity;
         }
-        return result;
+        throw new BackendErrorException(ErrorEnum.NOT_FOUND);
     }
 
-    public List<Sermon> findAll() {
-        Iterable<Sermon> sermons = sermonRepository.findAll();
-        List<Sermon> sermonList = new ArrayList<>();
-        sermons.forEach(sermonList::add);
-        return sermonList;
-    }
-
-    public Sermon editSermon(Sermon s) {
-        //Validate the inputs later on
-        Optional<Sermon> dbEntity = sermonRepository.findById(s.getId());
-
-        if (dbEntity.isPresent()) {
+    public Sermon createSermon(Sermon sermon) throws BackendErrorException {
+        if (sermonValidator.createValidator(sermon)) {
             try {
-                if (s.getName() != null) {
-                    dbEntity.get().setName(s.getName());
-                }
-                if (s.getDescription() != null) {
-                    dbEntity.get().setDescription(s.getDescription());
-                }
-                if (s.getDateTime() != null) {
-                    dbEntity.get().setDateTime(s.getDateTime());
-                }
-
-                if (s.getYoutubeLink() != null) {
-                    dbEntity.get().setYoutubeLink(s.getYoutubeLink());
-                }
-
-                return sermonRepository.save(dbEntity.get());
+                return sermonRepository.save(sermon);
             } catch (Exception e) {
-                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, SermonEnum.TRANSACTION_FAIL_E.getValue());
+                throw new BackendErrorException(ErrorEnum.TRANSACTION_FAIL);
             }
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, SermonEnum.NOT_FOUND_E.getValue());
         }
+        throw new BackendErrorException(ErrorEnum.INVALID_INPUT);
     }
 
-    public void deleteSermon(Sermon s) {
-        Optional<Sermon> dbEntity = sermonRepository.findById(s.getId());
+
+    public Sermon editSermon(Sermon sermon) throws BackendErrorException {
+        if (!sermonValidator.readValidator(sermon)) {
+            throw new BackendErrorException(ErrorEnum.INVALID_INPUT);
+        }
+        Optional<Sermon> dbEntity = sermonRepository.findById(sermon.getId());
+
         if (dbEntity.isPresent()) {
-            if (dbEntity.get().equals(s)) {
+            if (sermonValidator.updateValidator(sermon, dbEntity.get())) {
+                if (sermon.getName() != null) {
+                    dbEntity.get().setName(sermon.getName());
+                }
+                if (sermon.getDescription() != null) {
+                    dbEntity.get().setDescription(sermon.getDescription());
+                }
+                if (sermon.getDateTime() != null) {
+                    dbEntity.get().setDateTime(sermon.getDateTime());
+                }
 
-                sermonRepository.deleteById(s.getId());
+                if (sermon.getYoutubeLink() != null) {
+                    dbEntity.get().setYoutubeLink(sermon.getYoutubeLink());
+                }
+
+                try {
+                    return sermonRepository.save(dbEntity.get());
+                } catch (Exception e) {
+                    throw new BackendErrorException(ErrorEnum.TRANSACTION_FAIL);
+                }
+            }
+            throw new BackendErrorException(ErrorEnum.DATA_MISMATCH);
+        }
+        throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+    }
+
+    public void deleteSermon(Sermon sermon) throws BackendErrorException {
+        if (!sermonValidator.readValidator(sermon)) {
+            throw new BackendErrorException(ErrorEnum.INVALID_INPUT);
+        }
+        Optional<Sermon> dbEntity = sermonRepository.findById(sermon.getId());
+        if (dbEntity.isPresent()) {
+            if (sermonValidator.deleteValidator(sermon, dbEntity.get())) {
+                try {
+                    sermonRepository.deleteById(sermon.getId());
+                } catch (Exception e) {
+                    throw new BackendErrorException(ErrorEnum.TRANSACTION_FAIL);
+                }
             } else {
-                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, SermonEnum.DATA_MISMATCH.getValue());
+                throw new BackendErrorException(ErrorEnum.DATA_MISMATCH);
             }
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, SermonEnum.NOT_FOUND_E.getValue());
+            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
         }
     }
-    
-    public List<Sermon> searchSermonsByTitle(String title) {
-        return sermonRepository.findByNameContaining(title);
+
+    public List<Sermon> searchSermonsByTitle(String title) throws BackendErrorException {
+        List<Sermon> results = sermonRepository.findByNameContaining(title);
+        if(results.isEmpty()){
+            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+        }
+        return results;
     }
 
-    public List<Sermon> searchSermonsByDateRange(String startDate, String endDate) {
-        return sermonRepository.findByDateTimeBetween(startDate, endDate);
+    public List<Sermon> searchSermonsByDateRange(String startDate, String endDate) throws BackendErrorException {
+        List<Sermon> results = sermonRepository.findByDateTimeBetween(startDate, endDate);
+        if(results.isEmpty()){
+            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+        }
+        return results;
     }
 }
