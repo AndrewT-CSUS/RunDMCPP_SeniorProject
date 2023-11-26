@@ -9,42 +9,42 @@
 </head>
 <body>
 <header>
-        <!--Title-->
-        <h1>Sacramento Glory<br>Korean Church</h1>
+    <!--Church Logo -->
+    <img src="imageWeb/sgkc4.png"
+         width="225px" height="60px" alt="Sacramento Glory Korean Church logo">
 
-        <!-- Navigation bar -->
-        <ul>          
-            <li><a href="announcements.html">Announcements</a></li>
-  
-              <li class="dropdown">
-                  <a href="javascript:void(0)" class="dropbtn">Events &#x25BC;</a>
-                      <div class="dropdown-content">
-                      <a href="events.html">Events</a>
-                      <a href="pastEvents.html">Past Events</a>
-                      <a href="photoGallery.html">Photo Gallery</a>
-                      </div>
-              </li>
-              <li class="dropdown">
-                  <a href="javascript:void(0)" class="dropbtn">Sermons &#x25BC;</a>
-                      <div class="dropdown-content">
-                      <a href="upcomingSerms.html">Upcoming</a>
-                      <a href="previousSerms.html">Previous</a>
-                      </div>
-              </li>
-  
-            <li><a href="services.html">Services</a></li>
-  
-              <li class="dropdown">
-                  <a href="javascript:void(0)" class="dropbtn">About Us &#x25BC;</a>
-                      <div class="dropdown-content">
-                      <a href="ourBeliefs.html">Our Beliefs</a>
-                      <a href="ourGoals.html">Our Goals</a>
-                      <a href="dateTime.html">Date / Time</a>
-                      <a href="languages.html" class="active">Language</a>
-                      </div>
-              </li>
-            <li><a href="default.html" class="active">Home</a></li>
-        </ul>
+    <!--Title-->
+    <h1 class = "sameLine" id = "sgkc">Sacramento Glory Korean Church</h1>
+
+    <!--Eng/Kor Button-->
+    <button class = "sameLine" onclick="toggleText(this)">한국어</button>
+
+    <!-- Navigation bar -->
+    <ul>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn" id = "eventsDrop">Events &#x25BC;</a>
+            <div class="dropdown-content">
+                <a href="events.html" id = "eventsPage">Events</a>
+                <a href="pastEvents.html" id = "past events">Past Events</a>
+                <a href="photoGallery.html" id = "photoGallery">Photo Gallery</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn" id = "sermons">Sermons &#x25BC;</a>
+            <div class="dropdown-content">
+                <a href="upcomingSerms.html" id = "upcomingSermons">Upcoming</a>
+                <a href="previousSerms.html" id = "previousSermons">Previous</a>
+            </div>
+        </li>
+
+        <li><a href="services.html" id = "services">Services</a></li>
+
+        <li><a href="ourGoalsAndBeliefs.html" id = "ourGoalsAndBeliefs">Our Goals and Beliefs</a></li>
+
+        <li><a class="active" href="default.html" id = "home">Home</a></li>
+    </ul>
+
+    <script src = 'Javascript/changeLanguages.js'></script>
 </header>
 
 <main>
