@@ -16,7 +16,11 @@ function toggleText(event) {
             upcomingSermons: "다음주 설교",
             previousSermons: "지난주 설교",
             home: "홈",
-            
+            serviceSchedule: "교회일정",
+            serviceScheduleDay: "일",
+            serviceScheduleTime: "시간", 
+            serviceScheduleSunday: "일요일",
+            serviceScheduleWednesday: "목요일"
         }, 
         eng: {
             sgkc: "Sacramento Glory Korean Church",
@@ -30,6 +34,11 @@ function toggleText(event) {
             upcomingSermons: "Upcoming Sermons",
             previousSermons: "Past Sermons",
             home: "Home",
+            serviceSchedule: "Church Service Schedule",
+            serviceScheduleDay: "Days",
+            serviceScheduleTime: "Time", 
+            serviceScheduleSunday: "Sunday",
+            serviceScheduleWednesday: "Wednesday"
         }
     };
     if (text == '한국어') {
@@ -46,6 +55,11 @@ function toggleText(event) {
         upcomingSermons.textContent = headerLang.kor.upcomingSermons;
         previousSermons.textContent = headerLang.kor.previousSermons;
         home.textContent = headerLang.kor.home;
+        serviceSchedule.textContent = headerLang.kor.serviceSchedule;
+        serviceScheduleDay.textContent = headerLang.kor.serviceScheduleDay;
+        serviceScheduleTime.textContent = headerLang.kor.serviceScheduleTime;
+        serviceScheduleSunday.textContent = headerLang.kor.serviceScheduleSunday;
+        serviceScheduleWednesday.textContent = headerLang.kor.serviceScheduleWednesday;
 
     } else {
         event.innerHTML = '한국어';
@@ -61,5 +75,10 @@ function toggleText(event) {
         upcomingSermons.textContent = headerLang.eng.upcomingSermons;
         previousSermons.textContent = headerLang.eng.previousSermons;
         home.textContent = headerLang.eng.home;
+        serviceSchedule.textContent = headerLang.eng.serviceSchedule;
+        serviceScheduleDay.textContent = headerLang.eng.serviceScheduleDay;
+        serviceScheduleTime.textContent = headerLang.eng.serviceScheduleTime;
+        serviceScheduleSunday.textContent = headerLang.eng.serviceScheduleSunday;
+        serviceScheduleWednesday.textContent = headerLang.eng.serviceScheduleWednesday;
     }
 }
