@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>adminSermonCreate</title>
+    <title>Previous Sermons</title>
     <script type="text/javascript" src="Javascript/sermonUtils.js"></script>
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="footer.css">
@@ -73,6 +73,7 @@
         <!-- Main content goes here -->
         <h1>Previous Sermons</h1>
         <div class="mainContent" >
+            <!-- Search Bar -->
             <fieldset id="searchField" class="addSermonBox">
                 <legend>Sermon Information</legend>
                 <div style="display: flex; align-items: center;">
@@ -81,13 +82,13 @@
                 </div>
             </fieldset>
             <br></br>
+            <!-- Display searched sermons -->
             <fieldset id="resultsField" class="searchBox" hidden>
                 <legend>Search Result</legend>
                 <h4 id="resultTitle">Title</h4>
                 <p id="resultDescription">Desc</p>
                 <p id="resultDateTime">Date and Time</p>
                 <iframe id="video" width="420" height="315" src=""> </iframe>
-                <!-- https://www.youtube.com/watch?v=aZYfWdkaIVs -->
             </fieldset>
         </div>
     </main>
