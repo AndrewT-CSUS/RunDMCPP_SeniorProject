@@ -1,56 +1,89 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>previousSerms</title>
+    <title>adminSermonCreate</title>
+    <script type="text/javascript" src="Javascript/sermonUtils.js"></script>
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="footer.css">
+    <style>
+        .mainContent {
+            align-items: center;
+            justify-content: center;
+            margin: left;
+            width: 50%;
+        }
+
+        .addSermonBox {
+            text-align: center;
+            width: 50px;
+            height: 50px;
+        }
+
+        .searchBox {
+            width: 300px;
+        }
+    </style>
 </head>
+
 <body>
-<header>
-    <!--Title-->
-    <h1>Sacramento Glory<br>Korean Church</h1>
+    <header>
+        <!--Church Logo -->
+        <img src="imageWeb/sgkc4.png"
+             width="225px" height="60px" alt="Sacramento Glory Korean Church Logo">
 
-    <!-- Navigation bar -->
-    <ul>
-        <li><a href="announcements.html">Announcements</a></li>
+        <!-- Navigation bar -->
+        <ul>
 
-        <li class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn">Events &#x25BC;</a>
-            <div class="dropdown-content">
-                <a href="events.html">Events</a>
-                <a href="pastEvents.html">Past Events</a>
-                <a href="photoGallery.html">Photo Gallery</a>
-            </div>
-        </li>
-        <li class="dropdown">
-            <a href="javascript:void(0)" class="active dropbtn">Sermons &#x25BC;</a>
-            <div class="dropdown-content">
-                <a href="upcomingSerms.html">Upcoming</a>
-                <a href="previousSerms.html" class="active">Previous</a>
-            </div>
-        </li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Events &#x25BC;</a>
+                <div class="dropdown-content">
+                    <a href="events.html">Events</a>
+                    <a href="pastEvents.html">Past Events</a>
+                    <a href="photoGallery.html">Photo Gallery</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Sermons &#x25BC;</a>
+                <div class="dropdown-content">
+                    <a href="upcomingSerms.html">Upcoming</a>
+                    <a href="previousSerms.html">Previous</a>
+                </div>
+            </li>
 
-        <li><a href="services.html">Services</a></li>
+            <li><a href="services.html">Services</a></li>
 
-        <li class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn">About Us &#x25BC;</a>
-            <div class="dropdown-content">
-                <a href="ourBeliefs.html">Our Beliefs</a>
-                <a href="ourGoals.html">Our Goals</a>
-                <a href="dateTime.html">Date / Time</a>
-                <a href="languages.html">Language</a>
-            </div>
-        </li>
-        <li><a href="default.html">Home</a></li>
-    </ul>
-</header>
+            <li><a href="ourGoalsAndBeliefs.html">Our Goals and Beliefs</a></li>
 
-<main>
-    <!-- Main content goes here -->
-    <p>This is the Previous Sermons page</p>
-</main>
+            <li><a href="default.html" class="active">Home</a></li>
+        </ul>
+
+    </header>
+
+    <main>
+        <!-- Main content goes here -->
+        <h1>Previous Sermons</h1>
+        <div class="mainContent" >
+            <fieldset id="searchField" class="addSermonBox">
+                <legend>Sermon Information</legend>
+                <div style="display: flex; align-items: center;">
+                    <textarea rows="1" style="width: 150px; margin-right: 10px;" id="nameBox" name="nameBox" placeholder="Sermon Name"></textarea><br></br>
+                    <button type="button" id="previewButton" onclick="searchByName()" style="width: 80px;">Search</button>
+                </div>
+            </fieldset>
+            <br></br>
+            <fieldset id="resultsField" class="searchBox" hidden>
+                <legend>Search Result</legend>
+                <h4 id="resultTitle">Title</h4>
+                <p id="resultDescription">Desc</p>
+                <p id="resultDateTime">Date and Time</p>
+                <iframe id="video" width="420" height="315" src=""> </iframe>
+                <!-- https://www.youtube.com/watch?v=aZYfWdkaIVs -->
+            </fieldset>
+        </div>
+    </main>
 
 <!-- Footer Content -->
 <footer>
@@ -74,4 +107,5 @@
 </footer>
 
 </body>
+
 </html>
