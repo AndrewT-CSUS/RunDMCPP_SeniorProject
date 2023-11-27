@@ -1,0 +1,17 @@
+        .mainContent {
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            width: 50%;
+        }
+
+        .addSermonBox{
+            text-align: center;
+            width: 500px;
+            height: 280px;
+        }
+
+        .previewBox{
+            text-align: center;
+            width: 500px;
+        }
