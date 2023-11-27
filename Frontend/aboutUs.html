@@ -7,6 +7,22 @@
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="footer.css">
 </head>
+<style>
+    .container{
+        display: flex;
+        align-items: left;
+        justify-content: left;
+    }
+    .img{
+        max-width: 50%;
+        max-height: 50%;
+    }
+ 
+    .text{
+        font-size: 20px;
+        padding: 20px;
+    }
+</style>
 <body>
 <header>
     <!--Church Logo -->
@@ -40,7 +56,7 @@
 
         <li><a href="services.html" id = "services">Services</a></li>
 
-        <li><a class="active" href="ourGoalsAndBeliefs.html" id = "ourGoalsAndBeliefs">Our Goals and Beliefs</a></li>
+        <li><a class="active" href="aboutUs.html" id = "aboutUs">About Us</a></li>
 
         <li><a href="default.html" id = "home">Home</a></li>
     </ul>
@@ -50,7 +66,32 @@
 
 <main>
     <!-- Main content goes here-->
-    <p>This is the Our Goals and Beliefs page</p>
+    <h1 id = aboutChurch>About Our Church</h1>
+    <div class ="container">
+        <div class="img_right">
+            <img src="imageWeb/church.png" 
+            width="771px" height="520px" alt="Image of the church building">
+        </div>
+        <div class ="text">
+            <h2 id = "ourBeliefs">Our Goals and Beliefs</h2>
+            <p></p>
+        </div>
+    </div>
+
+    <div class ="container">
+        <div class="img_left">
+            <img src="imageWeb/map.png" 
+            width="497px" height="461px" alt="Map location of church">
+        </div>
+        <div class ="text">
+            <h2 id = "location">
+                Location
+            </h2>
+            <p>1820 Bell St, Sacramento, CA 95825</p>
+        </div>
+    </div>
+   
+    
 </main>
 
 <footer>
