@@ -108,7 +108,8 @@ async function searchByName() {
                 description.innerText = result.description;
 
                 var dateTime = document.createElement("p");
-                dateTime.innerText = result.dateTime;
+                var printDate = new Date(result.dateTime).toLocaleString();
+                dateTime.innerText = "Date and Time: " + printDate;
 
                 var video = document.createElement("iframe");
                 video.src = result.youtubeLink.replace("watch?v=", "embed/");
