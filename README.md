@@ -53,12 +53,13 @@ solution as well.
      - Our server doesn't run in a container, however, so we have to set up the AWS_ACCESS_KEY_ID and 
      AWS_SECRET_ACCESS_KEY ourselves. These don't have to be anything specific, as this is just a local database. 
      This can be done by adding them as environment variables to whatever IDE you use, or, if running the server from
-     Powershell, you can add them temporarily by running these commands. They will last until you close the terminal:
+     Powershell, you can add them temporarily by running these commands, filling them in with whatever you want the strings to be.
+     They will last until you close the terminal:
 
-
+```
       $env:AWS_ACCESS_KEY_ID = '<???>'
       $env:AWS_SECRET_ACCESS_KEY = '<???>'
-
+```
    
    - ### Remote
 
