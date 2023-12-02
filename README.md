@@ -68,5 +68,19 @@ solution as well.
 
    - TODO: 191
 ## 🕵️‍♀️ About Us
-   - Team RunDMC++ Consists of Alli, Andrew, Ernest, Ethan, Grave, IB, Kevin, and Will
+   - Team RunDMC++ Consists of Alli, Andrew, Ernest, Ethan, Grace, IB, Kevin, and Will
+## 📷 Sample Images
 
+#### You can see our design progress as we get closer to a working product
+
+   - Initial Static Text Page
+![Initial Static Page Design](/Readme%20Resources/General%20Static%20Text%20Page.png)
+
+- Initial Design for our Sermon Viewer
+  ![Initial Design for our Sermon Viewer](/Readme%20Resources/Previous%20Sermons.png)
+
+- Mockup Rework with a New Colorscheme
+  ![New Colorscheme Mockup](/Readme%20Resources/Mockup%20Rework.png)
+
+- Sermon Uploader Page, as of December 2023
+  ![Sermon Uploader Page](/Readme%20Resources/Sermon%20Uploader.png)
