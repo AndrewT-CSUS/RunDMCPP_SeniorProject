@@ -82,18 +82,8 @@ main {
     padding: 20px;
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: left;
-    padding: 10px;
-}
-
-a{
-    color: white;
-}
-
 .sameLine {
     display: inline-block;
     margin: 0;
 }
+

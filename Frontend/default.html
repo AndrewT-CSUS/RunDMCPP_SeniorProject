@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>homePage</title>
     <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
 </head>
 <body>
 <header>
     <!--Church Logo -->
     <img src="imageWeb/sgkc4.png" 
-    width="225px" height="60px">
+    width="225px" height="60px" alt="Sacramento Glory Korean Church Logo">
 
     <!--Title-->
     <h1 class = "sameLine" id = "sgkc">Sacramento Glory Korean Church</h1>
@@ -20,7 +21,6 @@
 
     <!-- Navigation bar -->
     <ul>
-        <li><a href="announcements.html" id = "announcements">Announcements</a></li>
 
         <li class="dropdown">
             <a href="javascript:void(0)" class="dropbtn" id = "eventsDrop">Events &#x25BC;</a>
@@ -40,15 +40,8 @@
 
         <li><a href="services.html" id = "services">Services</a></li>
 
-        <li class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn" id = "aboutUs">About Us &#x25BC;</a>
-            <div class="dropdown-content">
-                <a href="ourBeliefs.html" id = "ourBeliefs">Our Beliefs</a>
-                <a href="ourGoals.html" id = "ourGoals">Our Goals</a>
-                <a href="dateTime.html" id = "dateTime">Date / Time</a>
-                <a href="languages.html" id = "languages">Language</a>
-            </div>
-        </li>
+        <li><a href="aboutUs.html" id = "aboutUs">About Us</a></li>
+
         <li><a class="active" href="default.html" id = "home">Home</a></li>
     </ul>
 
@@ -81,10 +74,26 @@
     <p>This is the Home page</p>
 </main>
 
+<!-- Footer Content -->
 <footer>
-    <!-- Footer content goes here -->
-    <p class = "sameLine" style = "font-size:12px">Sacramento Glory Korean Church<br>1820 Bell Street<br>Sacramento, CA. 95825</p>
-    <p class = "sameLine" style = "font-size:12px; float:right">Contact Us: <a href="mailto: sacglorychurch@hotmail.com">sacglorychurch@hotmail.com</a></p>
+    <!-- Footer left side: Address -->
+    <p class="footer__left">
+        Sacramento Glory Korean Church<br>
+        1820 Bell Street<br>
+        Sacramento, CA. 95825
+    </p>
+    <!-- Footer right side: Links to email, YouTube, FaceBook -->
+    <!-- TODO: YouTube & Facebook links & names have placeholders for now -->
+    <div class="footer__right">
+        <p>Contact Us: <a href="mailto:sacglorychurch@hotmail.com">sacglorychurch@hotmail.com</a></p>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">
+            <img src="imageWeb/youtube_logo.png" alt="YouTube Logo">YouTube Channel
+        </a>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+            <img src="imageWeb/facebook_logo.png" alt="Facebook Logo">Facebook Page
+        </a>
+    </div>
 </footer>
+
 </body>
 </html>
