@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './header.css';
 
 function Schedule() {
@@ -29,27 +30,38 @@ function Schedule() {
                 {/* Navigation bar */}
                 <ul>
                     <li>
-                        <a href="announcements" id="announcements">
-                            Announcements
-                        </a>
+                        <Link to="/announcements">Announcements</Link>
                     </li>
                     <li className="dropdown">
-                        <a href="javascript:void(0)" className="dropbtn" id="eventsDrop">
-                            Events ▼
-                        </a>
+                        <Link to="/events">Events ▼</Link>
                         <div className="dropdown-content">
-                            <a href="events" id="eventsPage">
-                                Events
-                            </a>
-                            <a href="pastEvents" id="past events">
-                                Past Events
-                            </a>
-                            <a href="photoGallery" id="photoGallery">
-                                Photo Gallery
-                            </a>
+                            <Link to="/events">Events</Link>
+                            <Link to="/pastEvents">Past Events</Link>
+                            <Link to="/photoGallery">Photo Gallery</Link>
                         </div>
                     </li>
-                    {/* Other navigation items */}
+                    <li className="dropdown">
+                        <Link to="/upcomingSerms" className="active">Sermons ▼</Link>
+                        <div className="dropdown-content">
+                            <Link to="/upcomingSerms" className="active">Upcoming</Link>
+                            <Link to="/previousSerms">Previous</Link>
+                        </div>
+                    </li>
+                    <li>
+                        <Link to="/services">Services</Link>
+                    </li>
+                    <li className="dropdown">
+                        <Link to="/aboutUs" className="dropbtn">About Us ▼</Link>
+                        <div className="dropdown-content">
+                            <Link to="/ourBeliefs">Our Beliefs</Link>
+                            <Link to="/ourGoals">Our Goals</Link>
+                            <Link to="/dateTime">Date / Time</Link>
+                            <Link to="/languages">Language</Link>
+                        </div>
+                    </li>
+                    <li>
+                        <Link to="/schedule">Home</Link>
+                    </li>
                 </ul>
             </header>
             <main>
@@ -95,3 +107,4 @@ function Schedule() {
 }
 
 export default Schedule;
+
