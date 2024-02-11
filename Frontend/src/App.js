@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Schedule from './Frontend_w_Jsx/schedule';
 import AdminSermonAdd from './Frontend_w_Jsx/adminSermonAdd';
+import AdminSermonEdit from './Frontend_w_Jsx/adminSermonEdit';
 import Announcements from './Frontend_w_Jsx/announcements';
 import Events from './Frontend_w_Jsx/events';
 import Languages from './Frontend_w_Jsx/languages';
@@ -35,6 +36,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Schedule />} />
         <Route path="/adminSermonAdd" element={<AdminSermonAdd />} />
+        <Route path="/adminSermonEdit" element={<AdminSermonEdit />} />
         <Route path="/announcements" element={<Announcements />} />
         <Route path="/events" element={<Events />} />
         <Route path="/languages" element={<Languages />} />
