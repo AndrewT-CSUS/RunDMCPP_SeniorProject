@@ -1,38 +1,56 @@
 const missingFieldError = "You seem to be missing a field. Please supply all data."
 const missingNameError = "Missing Sermon Name"
 const missingLinkError = "Missing Youtube Link"
+const badLinkError = "Your Youtube link is invalid"
 const missingDescError = "Missing Sermon Description"
 const missingDateTimeError = "Missing Date/Time"
 const invalidInputError = "The sermon you tried to add is invald. Try something else"
 const transactionFailError = "The server could not complete the add. Try again later"
 const sermonAdded = "Sermon Added!"
 
+var ValSermon;
+
+export function createPreview() {
+    const sermon = createSermon();
+    if (!validateSermon(sermon)) {
+        return;
+    }
+    showResults(sermon);
+    ValSermon = sermon;
+}
+
+
 function createSermon() {
     var dateTime = document.getElementById("sermonDateTime").value
     const sermon = {
-        "name": nameBox.value,
-        "description": descriptionBox.value,
-        "youtubeLink": youtubeLinkBox.value,
+        "name": document.getElementById("nameBox").value,
+        "description": document.getElementById("descriptionBox").value,
+        "youtubeLink": document.getElementById("youtubeLinkBox").value,
         "dateTime": dateTime
     }
     console.log(sermon)
     return sermon;
 }
 
-async function addSermon() {
-    const sermon = createSermon()
-    // console.log(sermon);
-    if (!validateSermon(sermon)) {
-        alert(missingFieldError)
-        return;
-    }
+function showResults(sermon) {
+    document.getElementById("resultTitle").innerText = sermon.name;
+    document.getElementById("resultDescription").innerText = sermon.description;
+    document.getElementById("video").src = sermon.youtubeLink.replace("watch?v=", "embed/");
 
+    let printDate = new Date(Date.parse(sermon.dateTime)) 
+    document.getElementById("resultDateTime").innerText = printDate.toDateString() + ", " + printDate.toLocaleTimeString();
+
+    document.getElementById("resultsField").hidden = false;
+    document.getElementById("video").hidden = false;
+}
+
+export async function addSermon(){
     var request = new XMLHttpRequest();
     var url = "http://localhost:8080/api/sermons/create";
 
     request.open("POST", (url));
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    request.send(JSON.stringify(sermon));
+    request.send(JSON.stringify(ValSermon));
     request.onload = () => {
         if (request.status === 201) {
             var requestResult = JSON.parse(request.response);
@@ -56,15 +74,8 @@ async function addSermon() {
     }
 }
 
-function createPreview() {
-    const sermon = createSermon();
-    if (!validateSermon(sermon)) {
-        return;
-    }
-    showResults(sermon);
-}
-
 function validateSermon(sermon) {
+    const youtubeRegex = new RegExp('^((?:https?:)?\\\/\\\/)?((?:www|m)\\.)?((?:youtube(-nocookie)?\\.com|youtu.be))(\\\/(?:[\\w\\-]+\\?v=|embed\\\/|v\\\/)?)([\\w\\-]+)(\\S+)?$', 'img');
     if (sermon == null) {
         return false;
     }
@@ -80,6 +91,10 @@ function validateSermon(sermon) {
         alert(missingLinkError)
         return false
     }
+    if(!youtubeRegex.test(sermon.youtubeLink)){
+        alert(badLinkError)
+        return false
+    }
     if (!sermon.dateTime) {
         alert(missingDateTimeError)
         return false
@@ -92,14 +107,3 @@ function validateSermon(sermon) {
     return true;
 }
 
-function showResults(sermon) {
-    document.getElementById("resultTitle").innerText = sermon.name;
-    document.getElementById("resultDescription").innerText = sermon.description;
-    document.getElementById("video").src = sermon.youtubeLink.replace("watch?v=", "embed/");
-
-    let printDate = new Date(Date.parse(sermon.dateTime)) 
-    document.getElementById("resultDateTime").innerText = printDate.toDateString() + ", " + printDate.toLocaleTimeString();
-
-    document.getElementById("resultsField").hidden = false;
-    document.getElementById("video").hidden = false;
-}
