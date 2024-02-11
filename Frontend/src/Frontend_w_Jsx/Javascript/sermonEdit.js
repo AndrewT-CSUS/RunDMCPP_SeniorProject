@@ -7,6 +7,7 @@ const missingDateTimeError = "Missing Date/Time"
 const invalidInputError = "The sermon you tried to add is invald. Try something else"
 const transactionFailError = "The server could not complete the add. Try again later"
 const sermonAdded = "Sermon Added!"
+const sermonUpdated = "Sermon Edited!"
 const sermonDeleteConfirmation = "Warning! You are about to delete the selected sermon.\nThis can not be undone, but the sermon can be re-created manually.\nAre you sure you want to do this?" //Bad, reword later?
 const sermonDeleted = "Sermon Deleted!"
 
@@ -14,6 +15,7 @@ var ValSermon;
 
 export function createPreview() {
     const sermon = createSermon();
+    sermon.id = ValSermon.id;
     if (!validateSermon(sermon)) {
         return;
     }
@@ -46,36 +48,6 @@ function showResults(sermon) {
     document.getElementById("video").hidden = false;
 }
 
-export async function addSermon(){
-    var request = new XMLHttpRequest();
-    var url = "http://localhost:8080/api/sermons/create";
-
-    request.open("POST", (url));
-    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    request.send(JSON.stringify(ValSermon));
-    request.onload = () => {
-        if (request.status === 201) {
-            var requestResult = JSON.parse(request.response);
-            console.log(requestResult);
-            showResults(requestResult);
-            alert(sermonAdded);
-        } else if (request.status === 500) {
-            var requestResult = JSON.parse(request.response);
-            console.log(requestResult);
-            if(requestResult.code == 3){
-                console.log(requestResult.message)
-                alert(invalidInputError)
-            }            
-            if(requestResult.code == 4){
-                console.log(requestResult.message)
-                alert(transactionFailError)
-            }
-        } else if (request.status === 404) {
-            alert("Something went REALLY wrong. Try again later, maybe?")
-        }
-    }
-}
-
 export async function editSermon(){
     var request = new XMLHttpRequest();
     var url = "http://localhost:8080/api/sermons/edit";
@@ -84,11 +56,11 @@ export async function editSermon(){
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     request.send(JSON.stringify(ValSermon));
     request.onload = () => {
-        if (request.status === 201) {
+        if (request.status === 200) {
             var requestResult = JSON.parse(request.response);
             console.log(requestResult);
             showResults(requestResult);
-            alert(sermonAdded);
+            alert(sermonUpdated);
         } else if (request.status === 500) {
             var requestResult = JSON.parse(request.response);
             console.log(requestResult);
@@ -132,7 +104,7 @@ function validateSermon(sermon) {
         return false
     }
     //small fallback that probably won't happen but you never know!
-    if (Object.keys(sermon).length != 4) {
+    if (Object.keys(sermon).length != 5) {
         alert(missingFieldError);
         return false;
     }
