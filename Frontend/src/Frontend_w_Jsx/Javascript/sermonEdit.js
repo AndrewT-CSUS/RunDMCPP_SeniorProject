@@ -6,7 +6,6 @@ const missingDescError = "Missing Sermon Description"
 const missingDateTimeError = "Missing Date/Time"
 const invalidInputError = "The sermon you tried to add is invald. Try something else"
 const transactionFailError = "The server could not complete the add. Try again later"
-const sermonAdded = "Sermon Added!"
 const sermonUpdated = "Sermon Edited!"
 const sermonDeleteConfirmation = "Warning! You are about to delete the selected sermon.\nThis can not be undone, but the sermon can be re-created manually.\nAre you sure you want to do this?" //Bad, reword later?
 const sermonDeleted = "Sermon Deleted!"
@@ -125,6 +124,8 @@ export async function searchByName(){
 
             // Clear previous results
             document.getElementById("resultsField").innerHTML = "";
+            document.getElementById("editField").hidden = true;
+            document.getElementById("previewField").hidden = true;
 
             for (let i = 0; i < objectText.length; i++) {
                 var result = objectText[i];
@@ -227,9 +228,6 @@ async function deleteSermon(){
     request.send(JSON.stringify(ValSermon));
     request.onload = () => {
         if (request.status === 200) {
-            var requestResult = JSON.parse(request.response);
-            console.log(requestResult);
-            showResults(requestResult);
             alert(sermonDeleted);
         } else if (request.status === 500) {
             var requestResult = JSON.parse(request.response);
