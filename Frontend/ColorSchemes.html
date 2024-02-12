@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ChurchTemplate</title>
+    <style>
+        header {
+            background-color: #276622;
+            color: #fff;
+            padding: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow:hidden;
+        }
+
+        li {
+            display:inline;
+            float:right;
+        }
+
+        li a, .dropbtn {
+            display: inline-block;
+            color: white;
+            text-align: left;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+        li a:hover, .dropdown:hover .dropbtn {
+            background-color: #2B6D25;
+            border-style: solid;
+            border-left-color:black;
+            border-right-color: #2B6D25;
+            border-top-color:#2B6D25;
+            border-bottom-color:#2B6D25;
+        }
+
+        .active {
+            background-color: #2B6D25;
+        }
+
+        li.dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #2B6D25;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #276622;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* CSS for styling the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            max-width: 1000px; /* Increase the maximum width of the main element */
+            width: 90%; /* Control the width of the main element */
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: left;
+            padding: 10px;
+        }
+        div.a{
+            line-height:1cm;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <!-- Header content -->
+    <!-- Logo, church name, and language goes here -->
+    <img src="https://via.placeholder.com/100" alt="Temporary Image">
+    <h1>Sacramento Glory<br>Korean Church</h1>
+
+    <!-- Navigation bar -->
+    <ul>
+        <li><a href="announcements.asp">Announcements</a></li>
+
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Events &#x25BC;</a>
+            <div class="dropdown-content">
+                <a href="#">Events</a>
+                <a href="#">Past Events</a>
+                <a href="#">Photo Gallery</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Sermons &#x25BC;</a>
+            <div class="dropdown-content">
+                <a href="#">Upcoming</a>
+                <a href="#">Previous</a>
+            </div>
+        </li>
+
+        <li><a href="services.asp">Services</a></li>
+
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">About Us &#x25BC;</a>
+            <div class="dropdown-content">
+                <a href="ourBeliefs.asp">Our Beliefs</a>
+                <a href="ourGoals.asp">Our Goals</a>
+                <a href="dateTime.asp">Date / Time</a>
+                <a href="languages">Language</a>
+            </div>
+        </li>
+        <li><a  href="default.asp">Home</a></li>
+    </ul>
+</header>
+
+<main>
+    <!-- Page content goes here -->
+    <p><b>Page content goes here</b></p>
+    <!-- (topBackground, topText, midBackground, midText, bottomBackground, bottomText) -->
+    <button onclick="changeColors('#276622', '#ffffff','#ffffff','#000','#333','#ffffff')">Default Theme</button>
+    <button onclick="changeColors('#333399', '#ff6600', '#ffffff', '#1b1760','#0a0c1f','#ffffff')">Blue Theme</button>
+    <button onclick="changeColors('#455f0c', '#ffffff','#ffffff','#0a0c1f','#172004','#ffffff')">Green Theme</button>
+    <button onclick="changeColors('#8e0000', '#ffffff','#ffffff','#390000','#170000','#ffffff')">Red Theme</button>
+    <button onclick="changeColors('#333399', '#ffffff','#0a0c1f','#000','#0a0c1f','#ffffff')">Blue Dark Theme</button>
+    <button onclick="changeColors('#455f0c', '#ffffff','#566436','#000','#172004','#ffffff')">Green dark Theme</button>
+    <button onclick="changeColors('#8e0000', '#ffffff','#8b003a','#000','#170000','#ffffff')">Red dark Theme</button>
+</main>
+
+<footer>
+    <!-- Footer content -->
+    <p style = "font-size:24px">Sacramento Glory Korean Church</p>
+    <p  style="line-height:5px">1820 Bell Street</p>
+    <p  style="line-height:5px">Sacramento, CA. 95825</p>
+    <p style = "font-size:24px">Contact Us:</p>
+    <p  style="line-height:5px">sacglorychurch@hotmail.com</p>
+</footer>
+
+<script>
+    function changeColors(topbackgroundColor, toptextColor,backgroundColor, textColor, bottombackgroundColor, bottomtextColor) {
+        // Apply colors to elements
+        document.body.style.backgroundColor = backgroundColor;
+        document.body.style.color = textColor;
+        document.querySelector('header').style.backgroundColor = topbackgroundColor;
+        document.querySelector('header').style.color = toptextColor;
+        document.querySelector('footer').style.backgroundColor = bottombackgroundColor;
+        document.querySelector('footer').style.color = bottomtextColor;
+    }
+</script>
+
+</body>
+</html>
