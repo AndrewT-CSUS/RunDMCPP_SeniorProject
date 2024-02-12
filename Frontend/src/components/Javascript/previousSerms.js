@@ -1,3 +1,8 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
+import VideoPage from '../VideoPage';
+
 const SearchByName = "Search By Name Results"
 const SearchByDate = "Search By Date Results"
 const NoSearchTerm = "Please supply a search term!"
@@ -93,21 +98,63 @@ function showResults(request, searchByName){
         var printDate = new Date(result.dateTime).toLocaleString();
         dateTime.innerText = "Date and Time: " + printDate;
 
-        var video = document.createElement("iframe");
+        var link = result.youtubeLink.replace("watch?v=", "embed/");
+
+        var button = document.createElement("button");
+        button.innerText = "Watch";
+        button.addEventListener("click", () => {
+            console.log(`${link}, ${title.innerText}, ${description.innerText}, ${printDate}`);
+            openVideoInNewTab(link, title.innerText, description.innerText, printDate);
+        }) 
+       /* var video = document.createElement("iframe");
         video.src = result.youtubeLink.replace("watch?v=", "embed/");
         video.width = 420;
         video.height = 315;
         video.hidden = false;
-
+        */
+        
         document.getElementById("resultsField").appendChild(title);
         document.getElementById("resultsField").appendChild(description);
         document.getElementById("resultsField").appendChild(dateTime);
-        document.getElementById("resultsField").appendChild(video);
+        document.getElementById("resultsField").appendChild(button);
+        //document.getElementById("resultsField").appendChild(video);
 
     }
 
     // Show Results
     document.getElementById("resultsField").hidden = false;
     
-
 }
+
+function openVideoInNewTab(videoUrl, title, description, dateTime){
+    const newTab = window.open(`/VideoPage?title=${title}&description=${description}&dateTime=${dateTime}`, "_blank");
+
+    const container = newTab.document.createElement("div");
+    newTab.document.body.appendChild(container);
+
+    const root = createRoot(container);
+
+    root.render(<VideoPage url={videoUrl} title={title.toString()} description={description.toString()} dateTime={dateTime.toString()} />);
+    
+}
+
+/*export async function openSermon(){
+    var request = new XMLHttpRequest();
+    var url = 'http://localhost:8080/api/sermons/get/'
+
+    request.open("GET", url);
+    request.send();
+
+    request.onload = () => {
+        if(request.status === 200){
+            var sermonData = JSON.parse(request.response);
+            console.log(sermonData);
+            var link = sermonData.youtubeLink;
+            console.log(youtubeLink);
+
+        }
+        else if(request.status === 404){
+            alert("Sermon not found");
+        }
+    }
+} */
