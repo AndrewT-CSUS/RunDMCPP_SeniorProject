@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 // Controller class listening for web requests to the /api/events endpoints and sends back responses
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/api/events")
 public class EventController {
