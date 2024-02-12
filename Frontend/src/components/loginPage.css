@@ -1,0 +1,64 @@
+/* Login Page Body */
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: darkgreen;
+
+}
+
+/* Containers for both the logo and the logged-in user */
+.logged-in-container, .login-logo-container {
+
+    width: 300px;
+    padding: 25px;
+    background-color: white;
+}
+
+/* Login Form Container blocks with rounded corners */
+.login-logo-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+
+    background-color: white;
+    margin-bottom: 25px;
+}
+
+/* Login Container when the user is logged in */
+.logged-in-container {
+    display: flex;
+    flex-direction: row;
+}
+
+/* User Picture and Logout button container */
+.user-picture-and-logout {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 14px;
+}
+
+/* User Picture */
+.user-picture {
+    width: 80px;
+    height: 80px;
+}
+
+/* User Name */
+.user-name {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.logo {
+    width: 290px;
+    height: 105px;
+}
