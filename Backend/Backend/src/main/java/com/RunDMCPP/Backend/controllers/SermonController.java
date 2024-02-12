@@ -12,7 +12,7 @@ import com.RunDMCPP.Backend.services.SermonService;
 
 import java.util.List;
 import java.util.Optional;
-
+@CrossOrigin(maxAge = 3600)
 // Controller class listening for web requests to the /api/sermons endpoints and sends back responses
 @RestController
 @RequestMapping("/api/sermons")

@@ -1,8 +1,26 @@
 // Libraries: Allows linking to other pages, OAuth login
 import React from 'react';
+<<<<<<< Updated upstream
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'; // Linking to other pages
 import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';  // OAuth Admin Login
 import { AdminProvider } from './components/Javascript/adminContext'; // Allows for admin privleges
+=======
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Schedule from './Frontend_w_Jsx/schedule';
+import AdminSermonAdd from './Frontend_w_Jsx/adminSermonAdd';
+import AdminSermonEdit from './Frontend_w_Jsx/adminSermonEdit';
+import AdminAnnouncementsAdd from './Frontend_w_Jsx/adminAnnouncementsAdd';
+import Announcements from './Frontend_w_Jsx/announcements';
+import Events from './Frontend_w_Jsx/events';
+import Languages from './Frontend_w_Jsx/languages';
+import OurBeliefs from './Frontend_w_Jsx/ourBeliefs';
+import OurGoals from './Frontend_w_Jsx/ourGoals';
+import PastEvents from './Frontend_w_Jsx/pastEvents';
+import PhotoGallery from './Frontend_w_Jsx/photoGallery';
+import PreviousSerms from './Frontend_w_Jsx/previousSerms';
+import Services from './Frontend_w_Jsx/services';
+import UpcomingSerms from './Frontend_w_Jsx/upcomingSerms';
+>>>>>>> Stashed changes
 
 // Pages: Importing all the different pages
 import Schedule from './components/schedule';
@@ -40,6 +58,7 @@ function App() {
       <div>
         <Link to="/">Home</Link>
         <Link to="/adminSermonAdd">Admin Sermon Add</Link>
+        <Link to="/adminAnnouncementsAdd">Admin Announcements Add</Link>
         <Link to="/announcements">Announcements</Link>
         <Link to="/events">Events</Link>
         <Link to="/languages">Languages</Link>
@@ -59,6 +78,7 @@ function App() {
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/adminSermonAdd" element={<AdminSermonAdd />} />
         <Route path="/adminSermonEdit" element={<AdminSermonEdit />} />
+        <Route path="/adminAnnouncementsAdd" element={<AdminAnnouncementsAdd />} />
         <Route path="/announcements" element={<Announcements />} />
         <Route path="/events" element={<Events />} />
         <Route path="/languages" element={<Languages />} />
