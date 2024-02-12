@@ -30,9 +30,6 @@ function Header() {
             </button>
             {/* Navigation bar */}
             <ul>
-                <li>
-                    <Link to="/announcements">Announcements</Link>
-                </li>
                 <li className="dropdown">
                     <Link to="/events">Events ▼</Link>
                     <div className="dropdown-content">
