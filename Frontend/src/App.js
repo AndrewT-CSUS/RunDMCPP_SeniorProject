@@ -7,6 +7,7 @@ import { AdminProvider } from './components/Javascript/adminContext'; // Allows 
 // Pages: Importing all the different pages
 import Schedule from './components/schedule';
 import AdminAnnouncementsAdd from './components/adminAnnouncementsAdd'
+import AdminEventAdd from './components/adminEventAdd'
 import AdminSermonAdd from './components/adminSermonAdd';
 import AdminSermonEdit from './components/adminSermonEdit';
 import Announcements from './components/announcements';
@@ -41,6 +42,7 @@ function App() {
         <Link to="/">Home</Link>
         <Link to="/adminSermonAdd">Admin Sermon Add</Link>
         <Link to="/adminAnnouncementsAdd">Admin Announcements Add</Link>
+        <Link to="/adminEventAdd"> Admin Event Add</Link>
         <Link to="/announcements">Announcements</Link>
         <Link to="/events">Events</Link>
         <Link to="/ourBeliefs">Our Beliefs</Link>
@@ -59,6 +61,7 @@ function App() {
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/adminSermonAdd" element={<AdminSermonAdd />} />
         <Route path="/adminSermonEdit" element={<AdminSermonEdit />} />
+        <Route path="/adminEventAdd" element={<AdminEventAdd />} />
         <Route path="/adminAnnouncementsAdd" element={<AdminAnnouncementsAdd />} />
         <Route path="/announcements" element={<Announcements />} />
         <Route path="/events" element={<Events />} />
