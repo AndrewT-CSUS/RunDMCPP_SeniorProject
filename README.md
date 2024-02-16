@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="./Frontend/imageWeb/sgkc2_transparent_shadow.png" alt="Sacramento Glory Korean Church">
+  <img src="./Frontend/src/images/sgkc2_transparent_shadow.png" alt="Sacramento Glory Korean Church">
 <a href="https://github.com/AndrewT-CSUS/RunDMCPP_SeniorProject/tree/main/Frontend">Frontend</a> | <a href="https://github.com/AndrewT-CSUS/RunDMCPP_SeniorProject/tree/main/Backend/Backend">Backend</a>
 </h1>
 
