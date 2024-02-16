@@ -30,8 +30,12 @@ public class EventController {
     // Method gets a specific event by id; accessible at /api/events/get/{id}
     @GetMapping
     @RequestMapping("/get/{id}")
-    public Optional<Event> get(@PathVariable String id){
-        return eventService.findById(id);
+    public ResponseEntity get(@PathVariable String id){
+        try {
+            return new ResponseEntity<> (eventService.findById(id), HttpStatus.OK);
+        } catch (BackendErrorException e){
+            return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
+        }
     }
 
     // Method creates a new event at '/api/events/create'

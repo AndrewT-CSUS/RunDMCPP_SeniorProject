@@ -1,6 +1,7 @@
 const SearchByName = "Search By Name Results"
 const SearchByDate = "Search By Date Results"
 const NoSearchTerm = "Please supply a search term!"
+const NoSearchResults = "No results found!"
 
 export async function searchByName(){
     var request = new XMLHttpRequest();
@@ -18,6 +19,8 @@ export async function searchByName(){
     request.onload = async () => {
         if (request.status === 200) {
             showResults(request, true);
+        } else if (request.status === 404){
+            alert(NoSearchResults);
         } else {
             alert("Something went wrong. Try again later!");
             console.log(`error ${request.status}`);
@@ -58,6 +61,8 @@ export async function searchByDate(){
     request.onload = async () => {
         if (request.status === 200) {
             showResults(request, false);
+        } else if (request.status === 404){
+            alert(NoSearchResults);
         } else {
             alert("Something went wrong. Try again later!");
             console.log(`error ${request.status}`);
