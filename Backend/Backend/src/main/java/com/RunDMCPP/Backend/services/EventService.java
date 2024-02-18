@@ -2,6 +2,7 @@ package com.RunDMCPP.Backend.services;
 
 import com.RunDMCPP.Backend.enums.ErrorEnum;
 import com.RunDMCPP.Backend.models.Event;
+import com.RunDMCPP.Backend.models.Event;
 import com.RunDMCPP.Backend.repositories.EventRepository;
 import com.RunDMCPP.Backend.utils.BackendErrorException;
 import com.RunDMCPP.Backend.validation.EventValidator;
@@ -12,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 
 // EventService. Services are Springs components that deal w/ business logic.
@@ -48,7 +50,7 @@ public class EventService {
     }
 
     // Method updates an existing event, validates input, throws error if invalid
-    public Event updateEvent(Event event) throws BackendErrorException {
+    public Event editEvent(Event event) throws BackendErrorException {
         // If the event is invalid, throw an error
         if (!eventValidator.readValidator(event)) {
             throw new BackendErrorException(ErrorEnum.INVALID_INPUT);
@@ -61,8 +63,8 @@ public class EventService {
             // If the event is valid, update the event
             if (eventValidator.updateValidator(event, dbEntity.get())) {
                 // If the event title/desc/time/location is not null, update with the new data
-                if (event.getEventTitle() != null) {
-                    dbEntity.get().setEventTitle(event.getEventTitle());
+                if (event.getName() != null) {
+                    dbEntity.get().setName(event.getName());
                 }
                 if (event.getEventDescription() != null) {
                     dbEntity.get().setEventDescription(event.getEventDescription());
@@ -148,5 +150,22 @@ public class EventService {
                 throw new BackendErrorException(ErrorEnum.NOT_FOUND);
             }
         }
+    }
+    // Method searches for sermons by title, throws error if not found
+    public List<Event> searchEventByTitle(String title) throws BackendErrorException {
+        List<Event> results = eventRepository.findByNameContaining(title);
+        if(results.isEmpty()){
+            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+        }
+        return results;
+    }
+
+    // Method searches for sermons by date range, throws error if not found
+    public List<Event> searchEventByDateRange(String startDate, String endDate) throws BackendErrorException {
+        List<Event> results = eventRepository.findByDateTimeBetween(startDate, endDate);
+        if(results.isEmpty()){
+            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+        }
+        return results;
     }
 }

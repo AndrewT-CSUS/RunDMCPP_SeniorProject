@@ -9,31 +9,7 @@ function AdminAnnouncementsAdd() {
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <title>ChurchTemplate</title>
             <link rel="stylesheet" href="header.css" />
-            <header>
-                {/*Title*/}
-                <h1>
-                    Sacramento Glory
-                    <br />
-                    Korean Church
-                </h1>
-                {/* Navigation bar */}
-                <ul>
-                    <li>
-                        <a href="announcements">Announcements</a>
-                    </li>
-                    <li className="dropdown">
-                        <a href="javascript:void(0)" className="dropbtn">
-                            Events ▼
-                        </a>
-                        <div className="dropdown-content">
-                            <a href="events">Events</a>
-                            <a href="pastEvents">Past Events</a>
-                            <a href="photoGallery">Photo Gallery</a>
-                        </div>
-                    </li>
-                    {/* Other navigation items */}
-                </ul>
-            </header>
+            
             <main>
                 {/* Main content goes here */
                     <div>

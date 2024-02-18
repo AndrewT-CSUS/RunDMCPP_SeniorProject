@@ -50,7 +50,7 @@ public class EventController {
     public ResponseEntity edit(@RequestBody Event s){
         // Try to edit the event & return updated event w/ HTTP status 200; else send back an error
         try {
-            return new ResponseEntity<>(eventService.updateEvent(s), HttpStatus.OK);
+            return new ResponseEntity<>(eventService.editEvent(s), HttpStatus.OK);
         } catch (BackendErrorException e) {
             return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
         }
@@ -75,6 +75,31 @@ public class EventController {
         try{
             eventService.autoDeleteEvents();
             return new ResponseEntity<>(HttpStatus.OK);
+        } catch (BackendErrorException e) {
+            return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
+        }
+    }
+
+    // Method searches for sermons by title
+    @GetMapping("/search/title/{title}")
+    public ResponseEntity searchByTitle(@PathVariable String title) {
+        // Try to return matching sermons w/ HTTP status OK; else return error
+        try {
+            return new ResponseEntity<>(eventService.searchEventByTitle(title), HttpStatus.OK);
+        } catch (BackendErrorException e) {
+            return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
+        }
+    }
+
+
+    // Method searches for sermons by date range
+    @GetMapping("/search/date")
+    public ResponseEntity searchByDateRange(
+            @RequestParam String startDate,
+            @RequestParam String endDate) {
+        // Try to return matching sermons w/ HTTP status OK; else return error
+        try {
+            return new ResponseEntity<>(eventService.searchEventByDateRange(startDate, endDate), HttpStatus.OK);
         } catch (BackendErrorException e) {
             return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
         }
