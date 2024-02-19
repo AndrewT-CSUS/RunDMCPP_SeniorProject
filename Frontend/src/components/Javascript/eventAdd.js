@@ -3,7 +3,7 @@ const missingNameError = "Missing Event Name"
 const missingDescError = "Missing Event Description"
 const missingDateTimeError = "Missing Date/Time"
 const missingLocationError = "Missing Location"
-const invalidInputError = "The event you tried to add is invald. Try something else"
+const invalidInputError = "The event you tried to add is invalid. Try something else"
 const transactionFailError = "The server could not complete the add. Try again later"
 const eventAdded = "Event Added!"
 
