@@ -2,6 +2,7 @@ package com.RunDMCPP.Backend.services;
 
 import com.RunDMCPP.Backend.enums.ErrorEnum;
 import com.RunDMCPP.Backend.models.Event;
+import com.RunDMCPP.Backend.models.Sermon;
 import com.RunDMCPP.Backend.repositories.EventRepository;
 import com.RunDMCPP.Backend.utils.BackendErrorException;
 import com.RunDMCPP.Backend.validation.EventValidator;
@@ -30,9 +31,12 @@ public class EventService {
     }
 
     // Method gets a specific event by id
-    public Optional<Event> findById(String id) {
-        //TODO
-        return eventRepository.findById(id);
+    public Optional<Event> findById(String id) throws BackendErrorException {
+        Optional<Event> dbEntity = eventRepository.findById(id);
+        if(dbEntity.isPresent()){
+            return dbEntity;
+        }
+        throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
     }
 
     // Method creates a new event, validates input, throws error if invalid
@@ -85,7 +89,7 @@ public class EventService {
             throw new BackendErrorException(ErrorEnum.DATA_MISMATCH);
         }
         // If event doesn't exist in DB, throw error
-        throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+        throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
     }
 
     // Method deletes an existing event, validates input, throws error if invalid
@@ -113,7 +117,7 @@ public class EventService {
             }
         } else {
             // If event doesn't exist in DB, throw error
-            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+            throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
         }
     }
 
@@ -145,7 +149,7 @@ public class EventService {
             if (currDate == expiryDate) {
                 eventRepository.deleteById(dbEntity.get().getId());
             } else {
-                throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+                throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
             }
         }
     }

@@ -25,7 +25,7 @@ public class SermonController {
     // Method gets all sermons at '/api/sermons/get'
     @GetMapping
     @RequestMapping("/get")
-    public ResponseEntity<Iterable<Sermon>> getAllSermons() {
+    public ResponseEntity<Iterable<Sermon>> getAllSermons() {       //TODO: REMOVE FOR PROD - NOT USED IN WEBSITE SO NO REASON TO HAVE AS OPTION
         return new ResponseEntity<>(sermonService.findAll(), HttpStatus.OK);
     }
 
