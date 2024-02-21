@@ -2,14 +2,12 @@ package com.RunDMCPP.Backend.services;
 
 import com.RunDMCPP.Backend.enums.ErrorEnum;
 import com.RunDMCPP.Backend.models.Event;
-import com.RunDMCPP.Backend.models.Sermon;
 import com.RunDMCPP.Backend.repositories.EventRepository;
 import com.RunDMCPP.Backend.utils.BackendErrorException;
 import com.RunDMCPP.Backend.validation.EventValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -146,7 +144,7 @@ public class EventService {
             String currDate = sdf.format(Calendar.DAY_OF_MONTH);
 
             // If the event is older than 28 days, delete it
-            if (currDate == expiryDate) {
+            if (currDate.equals(expiryDate)) {
                 eventRepository.deleteById(dbEntity.get().getId());
             } else {
                 throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);

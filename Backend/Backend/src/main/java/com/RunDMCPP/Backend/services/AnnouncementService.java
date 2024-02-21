@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.RunDMCPP.Backend.models.Announcement;
 import com.RunDMCPP.Backend.repositories.AnnouncementRepository;
-import org.springframework.web.server.ResponseStatusException;
 
 // AnnouncementService. Services are Springs components that deal w/ business logic.
 @Service

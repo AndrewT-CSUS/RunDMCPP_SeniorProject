@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 // Controller class listening for web requests to the /api/events endpoints and sends back responses
 @CrossOrigin(maxAge = 3600)
 @RestController
