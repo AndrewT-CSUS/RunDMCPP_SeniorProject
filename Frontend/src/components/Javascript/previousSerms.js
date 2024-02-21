@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createRoot} from 'react-dom/client';
-import VideoPage from '../VideoPage';
 
 const SearchByName = "Search By Name Results"
 const SearchByDate = "Search By Date Results"
@@ -70,6 +68,23 @@ export async function searchByDate(){
     }
 }
 
+export async function getSermonById(sermonId){
+    try {
+        const response = await fetch(`http://localhost:8080/api/sermons/get/${sermonId}`);
+
+        if(!response.ok){
+            console.error(`Error: ${response.status}`);
+            return null;
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error:", error);
+        return null;
+    }
+}
+
 function showResults(request, searchByName){
     var objectText = JSON.parse(request.response);
     console.log(objectText);
@@ -98,27 +113,23 @@ function showResults(request, searchByName){
         var printDate = new Date(result.dateTime).toLocaleString();
         dateTime.innerText = "Date and Time: " + printDate;
 
-        var link = result.youtubeLink.replace("watch?v=", "embed/");
+        var link = `/sermons/${result.id}`;
 
+        var linkElement = document.createElement("div");
+        var anchor = document.createElement("a");
+        anchor.href = link;
         var button = document.createElement("button");
         button.innerText = "Watch";
-        button.addEventListener("click", () => {
-            console.log(`${link}, ${title.innerText}, ${description.innerText}, ${printDate}`);
-            openVideoInNewTab(link, title.innerText, description.innerText, printDate);
-        }) 
-       /* var video = document.createElement("iframe");
-        video.src = result.youtubeLink.replace("watch?v=", "embed/");
-        video.width = 420;
-        video.height = 315;
-        video.hidden = false;
-        */
-        
-        document.getElementById("resultsField").appendChild(title);
-        document.getElementById("resultsField").appendChild(description);
-        document.getElementById("resultsField").appendChild(dateTime);
-        document.getElementById("resultsField").appendChild(button);
-        //document.getElementById("resultsField").appendChild(video);
+        anchor.appendChild(button);
+        linkElement.appendChild(anchor);
 
+        var container = document.createElement("div");
+     
+        container.appendChild(title);
+        container.appendChild(description);
+        container.appendChild(dateTime);
+        container.appendChild(linkElement);
+        document.getElementById("resultsField").appendChild(container);
     }
 
     // Show Results
@@ -126,35 +137,4 @@ function showResults(request, searchByName){
     
 }
 
-function openVideoInNewTab(videoUrl, title, description, dateTime){
-    const newTab = window.open(`/VideoPage?title=${title}&description=${description}&dateTime=${dateTime}`, "_blank");
 
-    const container = newTab.document.createElement("div");
-    newTab.document.body.appendChild(container);
-
-    const root = createRoot(container);
-
-    root.render(<VideoPage url={videoUrl} title={title.toString()} description={description.toString()} dateTime={dateTime.toString()} />);
-    
-}
-
-/*export async function openSermon(){
-    var request = new XMLHttpRequest();
-    var url = 'http://localhost:8080/api/sermons/get/'
-
-    request.open("GET", url);
-    request.send();
-
-    request.onload = () => {
-        if(request.status === 200){
-            var sermonData = JSON.parse(request.response);
-            console.log(sermonData);
-            var link = sermonData.youtubeLink;
-            console.log(youtubeLink);
-
-        }
-        else if(request.status === 404){
-            alert("Sermon not found");
-        }
-    }
-} */
