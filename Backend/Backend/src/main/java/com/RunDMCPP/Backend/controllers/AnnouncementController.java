@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-
+@CrossOrigin(maxAge = 3600)
 // Controller class listening for web requests to the /api/announcements endpoints and sends back responses
 @RestController
 @RequestMapping("/api/announcements")
@@ -43,7 +43,7 @@ public class AnnouncementController {
     public ResponseEntity create(@RequestBody final Announcement a) {
         // Try to create the announcement & send back HTTP status OK; else send back error
         try {
-            return new ResponseEntity<>(announcementService.createAnnouncement(a), HttpStatus.OK);
+            return new ResponseEntity<>(announcementService.createAnnouncement(a), HttpStatus.CREATED);
         } catch (BackendErrorException e) {
             return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
         }

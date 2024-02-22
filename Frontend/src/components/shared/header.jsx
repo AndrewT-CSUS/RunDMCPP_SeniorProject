@@ -53,8 +53,6 @@ function Header() {
                     <div className="dropdown-content">
                         <Link to="/ourBeliefs">Our Beliefs</Link>
                         <Link to="/ourGoals">Our Goals</Link>
-                        <Link to="/dateTime">Date / Time</Link>
-                        <Link to="/languages">Language</Link>
                     </div>
                 </li>
                 <li>
