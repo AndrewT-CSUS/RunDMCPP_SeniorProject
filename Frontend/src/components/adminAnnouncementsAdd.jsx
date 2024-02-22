@@ -9,7 +9,6 @@ function AdminAnnouncementsAdd() {
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <title>ChurchTemplate</title>
             <link rel="stylesheet" href="header.css" />
-            
             <main>
                 {/* Main content goes here */
                     <div>
@@ -28,22 +27,6 @@ function AdminAnnouncementsAdd() {
                     </div>
                 }
             </main>
-            <footer>
-                {/* Footer content goes here */}
-                <p className="sameLine" style={{ fontSize: 12 }}>
-                    Sacramento Glory Korean Church
-                    <br />
-                    1820 Bell Street
-                    <br />
-                    Sacramento, CA. 95825
-                </p>
-                <p className="sameLine" style={{ fontSize: 12, float: "right" }}>
-                    Contact Us:{" "}
-                    <a href="mailto: sacglorychurch@hotmail.com">
-                        sacglorychurch@hotmail.com
-                    </a>
-                </p>
-            </footer>
         </>
     );
 }

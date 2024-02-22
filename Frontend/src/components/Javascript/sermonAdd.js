@@ -4,7 +4,7 @@ const missingLinkError = "Missing Youtube Link"
 const badLinkError = "Your Youtube link is invalid"
 const missingDescError = "Missing Sermon Description"
 const missingDateTimeError = "Missing Date/Time"
-const invalidInputError = "The sermon you tried to add is invald. Try something else"
+const invalidInputError = "The sermon you tried to add is invalid. Try something else"
 const transactionFailError = "The server could not complete the add. Try again later"
 const sermonAdded = "Sermon Added!"
 

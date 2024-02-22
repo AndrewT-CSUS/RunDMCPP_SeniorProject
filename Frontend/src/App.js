@@ -7,11 +7,11 @@ import { AdminProvider } from './components/Javascript/adminContext'; // Allows 
 // Pages: Importing all the different pages
 import Schedule from './components/schedule';
 import AdminAnnouncementsAdd from './components/adminAnnouncementsAdd'
+import AdminAnnouncementsEdit from './components/adminAnnouncementsEdit';
 import AdminEventAdd from './components/adminEventAdd'
 import AdminEventEdit from './components/adminEventEdit';
 import AdminSermonAdd from './components/adminSermonAdd';
 import AdminSermonEdit from './components/adminSermonEdit';
-import Announcements from './components/announcements';
 import Events from './components/events';
 import OurBeliefs from './components/ourBeliefs';
 import OurGoals from './components/ourGoals';
@@ -43,6 +43,8 @@ function App() {
         <Link to="/">Home</Link>
         <Link to="/adminSermonAdd">Admin Sermon Add</Link>
         <Link to="/adminAnnouncementsAdd">Admin Announcements Add</Link>
+        <Link to="/adminAnnouncementsEdit">Admin Announcements Edit</Link>
+        <Link to="/adminEventAdd"> Admin Event Add</Link>
         <Link to="/adminEventAdd">Admin Event Add</Link>
         <Link to="/adminEventEdit">Admin Event Edit</Link>
         <Link to="/announcements">Announcements</Link>
@@ -66,7 +68,7 @@ function App() {
         <Route path="/adminEventAdd" element={<AdminEventAdd />} />
         <Route path="/adminEventEdit" element={<AdminEventEdit />} />
         <Route path="/adminAnnouncementsAdd" element={<AdminAnnouncementsAdd />} />
-        <Route path="/announcements" element={<Announcements />} />
+        <Route path="/adminAnnouncementsEdit" element={<AdminAnnouncementsEdit />} />
         <Route path="/events" element={<Events />} />
         <Route path="/ourBeliefs" element={<OurBeliefs />} />
         <Route path="/ourGoals" element={<OurGoals />} />
