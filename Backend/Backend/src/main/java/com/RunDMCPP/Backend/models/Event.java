@@ -11,7 +11,7 @@ import java.util.Objects;
 @DynamoDBTable(tableName = "event")
 public class Event {
     private String id;               // Unique identifier for the event 
-    private String eventTitle;       // Title of the event
+    private String name;       // Title of the event
     private String eventDescription; // Description of the event
     private String eventDateTime;    // Date and time of the event
     private String eventLocation;    // Location of the event
@@ -23,8 +23,8 @@ public class Event {
         return id;
     }
     @DynamoDBAttribute(attributeName = "title")
-    public String getEventTitle() {
-        return eventTitle;
+    public String getName() {
+        return name;
     }
     @DynamoDBAttribute(attributeName = "description")
     public String getEventDescription() {
@@ -45,8 +45,8 @@ public class Event {
         this.id = id;
     }
 
-    public void setEventTitle(String eventTitle) {
-        this.eventTitle = eventTitle;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setEventDescription(String eventDescription) {
@@ -74,7 +74,7 @@ public class Event {
         }
         // Compare each attribute of the events to see if they're equal
         Event event = (Event) o;
-        return Objects.equals(this.id, event.id) && Objects.equals(this.eventTitle, event.eventTitle) && Objects.equals(this.eventDescription, event.eventDescription) && 
+        return Objects.equals(this.id, event.id) && Objects.equals(this.name, event.name) && Objects.equals(this.eventDescription, event.eventDescription) && 
         Objects.equals(this.eventDateTime, event.eventDateTime) && Objects.equals(this.eventLocation, event.eventLocation);
     }
 
@@ -83,6 +83,6 @@ public class Event {
     @Override
     public int hashCode() {
         // Generates a hash code using the event's attributes.
-        return Objects.hash(this.id, this.eventTitle, this.eventDescription, this.eventDateTime, this.eventLocation);
+        return Objects.hash(this.id, this.name, this.eventDescription, this.eventDateTime, this.eventLocation);
     }
 }

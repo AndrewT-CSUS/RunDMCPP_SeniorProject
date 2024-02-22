@@ -9,6 +9,7 @@ import Schedule from './components/schedule';
 import AdminAnnouncementsAdd from './components/adminAnnouncementsAdd'
 import AdminAnnouncementsEdit from './components/adminAnnouncementsEdit';
 import AdminEventAdd from './components/adminEventAdd'
+import AdminEventEdit from './components/adminEventEdit';
 import AdminSermonAdd from './components/adminSermonAdd';
 import AdminSermonEdit from './components/adminSermonEdit';
 import Events from './components/events';
@@ -44,6 +45,9 @@ function App() {
         <Link to="/adminAnnouncementsAdd">Admin Announcements Add</Link>
         <Link to="/adminAnnouncementsEdit">Admin Announcements Edit</Link>
         <Link to="/adminEventAdd"> Admin Event Add</Link>
+        <Link to="/adminEventAdd">Admin Event Add</Link>
+        <Link to="/adminEventEdit">Admin Event Edit</Link>
+        <Link to="/announcements">Announcements</Link>
         <Link to="/events">Events</Link>
         <Link to="/ourBeliefs">Our Beliefs</Link>
         <Link to="/ourGoals">Our Goals</Link>
@@ -62,6 +66,7 @@ function App() {
         <Route path="/adminSermonAdd" element={<AdminSermonAdd />} />
         <Route path="/adminSermonEdit" element={<AdminSermonEdit />} />
         <Route path="/adminEventAdd" element={<AdminEventAdd />} />
+        <Route path="/adminEventEdit" element={<AdminEventEdit />} />
         <Route path="/adminAnnouncementsAdd" element={<AdminAnnouncementsAdd />} />
         <Route path="/adminAnnouncementsEdit" element={<AdminAnnouncementsEdit />} />
         <Route path="/events" element={<Events />} />

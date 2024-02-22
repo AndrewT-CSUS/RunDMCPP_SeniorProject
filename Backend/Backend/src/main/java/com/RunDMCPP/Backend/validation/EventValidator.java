@@ -18,7 +18,7 @@ public class EventValidator {
     // Method to validate creating an event
     public boolean createValidator(Event input) {
         // If the event has a title, description, location, date/time, id, it is valid
-        if (input.getEventTitle() != null
+        if (input.getName() != null
                 && input.getEventDescription() != null
                 && input.getEventLocation() != null
                 && input.getDateTime() != null
@@ -44,7 +44,7 @@ public class EventValidator {
     public boolean deleteValidator(Event input, Event dbEntity) {
         // If event has id, title, desc, location, date/time & matches the one in the DB, it is valid
         if (input.getId() != null
-                && input.getEventTitle() != null
+                && input.getName() != null
                 && input.getEventDescription() != null
                 && input.getDateTime() != null
                 && input.getEventLocation() != null
