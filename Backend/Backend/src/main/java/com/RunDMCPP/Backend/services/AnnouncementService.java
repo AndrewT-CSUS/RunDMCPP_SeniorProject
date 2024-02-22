@@ -8,6 +8,8 @@ import com.RunDMCPP.Backend.validation.AnnouncementValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import com.RunDMCPP.Backend.models.Announcement;
+import com.RunDMCPP.Backend.repositories.AnnouncementRepository;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -33,7 +35,7 @@ public class AnnouncementService {
         if (announcement.isPresent()) {
             return announcement;
         } else
-            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+            throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
     }
 
     // Method creates a new announcement, validates input, throws error if invalid
@@ -80,7 +82,7 @@ public class AnnouncementService {
             throw new BackendErrorException(ErrorEnum.DATA_MISMATCH); 
         }
         // If announcement doesn't exist in DB, throw error
-        throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+        throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
     }
 
     // Method deletes an announcement, and checks if the announcement exists in the DB
@@ -102,7 +104,7 @@ public class AnnouncementService {
             }
         } else {
             // If announcement doesn't exist in DB, throw error
-            throw new BackendErrorException(ErrorEnum.NOT_FOUND); 
+            throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
         }
     }
 

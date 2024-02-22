@@ -9,6 +9,7 @@ const transactionFailError = "The server could not complete the add. Try again l
 const sermonUpdated = "Sermon Edited!"
 const sermonDeleteConfirmation = "Warning! You are about to delete the selected sermon.\nThis can not be undone, but the sermon can be re-created manually.\nAre you sure you want to do this?" //Bad, reword later?
 const sermonDeleted = "Sermon Deleted!"
+const NoSearchResults = "No results found!"
 
 var ValSermon;
 
@@ -162,6 +163,9 @@ export async function searchByName(){
 
             // Show Results
             document.getElementById("resultsField").hidden = false;
+
+        } else if (request.status === 404) {
+            alert(NoSearchResults);
         } else {
             alert("Something went wrong. Try again later!");
             console.log(`error ${request.status}`);
@@ -201,6 +205,8 @@ async function searchById(id){
                 var result = JSON.parse(request.response);
                 console.log(result);
                 resolve(result);
+            } else if (request.status === 404){
+                alert(NoSearchResults);
             }else{
                 alert("Something went wrong. Try again later!")
                 console.log(`error ${request.status}`)

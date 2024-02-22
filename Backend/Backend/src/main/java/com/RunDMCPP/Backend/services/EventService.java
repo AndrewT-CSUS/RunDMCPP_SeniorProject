@@ -9,7 +9,6 @@ import com.RunDMCPP.Backend.validation.EventValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -32,9 +31,12 @@ public class EventService {
     }
 
     // Method gets a specific event by id
-    public Optional<Event> findById(String id) {
-        //TODO
-        return eventRepository.findById(id);
+    public Optional<Event> findById(String id) throws BackendErrorException {
+        Optional<Event> dbEntity = eventRepository.findById(id);
+        if(dbEntity.isPresent()){
+            return dbEntity;
+        }
+        throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
     }
 
     // Method creates a new event, validates input, throws error if invalid
@@ -87,7 +89,7 @@ public class EventService {
             throw new BackendErrorException(ErrorEnum.DATA_MISMATCH);
         }
         // If event doesn't exist in DB, throw error
-        throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+        throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
     }
 
     // Method deletes an existing event, validates input, throws error if invalid
@@ -115,7 +117,7 @@ public class EventService {
             }
         } else {
             // If event doesn't exist in DB, throw error
-            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+            throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
         }
     }
 
@@ -144,10 +146,10 @@ public class EventService {
             String currDate = sdf.format(Calendar.DAY_OF_MONTH);
 
             // If the event is older than 28 days, delete it
-            if (currDate == expiryDate) {
+            if (currDate.equals(expiryDate)) {
                 eventRepository.deleteById(dbEntity.get().getId());
             } else {
-                throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+                throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
             }
         }
     }
