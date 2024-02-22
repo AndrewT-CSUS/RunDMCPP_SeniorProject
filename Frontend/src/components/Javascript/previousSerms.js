@@ -1,3 +1,6 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 const SearchByName = "Search By Name Results"
 const SearchByDate = "Search By Date Results"
 const NoSearchTerm = "Please supply a search term!"
@@ -65,6 +68,23 @@ export async function searchByDate(){
     }
 }
 
+export async function getSermonById(sermonId){
+    try {
+        const response = await fetch(`http://localhost:8080/api/sermons/get/${sermonId}`);
+
+        if(!response.ok){
+            console.error(`Error: ${response.status}`);
+            return null;
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error:", error);
+        return null;
+    }
+}
+
 function showResults(request, searchByName){
     var objectText = JSON.parse(request.response);
     console.log(objectText);
@@ -93,21 +113,28 @@ function showResults(request, searchByName){
         var printDate = new Date(result.dateTime).toLocaleString();
         dateTime.innerText = "Date and Time: " + printDate;
 
-        var video = document.createElement("iframe");
-        video.src = result.youtubeLink.replace("watch?v=", "embed/");
-        video.width = 420;
-        video.height = 315;
-        video.hidden = false;
+        var link = `/sermons/${result.id}`;
 
-        document.getElementById("resultsField").appendChild(title);
-        document.getElementById("resultsField").appendChild(description);
-        document.getElementById("resultsField").appendChild(dateTime);
-        document.getElementById("resultsField").appendChild(video);
+        var linkElement = document.createElement("div");
+        var anchor = document.createElement("a");
+        anchor.href = link;
+        var button = document.createElement("button");
+        button.innerText = "Watch";
+        anchor.appendChild(button);
+        linkElement.appendChild(anchor);
 
+        var container = document.createElement("div");
+     
+        container.appendChild(title);
+        container.appendChild(description);
+        container.appendChild(dateTime);
+        container.appendChild(linkElement);
+        document.getElementById("resultsField").appendChild(container);
     }
 
     // Show Results
     document.getElementById("resultsField").hidden = false;
     
-
 }
+
+

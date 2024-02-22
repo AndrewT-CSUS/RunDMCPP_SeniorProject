@@ -21,6 +21,7 @@ import PreviousSerms from './components/previousSerms';
 import Services from './components/services';
 import UpcomingSerms from './components/upcomingSerms';
 import LoginPage from './components/loginPage'; /* Login Page for OAuth */
+import VideoPage from './components/VideoPage'
 
 /* Header and Footer for every page */
 import Header from './components/shared/header';
@@ -78,6 +79,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/upcomingSerms" element={<UpcomingSerms />} />
         <Route path="/loginpage" element={<LoginPage />} />
+        <Route path="/sermons/:sermonId" element={<VideoPage/>} />
       </Routes>
       <Footer />
     </Router>
