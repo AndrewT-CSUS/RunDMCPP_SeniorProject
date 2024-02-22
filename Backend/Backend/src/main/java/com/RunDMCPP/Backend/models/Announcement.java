@@ -53,8 +53,7 @@ public class Announcement {
     public void setTtl(long t){
         ttl = t;
     }
-
-    @Override
+   @Override
     public boolean equals(Object o) {
         if (this == o){
             return true;

@@ -71,5 +71,15 @@ public class AnnouncementController {
         }
     }
 
+    // Method searches for announcements by title
+    @GetMapping("/search/title/{title}")
+    public ResponseEntity searchByTitle(@PathVariable String title) {
+        // Try to return matching announcements w/ HTTP status OK; else return error
+        try {
+            return new ResponseEntity<>(announcementService.searchAnnouncementsByTitle(title), HttpStatus.OK);
+        } catch (BackendErrorException e) {
+            return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
+        }
+    }
 
 }

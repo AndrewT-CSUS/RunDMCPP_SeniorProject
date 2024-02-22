@@ -1,21 +1,24 @@
 package com.RunDMCPP.Backend.services;
 
-import java.util.Optional;
-
 import com.RunDMCPP.Backend.enums.ErrorEnum;
+import com.RunDMCPP.Backend.models.Announcement;
+import com.RunDMCPP.Backend.repositories.AnnouncementRepository;
 import com.RunDMCPP.Backend.utils.BackendErrorException;
 import com.RunDMCPP.Backend.validation.AnnouncementValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
 import com.RunDMCPP.Backend.models.Announcement;
 import com.RunDMCPP.Backend.repositories.AnnouncementRepository;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+import java.util.Optional;
 
 // AnnouncementService. Services are Springs components that deal w/ business logic.
 @Service
 public class AnnouncementService {
-    // @Autowired: Spring automatically creates and give us Announcement Repo/Validator objects
+    // @Autowired: Spring automatically creates and gives us Announcement Repo/Validator objects
     @Autowired
     private AnnouncementRepository announcementRepo;
     @Autowired
@@ -105,5 +108,12 @@ public class AnnouncementService {
         }
     }
 
+    // Method searches for announcements by title, throws error if not found
+    public List<Announcement> searchAnnouncementsByTitle(String title) throws BackendErrorException {
+        List<Announcement> results = announcementRepo.findByTitleContaining(title);
+        if(results.isEmpty()){
+            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+        }
+        return results;
+    }
 }
-
