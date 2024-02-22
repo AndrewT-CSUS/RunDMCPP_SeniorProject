@@ -27,7 +27,7 @@ function AdminEventEdit() {
                             <br></br><textarea rows="4" cols="60" id="editDescriptionBox" name="editDescriptionBox" placeholder="Event Description"></textarea>
                             <br></br><textarea rows="4" cols="60" id="editLocationBox" name="editLocationBox" placeholder="Event Location"></textarea>
                             <br></br><button type="button" onClick={createPreview}>Preview</button>
-                            <br></br><button type="button" onClick={deleteEventConfirmation}>Delete</button>
+                            <button type="button" onClick={deleteEventConfirmation}>Delete</button>
                         </fieldset>
                         <fieldset id="previewField" className="previewBox" hidden>
                             <legend>Event Preview</legend>
