@@ -52,7 +52,7 @@ public class EventService {
     }
 
     // Method updates an existing event, validates input, throws error if invalid
-    public Event editEvent(Event event) throws BackendErrorException {
+    public Event updateEvent(Event event) throws BackendErrorException {
         // If the event is invalid, throw an error
         if (!eventValidator.readValidator(event)) {
             throw new BackendErrorException(ErrorEnum.INVALID_INPUT);

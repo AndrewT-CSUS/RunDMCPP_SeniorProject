@@ -1,39 +1,31 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import AnnouncementsCarousalComp from './AnnouncementsCarousalComp';
 
 // Schedule Component
 function Schedule() {
-    const [language, setLanguage] = useState('한국어');
-
-    function toggleText() {
-        const newLanguage = language === '한국어' ? 'English' : '한국어';
-        setLanguage(newLanguage);
-    }
-
-    // Render the Schedule
+    const { t } = useTranslation(); 
     return (
         <>
             <main>
-
-                <AnnouncementsCarousalComp /> {/* The unimagineably irritating import that I kept mispelling or misdoing capitals */}
-
-                <h2 id="serviceSchedule">Church Service Schedule</h2>
-                {/* Schedule description maybe? */}
+                <AnnouncementsCarousalComp />
+                {/* Main content goes here*/}
+                <h2 id="serviceSchedule">{t('serviceSchedule')}</h2>
+                {/*Schedule description maybe? */}
                 <table border={5}>
                     <tbody>
-                    <tr>
-                        <th id="serviceScheduleDay">Day</th>
-                        <th id="serviceScheduleTime">Time</th>
-                    </tr>
-                    <tr>
-                        <td id="serviceScheduleSunday">Sunday</td>
-                        <td>11:00 AM</td>
-                    </tr>
-                    <tr>
-                        <td id="serviceScheduleWednesday">Wednesday</td>
-                        <td>07:30 PM</td>
-                    </tr>
+                        <tr>
+                            <th id="serviceScheduleDay">{t('serviceScheduleDay')}</th>
+                            <th id="serviceScheduleTime">{t('serviceScheduleTime')}</th>
+                        </tr>
+                        <tr>
+                            <td id="serviceScheduleSunday">{t('serviceScheduleSunday')}</td>
+                            <td>11:00 AM</td>
+                        </tr>
+                        <tr>
+                            <td id="serviceScheduleWednesday">{t('serviceScheduleWednesday')}</td>
+                            <td> 07:30 PM</td>
+                        </tr>
                     </tbody>
                 </table>
                 <p>This is the Home page</p>

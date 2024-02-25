@@ -11,6 +11,7 @@ import React, { } from 'react';
 import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';  // OAuth
 import './loginPage.css';
 import logo from '../images/sgkc4.png';
+import { useTranslation } from 'react-i18next';
 
 // LoginPage component
 function LoginPage() {
@@ -21,6 +22,7 @@ function LoginPage() {
     const isAuthenticated = auth0.isAuthenticated;
     const logout = auth0.logout;
     const user = auth0.user;
+    const { t } = useTranslation();
 
     // Function: Component to show the user's account picture, name, and logout button
     function LoggedInUserProfile() {
@@ -48,7 +50,7 @@ function LoginPage() {
         {/* If user is not logged in, show the login button */}
         {!isAuthenticated && (
             <div>
-                <button onClick={loginWithRedirect}>Log In</button>
+                <button onClick={loginWithRedirect}>{t('login')}</button>
             </div>
         )}
         

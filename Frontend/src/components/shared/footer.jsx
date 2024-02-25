@@ -17,7 +17,7 @@ function Footer() {
         {/* TODO: YouTube & Facebook links & names have placeholders for now */}
             <div className="footer__right">
                 <p>Contact Us: <a href="mailto:sacglorychurch@hotmail.com">sacglorychurch@hotmail.com</a></p>
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.youtube.com/@jun0698" target="_blank" rel="noopener noreferrer">
                     <img src={YouTubeLogo} alt="YouTube Logo"></img>YouTube Channel
                 </a>
                 <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
