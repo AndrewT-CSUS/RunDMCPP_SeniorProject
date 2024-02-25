@@ -1,10 +1,3 @@
-/* Notes: 
-    - This is meant to be a template for OAuth login. 
-    - You may want to seperate main App logic from this page,
-        but for simplicity, I've included the main App logic here. 
-    - Don't forget to install OAuth: npm install @auth0/auth0-react. 
-    
-    ~ Kevin Cendana */
 
 // Import libraries
 import React, { } from 'react';  
@@ -13,7 +6,7 @@ import './loginPage.css';
 import logo from '../images/sgkc4.png';
 import { useTranslation } from 'react-i18next';
 
-// LoginPage component
+// LoginPage component: Login page for Auth0
 function LoginPage() {
 
     // OAuth: Variables to handle login, authentication (if user is logged in), logout

@@ -1,15 +1,17 @@
+/* Container for the entire navigation bar. */
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow:hidden;
 }
-
+/* Individual link for the navigation bar */
 li {
     display:inline;
     float:right;
 }
 
+/* Navigation link, including the dropdown list. */
 li a, .dropbtn {
     display: inline-block;
     color: #276622;
@@ -20,12 +22,13 @@ li a, .dropbtn {
     border-width: medium;
     border-color: white;
 }
-
+/* Hover: Change color of navigation link */
 li a:hover, .dropdown:hover .dropbtn {
     border-style: solid;
     border-width: medium;
     border-color: #276622;}
 
+/* Hover: Change color of dropdown list */
 .active {
     border-color: #276622;
 }
@@ -34,7 +37,7 @@ li.dropdown {
     display: inline-block;
 }
 
-    .dropdown-content {
+.dropdown-content {
     display: none;
     position: absolute;
     background-color: white;
