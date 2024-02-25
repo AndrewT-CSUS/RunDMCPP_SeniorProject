@@ -40,9 +40,16 @@ footer p {
     padding: 0;
 }
 
+/* Social media icons */
 .footer__right img {
     width: 11px;
     height: 9px;
     margin-top: 0px;
     margin-right: 4px;
+}
+
+/* Container for the social media icons + link, keeps them in a straight line*/
+.container-link-and-logo {
+    display: flex;                /* Allows 'flex-direction' and 'justify-content */
+    flex-direction: row;          /* Aligns items as a row */
 }
