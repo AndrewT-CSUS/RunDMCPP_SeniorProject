@@ -51,7 +51,7 @@ public class EventValidatorTest {
     @Test
     public void createValidator_Fail_NoTitle(){
         Event input = TestEventData.event1();
-        input.setEventTitle(null);
+        input.setName(null);
 
         boolean result = eventValidator.createValidator(input);
 
@@ -149,7 +149,7 @@ public class EventValidatorTest {
     @Test
     public void deleteValidator_Fail_NoTitle(){
         Event event = TestEventData.event1();
-        event.setEventTitle(null);
+        event.setName(null);
         boolean result = eventValidator.deleteValidator(event, TestEventData.event1());
 
         assertThat(result).isFalse();
@@ -201,7 +201,7 @@ public class EventValidatorTest {
     @Test
     public void deleteValidator_Fail_MismatchTitle(){
         Event event = TestEventData.event1();
-        event.setEventTitle("Error");
+        event.setName("Error");
         boolean result = eventValidator.deleteValidator(event, TestEventData.event1());
 
         assertThat(result).isFalse();

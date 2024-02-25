@@ -1,8 +1,10 @@
 import React from 'react';
 import {createPreview, addEvent} from './Javascript/eventAdd.js'
+import {useTranslation} from 'react-i18next'
 
 // Define your functional component
 function AdminEventAdd() {
+    const { t } = useTranslation();
     return (
         <>
             <meta charSet="UTF-8" />
@@ -10,24 +12,23 @@ function AdminEventAdd() {
             <title>adminEventCreate</title>
             <main>
                 {/* Main content goes here */}
-                <h1>Create Event</h1>
                 <div className="mainContent" >
             <fieldset className="addEventBox">
-                <legend>Event Information</legend>
-                <br /><textarea rows="1" cols="60" id="nameBox" name="nameBox" placeholder="Event Name"></textarea>
-                <br /> <input type="datetime-local" id="eventDateTime" name="eventDateTime"/> 
-                <br /><textarea rows="2" cols="60" id="locationBox" name="locationBox" placeholder="Event Location"></textarea>
-                <br /><textarea rows="4" cols="60" id="descriptionBox" name="descriptionBox" placeholder="Event Description"></textarea>
-                <br /><button type="button" id="previewButton" onClick={createPreview} style = {{width: '120 px'}}>Preview</button>
+                <legend>{t('events')}</legend>
+                <br /><textarea rows="1" cols="60" id="nameBox" name="nameBox" placeholder={t('title')}></textarea>
+                <br /> <input type="datetime-local" id="eventDateTime" name={t('eventDate')}/> 
+                <br /><textarea rows="2" cols="60" id="locationBox" name="locationBox" placeholder={t('eventLocation')}></textarea>
+                <br /><textarea rows="4" cols="60" id="descriptionBox" name="descriptionBox" placeholder={t('description')}></textarea>
+                <br /><button type="button" id="previewButton" onClick={createPreview} style = {{width: '120 px'}}>{t('preview')}</button>
             </fieldset>
 
             <fieldset id="resultsField" className="previewBox" hidden>
-                <legend>Event Preview</legend>
-                <h4 id="resultTitle">Title</h4>
-                <p id="resultLocation">Location</p>
-                <p id="resultDescription">Description</p>
-                <p id="resultDateTime">Date and Time</p>
-                <br /><button type="button" onClick={addEvent} style = {{width: '120 px'}}>Add Event</button>
+                <legend>{t('events')} {t('preview')}</legend>
+                <h4 id="resultTitle">{t('title')}</h4>
+                <p id="resultLocation">{t('eventLocation')}</p>
+                <p id="resultDescription">{t('description')}</p>
+                <p id="resultDateTime">{t('eventDate')}</p>
+                <br /><button type="button" onClick={addEvent} style = {{width: '120 px'}}>{t('addEvent')}</button>
             </fieldset>
         </div>
             </main>

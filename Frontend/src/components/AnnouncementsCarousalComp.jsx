@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const AnnouncementsCarouselComp = () => {
     const [index, setIndex] = useState(0);
     const length = 3;
+    const { t } = useTranslation();
 
     const Announcements = [
         { title: 'Church Announcement 1', content: 'Come do the first thing with us!' },
@@ -27,8 +29,8 @@ const AnnouncementsCarouselComp = () => {
                 <p>{Announcements[index].content}</p>
             </div>
             <div className="carousel-controls" style={{marginTop: '20px'}}>
-                <button onClick={nextAnnouncement}>Next</button>
-                <button onClick={previousSlide}>Previous</button>
+                <button onClick={nextAnnouncement}>{t('next')}</button>
+                <button onClick={previousSlide}>{t('previous')}</button>
             </div>
         </div>
     );

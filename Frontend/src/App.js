@@ -29,6 +29,7 @@ import Footer from './components/shared/footer';
 // App Component
 function App() {
   return (
+
     /* Auth0Provider: Wraps around app to allow login */
     <Auth0Provider 
       domain={process.env.REACT_APP_AUTH0_DOMAIN}
