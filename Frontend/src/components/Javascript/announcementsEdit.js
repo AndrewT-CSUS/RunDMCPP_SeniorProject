@@ -1,66 +1,54 @@
 const missingFieldError = "You seem to be missing a field. Please supply all data."
-const missingNameError = "Missing Sermon Name"
-const missingLinkError = "Missing Youtube Link"
-const badLinkError = "Your Youtube link is invalid"
-const missingDescError = "Missing Sermon Description"
-const missingDateTimeError = "Missing Date/Time"
-const invalidInputError = "The sermon you tried to add is invalid. Try something else"
+const missingNameError = "Missing Announcement Name"
+const missingDescError = "Missing Announcement Description"
+const invalidInputError = "The announcement you tried to add is invald. Try something else"
 const transactionFailError = "The server could not complete the add. Try again later"
-const sermonUpdated = "Sermon Edited!"
-const sermonDeleteConfirmation = "Warning! You are about to delete the selected sermon.\nThis can not be undone, but the sermon can be re-created manually.\nAre you sure you want to do this?" //Bad, reword later?
-const sermonDeleted = "Sermon Deleted!"
-const NoSearchResults = "No results found!"
+const announcementUpdated = "Announcement Edited!"
+const announcementDeleteConfirmation = "Warning! You are about to delete the selected announcement.\nThis can not be undone, but the announcement can be re-created manually.\nAre you sure you want to do this?"
+const announcementDeleted = "Announcement Deleted!"
 
-var ValSermon;
+var ValAnnouncement;
 
 export function createPreview() {
-    const sermon = createSermon();
-    sermon.id = ValSermon.id;
-    if (!validateSermon(sermon)) {
+    const announcement = createAnnouncement();
+    announcement.id = ValAnnouncement.id;
+    if (!validateAnnouncement(announcement)) {
         return;
     }
-    showResults(sermon);
-    ValSermon = sermon;
+    showResults(announcement);
+    ValAnnouncement = announcement;
 }
 
 
-function createSermon() {
-    var dateTime = document.getElementById("editSermonDateTime").value
-    const sermon = {
-        "name": document.getElementById("editNameBox").value,
+function createAnnouncement() {
+    const announcement = {
+        "title": document.getElementById("editNameBox").value,
         "description": document.getElementById("editDescriptionBox").value,
-        "youtubeLink": document.getElementById("editYoutubeLinkBox").value,
-        "dateTime": dateTime
     }
-    console.log(sermon)
-    return sermon;
+    console.log(announcement)
+    return announcement;
 }
 
-function showResults(sermon) {
-    document.getElementById("resultTitle").innerText = sermon.name;
-    document.getElementById("resultDescription").innerText = sermon.description;
-    document.getElementById("video").src = sermon.youtubeLink.replace("watch?v=", "embed/");
-
-    let printDate = new Date(Date.parse(sermon.dateTime)) 
-    document.getElementById("resultDateTime").innerText = printDate.toDateString() + ", " + printDate.toLocaleTimeString();
+function showResults(announcement) {
+    document.getElementById("resultTitle").innerText = announcement.title;
+    document.getElementById("resultDescription").innerText = announcement.description;
 
     document.getElementById("previewField").hidden = false;
-    document.getElementById("video").hidden = false;
 }
 
-export async function editSermon(){
+export async function editAnnouncement(){
     var request = new XMLHttpRequest();
-    var url = "http://localhost:8080/api/sermons/edit";
+    var url = "http://localhost:8080/api/announcements/edit";
 
     request.open("PUT", (url));
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    request.send(JSON.stringify(ValSermon));
+    request.send(JSON.stringify(ValAnnouncement));
     request.onload = () => {
         if (request.status === 200) {
             var requestResult = JSON.parse(request.response);
             console.log(requestResult);
             showResults(requestResult);
-            alert(sermonUpdated);
+            alert(announcementUpdated);
         } else if (request.status === 500) {
             var requestResult = JSON.parse(request.response);
             console.log(requestResult);
@@ -78,33 +66,20 @@ export async function editSermon(){
     }
 }
 
-function validateSermon(sermon) {
-    const youtubeRegex = new RegExp('^((?:https?:)?\\\/\\\/)?((?:www|m)\\.)?((?:youtube(-nocookie)?\\.com|youtu.be))(\\\/(?:[\\w\\-]+\\?v=|embed\\\/|v\\\/)?)([\\w\\-]+)(\\S+)?$', 'img');
-    if (sermon == null) {
+function validateAnnouncement(announcement) {
+    if (announcement == null) {
         return false;
     }
-    if (!sermon.name) {
+    if (!announcement.title) {
         alert(missingNameError)
         return false
     }
-    if (!sermon.description) {
+    if (!announcement.description) {
         alert(missingDescError)
         return false
     }
-    if (!sermon.youtubeLink) {
-        alert(missingLinkError)
-        return false
-    }
-    if(!youtubeRegex.test(sermon.youtubeLink)){
-        alert(badLinkError)
-        return false
-    }
-    if (!sermon.dateTime) {
-        alert(missingDateTimeError)
-        return false
-    }
     //small fallback that probably won't happen but you never know!
-    if (Object.keys(sermon).length != 5) {
+    if (Object.keys(announcement).length != 3) {
         alert(missingFieldError);
         return false;
     }
@@ -113,7 +88,7 @@ function validateSermon(sermon) {
 
 export async function searchByName(){
     var request = new XMLHttpRequest();
-    var url = "http://localhost:8080/api/sermons/search/title/";
+    var url = "http://localhost:8080/api/announcements/search/title/";
 
     request.open("GET", url + document.getElementById("nameBox").value.replace(" ", "%20"));
     request.send();
@@ -132,40 +107,32 @@ export async function searchByName(){
                 var result = objectText[i];
 
                 var title = document.createElement("h4");
-                title.innerText = result.name;
+                title.innerText = result.title;
 
                 var description = document.createElement("p");
                 description.innerText = result.description;
+
+                var location = document.createElement("p");
+                location.innerText = result.announcementLocation;
 
                 var dateTime = document.createElement("p");
                 var printDate = new Date(result.dateTime).toLocaleString();
                 dateTime.innerText = "Date and Time: " + printDate;
 
-                var video = document.createElement("iframe");
-                video.src = result.youtubeLink.replace("watch?v=", "embed/");
-                video.width = 420;
-                video.height = 315;
-                video.hidden = false;
-
                 var button = document.createElement("button");
                 button.innerText = "Edit"
                 button.id = "Button_"+i;
-                button.dataset.sermonId = result.id;
-                button.addEventListener('click', editSermonBySermon)
+                button.dataset.announcementId = result.id;
+                button.addEventListener('click', editAnnouncementByAnnouncement)
 
                 document.getElementById("resultsField").appendChild(title);
                 document.getElementById("resultsField").appendChild(description);
-                document.getElementById("resultsField").appendChild(dateTime);
-                document.getElementById("resultsField").appendChild(video);
                 document.getElementById("resultsField").appendChild(button);
 
             }
 
             // Show Results
             document.getElementById("resultsField").hidden = false;
-
-        } else if (request.status === 404) {
-            alert(NoSearchResults);
         } else {
             alert("Something went wrong. Try again later!");
             console.log(`error ${request.status}`);
@@ -173,30 +140,24 @@ export async function searchByName(){
     }
 }
 
-async function editSermonBySermon(e){
+async function editAnnouncementByAnnouncement(e){
     e.preventDefault();
-    console.log(e.target.dataset.sermonId);
-    console.log("Editing Sermon!");
+    console.log(e.target.dataset.announcementId);
     document.getElementById("resultsField").hidden = true;
 
-    ValSermon = await searchById(e.target.dataset.sermonId); 
-   
-    console.log("showing edit field!")
+    ValAnnouncement = await searchById(e.target.dataset.announcementId); 
 
-    document.getElementById("editNameBox").value = ValSermon.name; 
-    document.getElementById("editDescriptionBox").value = ValSermon.description;
-    document.getElementById("editSermonDateTime").value = ValSermon.dateTime;
-    document.getElementById("editYoutubeLinkBox").value = ValSermon.youtubeLink
-    document.getElementById("editYoutubeEmbed").src = ValSermon.youtubeLink.replace("watch?v=", "embed/");
-    
+    document.getElementById("editNameBox").value = ValAnnouncement.title; 
+    document.getElementById("editDescriptionBox").value = ValAnnouncement.description;
+
     document.getElementById("editField").hidden = false;
-    
+
 }
 
 async function searchById(id){
     return new Promise(function (resolve, reject) {
         var request = new XMLHttpRequest();
-        var url = "http://localhost:8080/api/sermons/get/";
+        var url = "http://localhost:8080/api/announcements/get/";
 
         request.open("GET", (url + id));
         request.send();
@@ -205,8 +166,6 @@ async function searchById(id){
                 var result = JSON.parse(request.response);
                 console.log(result);
                 resolve(result);
-            } else if (request.status === 404){
-                alert(NoSearchResults);
             }else{
                 alert("Something went wrong. Try again later!")
                 console.log(`error ${request.status}`)
@@ -219,30 +178,30 @@ async function searchById(id){
     });
 }
 
-export function deleteSermonConfirmation(){
-    if(window.confirm(sermonDeleteConfirmation)){
-       deleteSermon() 
+export function deleteAnnouncementConfirmation(){
+    if(window.confirm(announcementDeleteConfirmation)){
+       deleteAnnouncement() 
     }
 }
 
-async function deleteSermon(){
+async function deleteAnnouncement(){
     var request = new XMLHttpRequest();
-    var url = "http://localhost:8080/api/sermons/delete";
+    var url = "http://localhost:8080/api/announcements/delete";
 
     request.open("DELETE", (url));
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    request.send(JSON.stringify(ValSermon));
+    request.send(JSON.stringify(ValAnnouncement));
     request.onload = () => {
         if (request.status === 200) {
-            alert(sermonDeleted);
+            alert(announcementDeleted);
         } else if (request.status === 500) {
             var requestResult = JSON.parse(request.response);
             console.log(requestResult);
-            if(requestResult.code == 3){
+            if(requestResult.code === 3){
                 console.log(requestResult.message)
                 alert(invalidInputError)
             }            
-            if(requestResult.code == 4){
+            if(requestResult.code === 4){
                 console.log(requestResult.message)
                 alert(transactionFailError)
             }

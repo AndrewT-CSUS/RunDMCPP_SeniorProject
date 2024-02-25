@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './header.css';
 import ChurchLogo from '../../images/sgkc2_transparent_shadow.png';
 
 // Header component
 function Header() {
 
-    // State: Languages (Korean/English)
-    const [language, setLanguage] = useState('한국어');
+    const location = useLocation(); // State: Current path. Used so we only render Header on certain pages.
+    const [language, setLanguage] = useState('한국어'); // State: Languages (Korean/English)
 
     // Function: Toggle between English and Korean
     function toggleText() {
         const newLanguage = language === '한국어' ? 'English' : '한국어';
         setLanguage(newLanguage);
+    }
+
+    // Conditional: Don't render Header if the current path is '/loginpage'
+    if (location.pathname === '/loginpage') {
+        return null; // Don't render the Header on the login page
     }
 
     // Render the header
@@ -29,7 +34,8 @@ function Header() {
                 한국어
             </button>
             {/* Navigation bar */}
-            <ul>
+            <ul className = "navigation-bar">
+                {/* Dropdown menu for Events */}
                 <li className="dropdown">
                     <Link to="/events">Events ▼</Link>
                     <div className="dropdown-content">
@@ -38,6 +44,7 @@ function Header() {
                         <Link to="/photoGallery">Photo Gallery</Link>
                     </div>
                 </li>
+                {/* Dropdown menu for Sermons */}
                 <li className="dropdown">
                     <Link to="/upcomingSerms" className="active">Sermons ▼</Link>
                     <div className="dropdown-content">
@@ -45,9 +52,11 @@ function Header() {
                         <Link to="/previousSerms">Previous</Link>
                     </div>
                 </li>
+                {/* (No dropwdown) Link for Services */}
                 <li>
                     <Link to="/services">Services</Link>
                 </li>
+                {/* Dropdown menu for About Us */}
                 <li className="dropdown">
                     <Link to="/aboutUs" className="dropbtn">About Us ▼</Link>
                     <div className="dropdown-content">

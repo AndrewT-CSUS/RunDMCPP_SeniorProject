@@ -1,7 +1,7 @@
 const missingFieldError = "You seem to be missing a field. Please supply all data.";
 const missingTitleError = "Missing Announcement Title";
 const missingDescError = "Missing Announcement Description";
-const invalidInputError = "The announcement you tried to add is invald. Try something else";
+const invalidInputError = "The announcement you tried to add is invalid. Try something else";
 const transactionFailError = "The server could not complete the add. Try again later";
 const announcementAdded = "Announcement Added!";
 
@@ -32,34 +32,34 @@ function showResults(announcement) {
     document.getElementById("resultsField").hidden = false;
 }
 
-export async function addAnnouncement(){
-    var request = new XMLHttpRequest();
+export async function addAnnouncement() {
+    var request = new XMLHttpRequest()
     var url = "http://localhost:8080/api/announcements/create";
 
-    request.open("POST", url);
-    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    request.open("POST", (url))
+    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
     request.send(JSON.stringify(ValAnnouncement));
     request.onload = () => {
-        if (request.status === 200) {
-            var requestResult = JSON.parse(request.response);
-            console.log(requestResult);
-            showResults(requestResult);
-            alert(announcementAdded);
+        if (request.status === 201) {
+            var requestResult = JSON.parse(request.response)
+            console.log(requestResult)
+            showResults(requestResult)
+            alert(announcementAdded)
         } else if (request.status === 500) {
-            var requestResult = JSON.parse(request.response);
-            console.log(requestResult);
-            if(requestResult.code == 3){
-                console.log(requestResult.message);
-                alert(invalidInputError);
+            var requestResult = JSON.parse(request.response)
+            console.log(requestResult)
+            if(requestResult.code == 3) {
+                console.log(requestResult.message)
+                alert(invalidInputError)
             }            
-            if(requestResult.code == 4){
-                console.log(requestResult.message);
-                alert(transactionFailError);
+            if(requestResult.code == 4) {
+                console.log(requestResult.message)
+                alert(transactionFailError)
             }
         } else if (request.status === 404) {
-            alert("Something went REALLY wrong. Try again later, maybe?");
+            alert("Something went REALLY wrong. Try again later, maybe?")
         }
-    };
+    }
 }
 
 function validateAnnouncement(announcement) {

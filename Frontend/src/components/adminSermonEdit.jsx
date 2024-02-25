@@ -24,11 +24,11 @@ function AdminSermonEdit() {
                             <legend>Edit Sermon</legend>
                             <br></br><textarea rows="1" cols="60" id="editNameBox" name="editNameBox" placeholder="Sermon Name"></textarea>
                             <br></br><textarea rows="1" cols="60" id="editYoutubeLinkBox" name="editYoutubeLinkBox" placeholder="YouTube Link"></textarea>
-                            <br></br> <input type="datetime-local" id="editSermonDateTime" name="editSermonDateTime"/>
+                            <br></br><input type="datetime-local" id="editSermonDateTime" name="editSermonDateTime"/>
                             <br></br><textarea rows="4" cols="60" id="editDescriptionBox" name="editDescriptionBox" placeholder="Sermon Description"></textarea>
-                            <br></br><iframe id="editYoutubeEmbed" width="420" height="315" src=""> </iframe>
+                            <br></br><iframe id="editYoutubeEmbed" width="420" height="315" src=""></iframe>
                             <br></br><button type="button" onClick={createPreview}>Preview</button>
-                            <br></br><button type="button" onClick={deleteSermonConfirmation}>Delete</button>
+                            <button type="button" onClick={deleteSermonConfirmation}>Delete</button>
                         </fieldset>
                         <fieldset id="previewField" className="previewBox" hidden>
                             <legend>Sermon Preview</legend>
