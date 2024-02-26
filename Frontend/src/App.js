@@ -13,7 +13,8 @@ import AdminEventEdit from './components/adminEventEdit';
 import AdminSermonAdd from './components/adminSermonAdd';
 import AdminSermonEdit from './components/adminSermonEdit';
 import Events from './components/events';
-import AboutUs from './components/aboutUs';
+import OurBeliefs from './components/ourBeliefs';
+import OurGoals from './components/ourGoals';
 import PastEvents from './components/pastEvents';
 import PhotoGallery from './components/photoGallery';
 import PreviousSerms from './components/previousSerms';
@@ -40,34 +41,6 @@ function App() {
     <Router>                      {/* Router: Allows linking to other pages*/}
       <Header />                  {/* Header: Navigation bar */}
       <Routes>                    {/* Routes: Links to different pages */}
-    // Auth0Provider & AdminProvier wraps the app to give log in privleges.
-    <Auth0Provider
-    domain={process.env.REACT_APP_AUTH0_DOMAIN}
-    clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
-    redirectUri={window.location.origin}>
-    <AdminProvider>
-
-    {/* Router allows linking to other pages */}
-    <Router>
-      <Header />
-      <div>
-        <Link to="/">Home</Link>
-        <Link to="/adminSermonAdd">Admin Sermon Add</Link>
-        <Link to="/adminAnnouncementsAdd">Admin Announcements Add</Link>
-        <Link to="/adminEventAdd"> Admin Event Add</Link>
-        <Link to="/announcements">Announcements</Link>
-        <Link to="/events">Events</Link>
-        <Link to="/aboutUs">About Us</Link>
-        <Link to="/pastEvents">Past Events</Link>
-        <Link to="/photoGallery">Photo Gallery</Link>
-        <Link to="/previousSerms">Previous Sermons</Link>
-        <Link to="/services">Services</Link>
-        <Link to="/upcomingSerms">Upcoming Sermons</Link>
-        <Link to="/loginpage">Login Page</Link>
-      </div>
-
-      {/* Routes are URLS to different pages */}
-      <Routes>
         <Route path="/" element={<Schedule />} />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/adminSermonAdd" element={<AdminSermonAdd />} />
@@ -77,7 +50,8 @@ function App() {
         <Route path="/adminAnnouncementsAdd" element={<AdminAnnouncementsAdd />} />
         <Route path="/adminAnnouncementsEdit" element={<AdminAnnouncementsEdit />} />
         <Route path="/events" element={<Events />} />
-        <Route path="/aboutUs" element={<AboutUs />} />
+        <Route path="/ourBeliefs" element={<OurBeliefs />} />
+        <Route path="/ourGoals" element={<OurGoals />} />
         <Route path="/pastEvents" element={<PastEvents />} />
         <Route path="/photoGallery" element={<PhotoGallery />} />
         <Route path="/previousSerms" element={<PreviousSerms />} />
