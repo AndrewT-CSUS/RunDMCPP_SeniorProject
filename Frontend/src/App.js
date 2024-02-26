@@ -13,8 +13,6 @@ import AdminEventEdit from './components/adminEventEdit';
 import AdminSermonAdd from './components/adminSermonAdd';
 import AdminSermonEdit from './components/adminSermonEdit';
 import Events from './components/events';
-import OurBeliefs from './components/ourBeliefs';
-import OurGoals from './components/ourGoals';
 import PastEvents from './components/pastEvents';
 import PhotoGallery from './components/photoGallery';
 import PreviousSerms from './components/previousSerms';
