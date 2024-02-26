@@ -1,5 +1,3 @@
-import { getAccessToken } from "./authTokenUtil.js";
-
 const missingFieldError = "You seem to be missing a field. Please supply all data."
 const missingNameError = "Missing Sermon Name"
 const missingLinkError = "Missing Youtube Link"
