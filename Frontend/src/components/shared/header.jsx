@@ -2,19 +2,15 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './header.css';
 import ChurchLogo from '../../images/sgkc2_transparent_shadow.png';
+import { useTranslation } from 'react-i18next';
+import {Translate} from './translate.jsx'
 
 // Header component
 function Header() {
-
+    const { t } = useTranslation();
+  
     const location = useLocation(); // State: Current path. Used so we only render Header on certain pages.
-    const [language, setLanguage] = useState('한국어'); // State: Languages (Korean/English)
-
-    // Function: Toggle between English and Korean
-    function toggleText() {
-        const newLanguage = language === '한국어' ? 'English' : '한국어';
-        setLanguage(newLanguage);
-    }
-
+  
     // Conditional: Don't render Header if the current path is '/loginpage'
     if (location.pathname === '/loginpage') {
         return null; // Don't render the Header on the login page
@@ -24,48 +20,46 @@ function Header() {
     return (
         <header>
             {/* Church Logo */}
-            <img src={ChurchLogo} alt="Sacramento Glory Church Logo"/>
+            <img src={ChurchLogo} alt="Sacramento Glory Church Logo" className='sameLine'/>
             {/* Title*/}
             <h1 className="sameLine" id="sgkc">
-                Sacramento Glory Korean Church
+                {t('sgkc')}
             </h1>
             {/* Eng/Kor Button*/}
-            <button className="sameLine" onClick={() => toggleText(this)}>
-                한국어
-            </button>
+            <Translate />
             {/* Navigation bar */}
             <ul className = "navigation-bar">
                 {/* Dropdown menu for Events */}
                 <li className="dropdown">
-                    <Link to="/events">Events ▼</Link>
+                <div className='dropbtn'>{t('eventsDrop')}</div>
                     <div className="dropdown-content">
-                        <Link to="/events">Events</Link>
+                        <Link to="/events">{t('events')}</Link>
                         <Link to="/pastEvents">Past Events</Link>
-                        <Link to="/photoGallery">Photo Gallery</Link>
+                        <Link to="/photoGallery">{t('photos')}</Link>
                     </div>
                 </li>
                 {/* Dropdown menu for Sermons */}
                 <li className="dropdown">
-                    <Link to="/upcomingSerms" className="active">Sermons ▼</Link>
+                <div className='dropbtn'>{t('sermons')}</div>
                     <div className="dropdown-content">
-                        <Link to="/upcomingSerms" className="active">Upcoming</Link>
-                        <Link to="/previousSerms">Previous</Link>
+                        <Link to="/upcomingSerms">{t('upcomingSermons')}</Link>
+                        <Link to="/previousSerms">{t('previousSermons')}</Link>
                     </div>
                 </li>
                 {/* (No dropwdown) Link for Services */}
                 <li>
-                    <Link to="/services">Services</Link>
+                    <Link to="/services">{t('services')}</Link>
                 </li>
                 {/* Dropdown menu for About Us */}
                 <li className="dropdown">
-                    <Link to="/aboutUs" className="dropbtn">About Us ▼</Link>
+                    <div className='dropbtn'>{t('aboutUs')}</div>
                     <div className="dropdown-content">
-                        <Link to="/ourBeliefs">Our Beliefs</Link>
+                        <Link to="/ourBeliefs">{t('ourBeliefs')}</Link>
                         <Link to="/ourGoals">Our Goals</Link>
                     </div>
                 </li>
                 <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/">{t('home')}</Link>
                 </li>
             </ul>
         </header>

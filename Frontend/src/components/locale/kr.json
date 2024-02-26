@@ -1,0 +1,57 @@
+{
+    "translation": {
+      "sgkc": "새크라멘토 영광교회",
+      "aboutUs": "교회소개 ▼",
+      "announcements": "교회소식",
+      "ourBeliefs": "사역",
+      "services": "예배시간",
+      "eventsDrop": "교회행사 ▼",
+      "events": "교회행사",
+      "photos": "갤러리",
+      "sermons": "설교 ▼",
+      "upcomingSermons": "다음주 설교",
+      "previousSermons": "지난주 설교",
+      "home": "홈",
+
+      "title": "타이틀",
+      "description": "요약",
+      "preview": "미리보기",
+      "edit": "편집",
+      "search": "검색",
+      "delete": "삭제",
+
+      "serviceSchedule": "교회일정",
+      "serviceScheduleDay": "일",
+      "serviceScheduleTime": "시간", 
+      "serviceScheduleSunday": "일요일",
+      "serviceScheduleWednesday": "목요일",
+
+      "previous": "지난주",
+      "next": "다음주",
+
+      "sermonSearch": "설교검색",
+      "searchByName": "키워드로 검색",
+      "sermonName": "키워드",
+      "searchByDate": "날짜로 검색",
+      "sermonDate": "날짜",
+      
+      "addAnnouncement": "소식 올리기",
+      "editAnnouncement": "공고 편집",
+      "searchAnnouncement": "공고 검색",
+
+      "addEvent": "행사 올리기",
+      "editEvent": "행사 편집",
+      "eventDate": "행사 날짜",
+      "eventLocation": "행사 장소",
+
+      "addSermon": "설교 올리기",
+      "editSermon": "설교 편집", 
+      "youtubeLink": "유튜브 링크",
+
+      "login": "로그인",
+
+      "contactUs": "문의하기: ",
+      "youtubeChannel": "유튜브 채널: ",
+      "facebook": "페이스북: "
+    }
+  }

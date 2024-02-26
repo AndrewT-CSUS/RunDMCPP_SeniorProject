@@ -1,0 +1,57 @@
+{
+    "translation": {
+      "sgkc": "Sacramento Glory Korean Church",
+      "announcements": "Announcements",
+      "aboutUs": "About Us ▼",
+      "ourBeliefs": "Our Beliefs",
+      "services": "Services",
+      "eventsDrop": "Events ▼",
+      "events": "Events",
+      "photos": "Photos",
+      "sermons": "Sermons ▼",
+      "upcomingSermons": "Upcoming Sermons",
+      "previousSermons": "Previous Sermons",
+      "home": "Home",
+
+      "title": "Title",
+      "description": "Description",
+      "preview": "Preview",
+      "edit": "Edit",
+      "search": "Search",
+      "delete": "Delete",
+
+      "serviceSchedule": "Service Schedule",
+      "serviceScheduleDay": "Day",
+      "serviceScheduleTime": "Time", 
+      "serviceScheduleSunday": "Sunday",
+      "serviceScheduleWednesday": "Wednesday",
+
+      "previous": "Previous",
+      "next": "Next",
+
+      "sermonSearch": "Search Sermons",
+      "searchByName": "Search By Name",
+      "sermonName": "Sermon Name",
+      "searchByDate": "Search By Date",
+      "sermonDate": "Sermon Date",
+      
+      "addAnnouncement": "Add Announcement",
+      "editAnnouncement": "Edit Announcement",
+      "searchAnnouncement": "Search Announcement",
+
+      "addEvent": "Add Event",
+      "editEvent": "Edit Event",
+      "eventDate": "Event Date",
+      "eventLocation": "Event Location",
+
+      "addSermon": "Add Sermon",
+      "editSermon": "Edit Sermon", 
+      "youtubeLink": "Youtube Link",
+
+      "login": "Login",
+
+      "contactUs": "Contact Us: ",
+      "youtubeChannel": "Youtube Channel: ",
+      "facebook": "Facebook: "
+    }
+  }
