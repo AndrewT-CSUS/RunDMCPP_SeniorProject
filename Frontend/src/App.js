@@ -50,8 +50,6 @@ function App() {
         <Route path="/adminAnnouncementsAdd" element={<AdminAnnouncementsAdd />} />
         <Route path="/adminAnnouncementsEdit" element={<AdminAnnouncementsEdit />} />
         <Route path="/events" element={<Events />} />
-        <Route path="/ourBeliefs" element={<OurBeliefs />} />
-        <Route path="/ourGoals" element={<OurGoals />} />
         <Route path="/pastEvents" element={<PastEvents />} />
         <Route path="/photoGallery" element={<PhotoGallery />} />
         <Route path="/previousSerms" element={<PreviousSerms />} />
