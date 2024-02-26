@@ -12,8 +12,10 @@ import com.RunDMCPP.Backend.models.Announcement;
 import com.RunDMCPP.Backend.repositories.AnnouncementRepository;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 // AnnouncementService. Services are Springs components that deal w/ business logic.
 @Service
@@ -115,5 +117,17 @@ public class AnnouncementService {
             throw new BackendErrorException(ErrorEnum.NOT_FOUND);
         }
         return results;
+    }
+
+    public List<Announcement> getThreeRecentAnnouncements(){
+        List<Announcement> allAnnouncements = (List<Announcement>) announcementRepo.findAll();
+
+        if(allAnnouncements.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        List<Announcement> sortedAnnouncements = allAnnouncements.stream().sorted((a,b) -> Long.compare(b.getTtl(), a.getTtl())).collect(Collectors.toList());
+
+        return sortedAnnouncements.stream().limit(3).collect(Collectors.toList());
     }
 }

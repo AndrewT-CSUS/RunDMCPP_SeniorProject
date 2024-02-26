@@ -82,3 +82,20 @@ function validateAnnouncement(announcement) {
     }
     return true;
 }
+
+export async function fetchRecentAnnouncements(){
+    try {
+        const response = await fetch(`http://localhost:8080/api/announcements/recent`);
+
+        if(!response.ok){
+            console.error(`Error: ${response.status}`);
+            return null;
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error:", error);
+        return null;
+    }
+}
