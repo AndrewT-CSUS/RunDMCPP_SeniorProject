@@ -50,13 +50,8 @@ function Header() {
                 <li>
                     <Link to="/services">{t('services')}</Link>
                 </li>
-                {/* Dropdown menu for About Us */}
-                <li className="dropdown">
-                    <div className='dropbtn'>{t('aboutUs')}</div>
-                    <div className="dropdown-content">
-                        <Link to="/ourBeliefs">{t('ourBeliefs')}</Link>
-                        <Link to="/ourGoals">Our Goals</Link>
-                    </div>
+                <li>
+                    <Link to="/aboutUs">About Us</Link>
                 </li>
                 <li>
                     <Link to="/">{t('home')}</Link>
