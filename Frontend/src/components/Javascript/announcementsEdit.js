@@ -36,12 +36,13 @@ function showResults(announcement) {
     document.getElementById("previewField").hidden = false;
 }
 
-export async function editAnnouncement(){
+export async function editAnnouncement(accessToken){
     var request = new XMLHttpRequest();
     var url = "http://localhost:8080/api/announcements/edit";
 
     request.open("PUT", (url));
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    request.setRequestHeader("Authorization", "Bearer " + accessToken);
     request.send(JSON.stringify(ValAnnouncement));
     request.onload = () => {
         if (request.status === 200) {
@@ -178,18 +179,19 @@ async function searchById(id){
     });
 }
 
-export function deleteAnnouncementConfirmation(){
+export function deleteAnnouncementConfirmation(accessToken){
     if(window.confirm(announcementDeleteConfirmation)){
-       deleteAnnouncement() 
+       deleteAnnouncement(accessToken) 
     }
 }
 
-async function deleteAnnouncement(){
+async function deleteAnnouncement(accessToken){
     var request = new XMLHttpRequest();
     var url = "http://localhost:8080/api/announcements/delete";
 
     request.open("DELETE", (url));
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    request.setRequestHeader("Authorization", "Bearer " + accessToken);
     request.send(JSON.stringify(ValAnnouncement));
     request.onload = () => {
         if (request.status === 200) {

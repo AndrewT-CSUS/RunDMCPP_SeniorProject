@@ -32,12 +32,13 @@ function showResults(announcement) {
     document.getElementById("resultsField").hidden = false;
 }
 
-export async function addAnnouncement() {
+export async function addAnnouncement(accessToken) {
     var request = new XMLHttpRequest()
     var url = "http://localhost:8080/api/announcements/create";
 
     request.open("POST", (url))
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+    request.setRequestHeader("Authorization", "Bearer " + accessToken);
     request.send(JSON.stringify(ValAnnouncement));
     request.onload = () => {
         if (request.status === 201) {
@@ -80,4 +81,21 @@ function validateAnnouncement(announcement) {
         return false;
     }
     return true;
+}
+
+export async function fetchRecentAnnouncements(){
+    try {
+        const response = await fetch(`http://localhost:8080/api/announcements/recent`);
+
+        if(!response.ok){
+            console.error(`Error: ${response.status}`);
+            return null;
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error:", error);
+        return null;
+    }
 }

@@ -4,6 +4,9 @@ import com.RunDMCPP.Backend.models.Announcement;
 import com.RunDMCPP.Backend.services.AnnouncementService;
 import com.RunDMCPP.Backend.utils.BackendErrorException;
 import com.RunDMCPP.Backend.utils.BackendErrorResponse;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -80,6 +83,12 @@ public class AnnouncementController {
         } catch (BackendErrorException e) {
             return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
         }
+    }
+
+    @GetMapping("/recent")
+    public ResponseEntity<List<Announcement>> getThreeRecent(){
+        return new ResponseEntity<>(announcementService.getThreeRecentAnnouncements(), HttpStatus.OK);
+
     }
 
 }
