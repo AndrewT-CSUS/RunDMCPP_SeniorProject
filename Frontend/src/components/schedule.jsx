@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import AnnouncementsCarousalComp from './AnnouncementsCarousalComp';
-
+import MainNavBits from './MainNavBits.jsx';
 // Schedule Component
 function Schedule() {
     const { t } = useTranslation(); 
@@ -9,6 +9,7 @@ function Schedule() {
         <>
             <main>
                 <AnnouncementsCarousalComp />
+                <MainNavBits />
                 {/* Main content goes here*/}
                 <h2 id="serviceSchedule">{t('serviceSchedule')}</h2>
                 {/*Schedule description maybe? */}
