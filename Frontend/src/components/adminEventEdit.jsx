@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useAuth0 } from '@auth0/auth0-react';  // OAuth
 import {searchByName, createPreview, editEvent, deleteEventConfirmation} from './Javascript/eventEdit.js'
 import {useTranslation} from 'react-i18next'
+
+var accessToken;
 
 // AdminEventEdit Component
 function AdminEventEdit() {
@@ -30,7 +33,7 @@ function AdminEventEdit() {
                             <br></br><textarea rows="4" cols="60" id="editDescriptionBox" name="editDescriptionBox" placeholder={t('description')}></textarea>
                             <br></br><textarea rows="4" cols="60" id="editLocationBox" name="editLocationBox" placeholder={t('eventLocation')}></textarea>
                             <br></br><button type="button" onClick={createPreview}>{t('preview')}</button>
-                            <button type="button" onClick={deleteEventConfirmation}>{t('delete')}</button>
+                            <button type="button" onClick={() => deleteEventConfirmation(accessToken)}>{t('delete')}</button>
                         </fieldset>
                         <fieldset id="previewField" className="previewBox" hidden>
                             <legend>{t('preview')}</legend>
@@ -38,7 +41,7 @@ function AdminEventEdit() {
                             <p id="resultDescription">{t('description')}</p>
                             <p id="resultDateTime">{t('eventDate')}</p>
                             <p id="resultLocation">{t('eventLocation')}</p>
-                            <br></br><button type="button" onClick={editEvent}>{t('editEvent')}</button>
+                            <br></br><button type="button" onClick={() => editEvent(accessToken)}>{t('editEvent')}</button>
                         </fieldset> 
                     </div>
                 }
@@ -47,5 +50,39 @@ function AdminEventEdit() {
     );
 }
 
+var App = () => {
+    const {getAccessTokenWithPopup } = useAuth0(); //while it would be nice to use getAccessTokenSilently, we can't, as localhost is blocked from that call. Change when on prod?
+
+    useEffect(() => {
+
+        const getUserToken = async () => {
+            const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+
+            try {
+                accessToken = await getAccessTokenWithPopup({
+                    authorizationParams: {
+                        audience: `https://${domain}/api/v2/`,
+                    },
+                });
+
+            } catch (e) {
+                console.log(e.message);
+            }
+        };
+
+        getUserToken();
+
+    }, [getAccessTokenWithPopup]);
+
+
+
+    return (
+        <AdminEventEdit />
+    )
+
+};
+
+
 // Export the component as the default export
-export default AdminEventEdit;
+export default App;
+export {AdminEventEdit};

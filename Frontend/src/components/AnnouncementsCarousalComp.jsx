@@ -4,7 +4,7 @@ import { fetchRecentAnnouncements } from './Javascript/announcementsAdd.js';
 import './AnnouncementsCarousalComp.css';
 
 const AnnouncementsCarouselComp = () => {
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(1);
     const [announcements, setAnnouncements] = useState([]);
     const { t } = useTranslation();    
 
@@ -70,4 +70,3 @@ const AnnouncementsCarouselComp = () => {
 };
 
 export default AnnouncementsCarouselComp;
-

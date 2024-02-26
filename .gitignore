@@ -1,3 +1,7 @@
+# env files that hold sensitive info in them 
+*.env
+env.properties
+
 # Compiled class file
 *.class
 

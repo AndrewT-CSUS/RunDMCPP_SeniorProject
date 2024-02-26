@@ -1,8 +1,10 @@
-import React from 'react';
-
+import React, {useEffect} from 'react';
+import {useAuth0 } from '@auth0/auth0-react';  // OAuth
 import {createPreview, addAnnouncement} from './Javascript/announcementsAdd.js'
 import './Javascript/i18n.js'
 import {useTranslation} from 'react-i18next'
+
+var accessToken;
 
 function AdminAnnouncementsAdd() {
     const { t } = useTranslation();
@@ -25,8 +27,8 @@ function AdminAnnouncementsAdd() {
                             <legend>{t("preview")}</legend>
                             <h4 id="resultTitle">{t("title")}</h4>
                             <p id="resultDescription">{t("description")}</p>
-                            <br></br><button type="button" onClick={addAnnouncement}  style={{width:"120px"}}>{t("addAnnouncement")}</button>
-                        </fieldset> 
+                            <br></br><button type="button" onClick={() => addAnnouncement(accessToken)}  style={{width:"120px"}}>{t("addAnnouncement")}</button>
+                        </fieldset>
                     </div>
                 }
             </main>
@@ -34,4 +36,39 @@ function AdminAnnouncementsAdd() {
     );
 }
 
-export default AdminAnnouncementsAdd;
+var App = () => {
+    const {getAccessTokenWithPopup } = useAuth0(); //while it would be nice to use getAccessTokenSilently, we can't, as localhost is blocked from that call. Change when on prod?
+
+    useEffect(() => {
+
+        const getUserToken = async () => {
+            const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+
+            try {
+                accessToken = await getAccessTokenWithPopup({
+                    authorizationParams: {
+                        audience: `https://${domain}/api/v2/`,
+                    },
+                });
+
+            } catch (e) {
+                console.log(e.message);
+            }
+        };
+
+        getUserToken();
+
+    }, [getAccessTokenWithPopup]);
+
+
+
+    return (
+        <AdminAnnouncementsAdd />
+    )
+
+};
+
+// Export the component as the default export
+export default App;
+export {AdminAnnouncementsAdd};
+
