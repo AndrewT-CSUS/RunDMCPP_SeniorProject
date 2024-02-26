@@ -48,12 +48,8 @@ function Header() {
                 <li>
                     <Link to="/services">Services</Link>
                 </li>
-                <li className="dropdown">
-                    <Link to="/aboutUs" className="dropbtn">About Us ▼</Link>
-                    <div className="dropdown-content">
-                        <Link to="/ourBeliefs">Our Beliefs</Link>
-                        <Link to="/ourGoals">Our Goals</Link>
-                    </div>
+                <li>
+                    <Link to="/aboutUs">About Us</Link>
                 </li>
                 <li>
                     <Link to="/">Home</Link>

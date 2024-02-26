@@ -12,8 +12,7 @@ import AdminSermonAdd from './components/adminSermonAdd';
 import AdminSermonEdit from './components/adminSermonEdit';
 import Announcements from './components/announcements';
 import Events from './components/events';
-import OurBeliefs from './components/ourBeliefs';
-import OurGoals from './components/ourGoals';
+import AboutUs from './components/aboutUs';
 import PastEvents from './components/pastEvents';
 import PhotoGallery from './components/photoGallery';
 import PreviousSerms from './components/previousSerms';
@@ -45,8 +44,7 @@ function App() {
         <Link to="/adminEventAdd"> Admin Event Add</Link>
         <Link to="/announcements">Announcements</Link>
         <Link to="/events">Events</Link>
-        <Link to="/ourBeliefs">Our Beliefs</Link>
-        <Link to="/ourGoals">Our Goals</Link>
+        <Link to="/aboutUs">About Us</Link>
         <Link to="/pastEvents">Past Events</Link>
         <Link to="/photoGallery">Photo Gallery</Link>
         <Link to="/previousSerms">Previous Sermons</Link>
@@ -65,8 +63,7 @@ function App() {
         <Route path="/adminAnnouncementsAdd" element={<AdminAnnouncementsAdd />} />
         <Route path="/announcements" element={<Announcements />} />
         <Route path="/events" element={<Events />} />
-        <Route path="/ourBeliefs" element={<OurBeliefs />} />
-        <Route path="/ourGoals" element={<OurGoals />} />
+        <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/pastEvents" element={<PastEvents />} />
         <Route path="/photoGallery" element={<PhotoGallery />} />
         <Route path="/previousSerms" element={<PreviousSerms />} />
