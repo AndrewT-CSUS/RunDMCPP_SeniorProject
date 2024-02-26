@@ -33,6 +33,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.okta.spring</groupId>
+			<artifactId>okta-spring-boot-starter</artifactId>
+			<version>3.0.6</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-java-sdk-dynamodb</artifactId>
 			<version>1.11.573</version>
