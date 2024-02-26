@@ -1,0 +1,59 @@
+.carouselContainer {
+    width: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.announcementCarousal {
+    display: flex;
+    transition: transform 1s ease;
+}
+
+.announcement {
+    flex: 0 0 auto;
+    width: 100%; /* Set width to 100% */
+    padding: 20px;
+    text-align: center;
+}
+
+.announcementContent {
+    width: 80%;
+    margin: 0 auto;
+    border: 4px solid black;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.carousalControls {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.carousalControls button {
+    margin: 0 10px;
+    padding: 5px 10px;
+    background-color: #1b1760;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.carousalControls button:hover {
+    background-color: #333399;
+}
+
+.announcement:nth-child(1) .announcementContent {
+    border: 4px solid #e60000; /* Red border */
+    background-color: #ffe6e6; /* Light red background */
+}
+
+.announcement:nth-child(2) .announcementContent {
+    border: 4px solid #bc469a; /* Blue border */
+    background-color: #f2daeb; /* Light blue background */
+}
+
+.announcement:nth-child(3) .announcementContent {
+    border: 4px solid #74a015; /* Green border */
+    background-color: #e6ffe6; /* Light green background */
+}
