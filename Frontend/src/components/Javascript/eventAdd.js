@@ -3,7 +3,7 @@ const missingNameError = "Missing Event Name"
 const missingDescError = "Missing Event Description"
 const missingDateTimeError = "Missing Date/Time"
 const missingLocationError = "Missing Location"
-const invalidInputError = "The event you tried to add is invald. Try something else"
+const invalidInputError = "The event you tried to add is invalid. Try something else"
 const transactionFailError = "The server could not complete the add. Try again later"
 const eventAdded = "Event Added!"
 
@@ -22,7 +22,7 @@ export function createPreview() {
 function createEvent() {
     var dateTime = document.getElementById("eventDateTime").value
     const event = {
-        "eventTitle": document.getElementById("nameBox").value,
+        "name": document.getElementById("nameBox").value,
         "eventLocation": document.getElementById("locationBox").value,
         "eventDescription": document.getElementById("descriptionBox").value,
         "dateTime": dateTime
@@ -32,7 +32,7 @@ function createEvent() {
 }
 
 function showResults(event) {
-    document.getElementById("resultTitle").innerText = event.eventTitle;
+    document.getElementById("resultTitle").innerText = event.name;
     document.getElementById("resultDescription").innerText = event.eventDescription;
     document.getElementById("resultLocation").innerText = event.eventLocation;
     let printDate = new Date(Date.parse(event.dateTime)) 
@@ -75,7 +75,7 @@ function validateEvent(event) {
     if (event == null) {
         return false;
     }
-    if (!event.eventTitle) {
+    if (!event.name) {
         alert(missingNameError)
         return false
     }

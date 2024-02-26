@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 // Controller class listening for web requests to the /api/events endpoints and sends back responses
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -30,8 +29,12 @@ public class EventController {
     // Method gets a specific event by id; accessible at /api/events/get/{id}
     @GetMapping
     @RequestMapping("/get/{id}")
-    public Optional<Event> get(@PathVariable String id){
-        return eventService.findById(id);
+    public ResponseEntity get(@PathVariable String id){
+        try {
+            return new ResponseEntity<> (eventService.findById(id), HttpStatus.OK);
+        } catch (BackendErrorException e){
+            return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
+        }
     }
 
     // Method creates a new event at '/api/events/create'
@@ -75,6 +78,31 @@ public class EventController {
         try{
             eventService.autoDeleteEvents();
             return new ResponseEntity<>(HttpStatus.OK);
+        } catch (BackendErrorException e) {
+            return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
+        }
+    }
+
+    // Method searches for sermons by title
+    @GetMapping("/search/title/{title}")
+    public ResponseEntity searchByTitle(@PathVariable String title) {
+        // Try to return matching sermons w/ HTTP status OK; else return error
+        try {
+            return new ResponseEntity<>(eventService.searchEventByTitle(title), HttpStatus.OK);
+        } catch (BackendErrorException e) {
+            return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
+        }
+    }
+
+
+    // Method searches for sermons by date range
+    @GetMapping("/search/date")
+    public ResponseEntity searchByDateRange(
+            @RequestParam String startDate,
+            @RequestParam String endDate) {
+        // Try to return matching sermons w/ HTTP status OK; else return error
+        try {
+            return new ResponseEntity<>(eventService.searchEventByDateRange(startDate, endDate), HttpStatus.OK);
         } catch (BackendErrorException e) {
             return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
         }

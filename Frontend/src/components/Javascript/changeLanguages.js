@@ -23,7 +23,7 @@ function toggleText(event) {
             serviceScheduleWednesday: "목요일"
         }, 
         eng: {
-            sgkc: "Sacramento Glory Korean Church",
+            //sgkc: "Sacramento Glory Korean Church",
             announcements: "Announcements",
             aboutUs: "About Us",
             ourBeliefs: "Our Beliefs",

@@ -2,16 +2,17 @@ package com.RunDMCPP.Backend.services;
 
 import com.RunDMCPP.Backend.enums.ErrorEnum;
 import com.RunDMCPP.Backend.models.Event;
+import com.RunDMCPP.Backend.models.Event;
 import com.RunDMCPP.Backend.repositories.EventRepository;
 import com.RunDMCPP.Backend.utils.BackendErrorException;
 import com.RunDMCPP.Backend.validation.EventValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 
 // EventService. Services are Springs components that deal w/ business logic.
@@ -30,9 +31,12 @@ public class EventService {
     }
 
     // Method gets a specific event by id
-    public Optional<Event> findById(String id) {
-        //TODO
-        return eventRepository.findById(id);
+    public Optional<Event> findById(String id) throws BackendErrorException {
+        Optional<Event> dbEntity = eventRepository.findById(id);
+        if(dbEntity.isPresent()){
+            return dbEntity;
+        }
+        throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
     }
 
     // Method creates a new event, validates input, throws error if invalid
@@ -61,8 +65,8 @@ public class EventService {
             // If the event is valid, update the event
             if (eventValidator.updateValidator(event, dbEntity.get())) {
                 // If the event title/desc/time/location is not null, update with the new data
-                if (event.getEventTitle() != null) {
-                    dbEntity.get().setEventTitle(event.getEventTitle());
+                if (event.getName() != null) {
+                    dbEntity.get().setName(event.getName());
                 }
                 if (event.getEventDescription() != null) {
                     dbEntity.get().setEventDescription(event.getEventDescription());
@@ -85,7 +89,7 @@ public class EventService {
             throw new BackendErrorException(ErrorEnum.DATA_MISMATCH);
         }
         // If event doesn't exist in DB, throw error
-        throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+        throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
     }
 
     // Method deletes an existing event, validates input, throws error if invalid
@@ -113,7 +117,7 @@ public class EventService {
             }
         } else {
             // If event doesn't exist in DB, throw error
-            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+            throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
         }
     }
 
@@ -142,11 +146,28 @@ public class EventService {
             String currDate = sdf.format(Calendar.DAY_OF_MONTH);
 
             // If the event is older than 28 days, delete it
-            if (currDate == expiryDate) {
+            if (currDate.equals(expiryDate)) {
                 eventRepository.deleteById(dbEntity.get().getId());
             } else {
-                throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+                throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
             }
         }
+    }
+    // Method searches for sermons by title, throws error if not found
+    public List<Event> searchEventByTitle(String title) throws BackendErrorException {
+        List<Event> results = eventRepository.findByNameContaining(title);
+        if(results.isEmpty()){
+            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+        }
+        return results;
+    }
+
+    // Method searches for sermons by date range, throws error if not found
+    public List<Event> searchEventByDateRange(String startDate, String endDate) throws BackendErrorException {
+        List<Event> results = eventRepository.findByDateTimeBetween(startDate, endDate);
+        if(results.isEmpty()){
+            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+        }
+        return results;
     }
 }

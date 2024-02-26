@@ -1,6 +1,5 @@
 package com.RunDMCPP.Backend.utils;
 
-import com.RunDMCPP.Backend.enums.ErrorEnum;
 import org.springframework.http.HttpStatus;
 
 // BackendErrorException. This class represents an error thrown from the backend.
@@ -9,7 +8,7 @@ public class BackendErrorResponse{
     private int code;              // Error code
     private String message;        // Error message
 
-    // Constructor takes BackendErrorException & sets up reponse
+    // Constructor takes BackendErrorException & sets up response
     public BackendErrorResponse(BackendErrorException e) {
         this.httpStatus = e.getHttpStatus();
         this.code = e.getErrorEnum().getCode();

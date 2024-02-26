@@ -1,6 +1,10 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 const SearchByName = "Search By Name Results"
 const SearchByDate = "Search By Date Results"
 const NoSearchTerm = "Please supply a search term!"
+const NoSearchResults = "No results found!"
 
 export async function searchByName(){
     var request = new XMLHttpRequest();
@@ -18,6 +22,8 @@ export async function searchByName(){
     request.onload = async () => {
         if (request.status === 200) {
             showResults(request, true);
+        } else if (request.status === 404){
+            alert(NoSearchResults);
         } else {
             alert("Something went wrong. Try again later!");
             console.log(`error ${request.status}`);
@@ -58,10 +64,29 @@ export async function searchByDate(){
     request.onload = async () => {
         if (request.status === 200) {
             showResults(request, false);
+        } else if (request.status === 404){
+            alert(NoSearchResults);
         } else {
             alert("Something went wrong. Try again later!");
             console.log(`error ${request.status}`);
         }
+    }
+}
+
+export async function getSermonById(sermonId){
+    try {
+        const response = await fetch(`http://localhost:8080/api/sermons/get/${sermonId}`);
+
+        if(!response.ok){
+            console.error(`Error: ${response.status}`);
+            return null;
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error:", error);
+        return null;
     }
 }
 
@@ -93,21 +118,28 @@ function showResults(request, searchByName){
         var printDate = new Date(result.dateTime).toLocaleString();
         dateTime.innerText = "Date and Time: " + printDate;
 
-        var video = document.createElement("iframe");
-        video.src = result.youtubeLink.replace("watch?v=", "embed/");
-        video.width = 420;
-        video.height = 315;
-        video.hidden = false;
+        var link = `/sermons/${result.id}`;
 
-        document.getElementById("resultsField").appendChild(title);
-        document.getElementById("resultsField").appendChild(description);
-        document.getElementById("resultsField").appendChild(dateTime);
-        document.getElementById("resultsField").appendChild(video);
+        var linkElement = document.createElement("div");
+        var anchor = document.createElement("a");
+        anchor.href = link;
+        var button = document.createElement("button");
+        button.innerText = "Watch";
+        anchor.appendChild(button);
+        linkElement.appendChild(anchor);
 
+        var container = document.createElement("div");
+     
+        container.appendChild(title);
+        container.appendChild(description);
+        container.appendChild(dateTime);
+        container.appendChild(linkElement);
+        document.getElementById("resultsField").appendChild(container);
     }
 
     // Show Results
     document.getElementById("resultsField").hidden = false;
     
-
 }
+
+

@@ -8,7 +8,6 @@ import com.RunDMCPP.Backend.validation.SermonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +33,7 @@ public class SermonService {
         if(dbEntity.isPresent()){
             return dbEntity;
         }
-        throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+        throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
     }
 
     // Method creates a new sermon, validates input, throws error if invalid
@@ -87,7 +86,7 @@ public class SermonService {
             throw new BackendErrorException(ErrorEnum.DATA_MISMATCH);
         }
         // If sermon doesn't exist in DB, throw error
-        throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+        throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
     }
 
     // Method deletes a sermon, and checks if the sermon exists in the DB
@@ -113,7 +112,7 @@ public class SermonService {
                 throw new BackendErrorException(ErrorEnum.DATA_MISMATCH);
             }
         } else {
-            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+            throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
         }
     }
 
@@ -121,7 +120,7 @@ public class SermonService {
     public List<Sermon> searchSermonsByTitle(String title) throws BackendErrorException {
         List<Sermon> results = sermonRepository.findByNameContaining(title);
         if(results.isEmpty()){
-            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+            throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
         }
         return results;
     }
@@ -130,7 +129,7 @@ public class SermonService {
     public List<Sermon> searchSermonsByDateRange(String startDate, String endDate) throws BackendErrorException {
         List<Sermon> results = sermonRepository.findByDateTimeBetween(startDate, endDate);
         if(results.isEmpty()){
-            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+            throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
         }
         return results;
     }

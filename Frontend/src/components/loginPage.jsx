@@ -1,18 +1,12 @@
-/* Notes: 
-    - This is meant to be a template for OAuth login. 
-    - You may want to seperate main App logic from this page,
-        but for simplicity, I've included the main App logic here. 
-    - Don't forget to install OAuth: npm install @auth0/auth0-react. 
-    
-    ~ Kevin Cendana */
 
 // Import libraries
 import React, { } from 'react';  
 import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';  // OAuth
 import './loginPage.css';
 import logo from '../images/sgkc4.png';
+import { useTranslation } from 'react-i18next';
 
-// LoginPage component
+// LoginPage component: Login page for Auth0
 function LoginPage() {
 
     // OAuth: Variables to handle login, authentication (if user is logged in), logout
@@ -21,6 +15,7 @@ function LoginPage() {
     const isAuthenticated = auth0.isAuthenticated;
     const logout = auth0.logout;
     const user = auth0.user;
+    const { t } = useTranslation();
 
     // Function: Component to show the user's account picture, name, and logout button
     function LoggedInUserProfile() {
@@ -48,7 +43,7 @@ function LoginPage() {
         {/* If user is not logged in, show the login button */}
         {!isAuthenticated && (
             <div>
-                <button onClick={loginWithRedirect}>Log In</button>
+                <button onClick={loginWithRedirect}>{t('login')}</button>
             </div>
         )}
         

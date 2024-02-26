@@ -1,73 +1,35 @@
 import React from 'react';
 
 import {createPreview, addAnnouncement} from './Javascript/announcementsAdd.js'
+import './Javascript/i18n.js'
+import {useTranslation} from 'react-i18next'
 
 function AdminAnnouncementsAdd() {
+    const { t } = useTranslation();
     return (
         <>
             <meta charSet="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <title>ChurchTemplate</title>
             <link rel="stylesheet" href="header.css" />
-            <header>
-                {/*Title*/}
-                <h1>
-                    Sacramento Glory
-                    <br />
-                    Korean Church
-                </h1>
-                {/* Navigation bar */}
-                <ul>
-                    <li>
-                        <a href="announcements">Announcements</a>
-                    </li>
-                    <li className="dropdown">
-                        <a href="javascript:void(0)" className="dropbtn">
-                            Events ▼
-                        </a>
-                        <div className="dropdown-content">
-                            <a href="events">Events</a>
-                            <a href="pastEvents">Past Events</a>
-                            <a href="photoGallery">Photo Gallery</a>
-                        </div>
-                    </li>
-                    {/* Other navigation items */}
-                </ul>
-            </header>
             <main>
                 {/* Main content goes here */
                     <div>
                         <fieldset className="addAnnounementBox">
-                            <legend>Announement Information</legend>
-                            <br></br><textarea rows="1" cols="60" id="titleBox" name="titleBox" placeholder="Announement title"></textarea>
-                            <br></br><textarea rows="4" cols="60" id="descriptionBox" name="descriptionBox" placeholder="Announement Description"></textarea>
-                            <br></br><button type="button" id="previewButton" onClick={createPreview} style = {{width:"120px"}}>Preview</button>
+                            <legend>{t('announcements')}</legend>
+                            <br></br><textarea rows="1" cols="60" id="titleBox" name="titleBox" placeholder={t('title')}></textarea>
+                            <br></br><textarea rows="4" cols="60" id="descriptionBox" name="descriptionBox" placeholder={t("description")}></textarea>
+                            <br></br><button type="button" id="previewButton" onClick={createPreview} style = {{width:"120px"}}>{t("preview")}</button>
                         </fieldset>
                         <fieldset id="resultsField" className="previewBox" hidden>
-                            <legend>Announement Preview</legend>
-                            <h4 id="resultTitle">Title</h4>
-                            <p id="resultDescription">Desc</p>
-                            <br></br><button type="button" onClick={addAnnouncement}  style={{width:"120px"}}>Add Announement</button>
+                            <legend>{t("preview")}</legend>
+                            <h4 id="resultTitle">{t("title")}</h4>
+                            <p id="resultDescription">{t("description")}</p>
+                            <br></br><button type="button" onClick={addAnnouncement}  style={{width:"120px"}}>{t("addAnnouncement")}</button>
                         </fieldset> 
                     </div>
                 }
             </main>
-            <footer>
-                {/* Footer content goes here */}
-                <p className="sameLine" style={{ fontSize: 12 }}>
-                    Sacramento Glory Korean Church
-                    <br />
-                    1820 Bell Street
-                    <br />
-                    Sacramento, CA. 95825
-                </p>
-                <p className="sameLine" style={{ fontSize: 12, float: "right" }}>
-                    Contact Us:{" "}
-                    <a href="mailto: sacglorychurch@hotmail.com">
-                        sacglorychurch@hotmail.com
-                    </a>
-                </p>
-            </footer>
         </>
     );
 }
