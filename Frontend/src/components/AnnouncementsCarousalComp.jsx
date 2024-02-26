@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { fetchRecentAnnouncements } from './Javascript/announcementsAdd.js';
 import './AnnouncementsCarousalComp.css';
 
-const AnnouncementsCarousel = () => {
+const AnnouncementsCarouselComp = () => {
     const [index, setIndex] = useState(0);
-    const announcements = [
-        { title: 'First Announcement 📢', content: 'Do this first thing with us!' },
-        { title: 'Second Announcement 📢', content: 'Also this second thing!' },
-        { title: 'Third Announcement 📢', content: 'Finally, this third thing you should do with us!' }
-    ];
+    const [announcements, setAnnouncements] = useState([]);
+    const { t } = useTranslation();    
 
-    const previousSlide = () => {
-        setIndex((prevIndex) => (prevIndex === 0 ? announcements.length - 1 : prevIndex - 1));
+    const fetchAnnouncements = async () => {
+        try {
+            const data = await fetchRecentAnnouncements();
+            setAnnouncements(data || []);
+        } catch (error) {
+            console.error('Error getting announcements:', error);
+        }
     };
 
-    const nextSlide = () => {
-        setIndex((prevIndex) => (prevIndex === announcements.length - 1 ? 0 : prevIndex + 1));
-    };
+    fetchAnnouncements();
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -25,6 +27,26 @@ const AnnouncementsCarousel = () => {
         return () => clearInterval(interval);
     }, [index]); // Restart interval when index changes
 
+    const totalAnnouncements = announcements ? announcements.length : 0;
+    
+    const previousSlide = () => {
+        setIndex((prevIndex) => (prevIndex === 0 ? announcements.length - 1 : prevIndex - 1));
+    };
+
+    const nextSlide = () => {
+        setIndex((prevIndex) => (prevIndex === announcements.length - 1 ? 0 : prevIndex + 1));
+    };
+
+    const currentAnnouncement = announcements[index] || {title: 'No Announcement', content: 'No content' };
+    
+    if(!announcements || totalAnnouncements === 0){
+        return (
+            <div className="AnnouncementsCarouselContainer" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <p>No announcements</p>
+            </div>
+        );
+    }
+
     return (
         <div className="carouselContainer">
             <div className="announcementCarousal" style={{ transform: `translateX(-${index * 105}%)` }}>
@@ -32,7 +54,7 @@ const AnnouncementsCarousel = () => {
                     <div key={idx} className="announcement">
                         <div className="announcementContent">
                             <h2>{announcement.title}</h2>
-                            <p>{announcement.content}</p>
+                            <p>{announcement.description}</p>
                         </div>
                     </div>
                 ))}
@@ -47,5 +69,5 @@ const AnnouncementsCarousel = () => {
     );
 };
 
-export default AnnouncementsCarousel;
+export default AnnouncementsCarouselComp;
 
