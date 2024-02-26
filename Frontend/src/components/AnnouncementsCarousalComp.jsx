@@ -1,32 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { fetchRecentAnnouncements } from './Javascript/announcementsAdd.js';
 
 const AnnouncementsCarouselComp = () => {
     const [index, setIndex] = useState(0);
-    const length = 3;
+    const [announcements, setAnnouncements] = useState([]);
     const { t } = useTranslation();
 
-    const Announcements = [
-        { title: 'Church Announcement 1', content: 'Come do the first thing with us!' },
-        { title: 'Church Announcement 2', content: 'Come do the second thing with us!' },
-        { title: 'Church Announcement 3', content: 'Come do the third thing with us!' }
-    ];
+    useEffect(() => {
+        const fetchAnnouncements = async () => {
+            try {
+                const data = await fetchRecentAnnouncements();
+                setAnnouncements(data || []);
+            } catch (error) {
+                console.error('Error getting announcements:', error);
+            }
+        };
+        fetchAnnouncements();
+    }, []);
+
+    const totalAnnouncements = announcements ? announcements.length : 0;
 
     const previousSlide = () => {
-        const newIndex = index - 1;
-        setIndex(newIndex < 0 ? length - 1 : newIndex);
+        const newIndex = (index - 1 + totalAnnouncements) % totalAnnouncements;
+        setIndex(newIndex);
     };
 
     const nextAnnouncement = () => {
-        const newIndex = index + 1;
-        setIndex(newIndex >= length ? 0 : newIndex);
+        const newIndex = (index + 1) % totalAnnouncements;
+        setIndex(newIndex);
     };
+
+    const currentAnnouncement = announcements[index] || {title: 'No Announcement', content: 'No content' };
+
+    if(!announcements || totalAnnouncements === 0){
+        return (
+            <div className="AnnouncementsCarouselContainer" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <p>No announcements</p>
+            </div>
+        );
+    }
 
     return (
         <div className="AnnouncementsCarouselContainer" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
             <div className="Announcements" style={{ textAlign: 'center' }}>
-                <h2>{Announcements[index].title}</h2>
-                <p>{Announcements[index].content}</p>
+                <h2>{currentAnnouncement.title}</h2>
+                <p>{currentAnnouncement.description}</p>
             </div>
             <div className="carousel-controls" style={{marginTop: '20px'}}>
                 <button onClick={nextAnnouncement}>{t('next')}</button>
