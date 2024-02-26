@@ -48,12 +48,13 @@ function showResults(sermon) {
     document.getElementById("video").hidden = false;
 }
 
-export async function editSermon(){
+export async function editSermon(accessToken){
     var request = new XMLHttpRequest();
     var url = "http://localhost:8080/api/sermons/edit";
 
     request.open("PUT", (url));
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    request.setRequestHeader("Authorization", "Bearer " + accessToken);
     request.send(JSON.stringify(ValSermon));
     request.onload = () => {
         if (request.status === 200) {
@@ -219,18 +220,19 @@ async function searchById(id){
     });
 }
 
-export function deleteSermonConfirmation(){
+export function deleteSermonConfirmation(accessToken){
     if(window.confirm(sermonDeleteConfirmation)){
-       deleteSermon() 
+       deleteSermon(accessToken) 
     }
 }
 
-async function deleteSermon(){
+async function deleteSermon(accessToken){
     var request = new XMLHttpRequest();
     var url = "http://localhost:8080/api/sermons/delete";
 
     request.open("DELETE", (url));
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    request.setRequestHeader("Authorization", "Bearer " + accessToken);
     request.send(JSON.stringify(ValSermon));
     request.onload = () => {
         if (request.status === 200) {

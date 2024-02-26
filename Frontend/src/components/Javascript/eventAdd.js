@@ -40,13 +40,14 @@ function showResults(event) {
     document.getElementById("resultsField").hidden = false;
 }
 
-export async function addEvent(){
+export async function addEvent(accessToken){
     console.log(ValEvent)
     var request = new XMLHttpRequest();
     var url = "http://localhost:8080/api/events/create";
 
     request.open("POST", (url));
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    request.setRequestHeader("Authorization", "Bearer " + accessToken);
     request.send(JSON.stringify(ValEvent));
     request.onload = () => {
         if (request.status === 201) {
