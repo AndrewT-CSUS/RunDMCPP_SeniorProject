@@ -13,7 +13,7 @@ public class TestEventData {
         e.setId("1");
         e.setEventLocation("Testing Grounds");
         e.setEventDescription("Test data for event 1");
-        e.setEventTitle("Event 1");
+        e.setName("Event 1");
         return e;
     }
 
@@ -23,7 +23,7 @@ public class TestEventData {
         e.setId("2");
         e.setEventLocation("Alternate Testing Grounds");
         e.setEventDescription("Test data for event 2");
-        e.setEventTitle("Event 2");
+        e.setName("Event 2");
         return e;
     }
 
@@ -33,7 +33,7 @@ public class TestEventData {
         e.setId("1");
         e.setEventLocation("Alternate Testing Grounds");
         e.setEventDescription("Test data for event 2");
-        e.setEventTitle("Event 2");
+        e.setName("Event 2");
         return e;
     }
 

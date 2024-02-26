@@ -33,6 +33,7 @@ const theme = createTheme({});
 // App Component
 function App() {
   return (
+
     /* Auth0Provider: Wraps around app to allow login */
     <Auth0Provider domain={process.env.REACT_APP_AUTH0_DOMAIN} clientId={process.env.REACT_APP_AUTH0_CLIENT_ID} redirectUri={window.location.origin}>
     <ThemeProvider theme={theme}> {/* ThemeProvider: Allows for custom themes for photo gallery */}
