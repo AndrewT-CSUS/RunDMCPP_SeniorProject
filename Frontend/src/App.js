@@ -6,6 +6,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 // Components: Importing all the different pages
 import Schedule from './components/schedule';
+import AboutUs from './components/aboutUs';
 import AdminAnnouncementsAdd from './components/adminAnnouncementsAdd';
 import AdminAnnouncementsEdit from './components/adminAnnouncementsEdit';
 import AdminEventAdd from './components/adminEventAdd';
@@ -41,6 +42,7 @@ function App() {
       <Routes>                    {/* Routes: Links to different pages */}
         <Route path="/" element={<Schedule />} />
         <Route path="/schedule" element={<Schedule />} />
+        <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/adminSermonAdd" element={<AdminSermonAdd />} />
         <Route path="/adminSermonEdit" element={<AdminSermonEdit />} />
         <Route path="/adminEventAdd" element={<AdminEventAdd />} />
