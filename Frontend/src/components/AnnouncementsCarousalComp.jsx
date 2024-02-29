@@ -1,38 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { fetchRecentAnnouncements } from './Javascript/announcementsAdd.js';
+import './AnnouncementsCarousalComp.css';
 
 const AnnouncementsCarouselComp = () => {
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(1);
     const [announcements, setAnnouncements] = useState([]);
-    const { t } = useTranslation();
+    const { t } = useTranslation();    
 
-    useEffect(() => {
-        const fetchAnnouncements = async () => {
-            try {
-                const data = await fetchRecentAnnouncements();
-                setAnnouncements(data || []);
-            } catch (error) {
-                console.error('Error getting announcements:', error);
-            }
-        };
-        fetchAnnouncements();
-    }, []);
-
-    const totalAnnouncements = announcements ? announcements.length : 0;
-
-    const previousSlide = () => {
-        const newIndex = (index - 1 + totalAnnouncements) % totalAnnouncements;
-        setIndex(newIndex);
+    const fetchAnnouncements = async () => {
+        try {
+            const data = await fetchRecentAnnouncements();
+            setAnnouncements(data || []);
+        } catch (error) {
+            console.error('Error getting announcements:', error);
+        }
     };
 
-    const nextAnnouncement = () => {
-        const newIndex = (index + 1) % totalAnnouncements;
-        setIndex(newIndex);
+    fetchAnnouncements();
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            nextSlide();
+        }, 5000); // Change slide every 5 seconds
+
+        return () => clearInterval(interval);
+    }, [index]); // Restart interval when index changes
+
+    const totalAnnouncements = announcements ? announcements.length : 0;
+    
+    const previousSlide = () => {
+        setIndex((prevIndex) => (prevIndex === 0 ? announcements.length - 1 : prevIndex - 1));
+    };
+
+    const nextSlide = () => {
+        setIndex((prevIndex) => (prevIndex === announcements.length - 1 ? 0 : prevIndex + 1));
     };
 
     const currentAnnouncement = announcements[index] || {title: 'No Announcement', content: 'No content' };
-
+    
     if(!announcements || totalAnnouncements === 0){
         return (
             <div className="AnnouncementsCarouselContainer" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
@@ -42,14 +48,22 @@ const AnnouncementsCarouselComp = () => {
     }
 
     return (
-        <div className="AnnouncementsCarouselContainer" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-            <div className="Announcements" style={{ textAlign: 'center' }}>
-                <h2>{currentAnnouncement.title}</h2>
-                <p>{currentAnnouncement.description}</p>
+        <div className="carouselContainer">
+            <div className="announcementCarousal" style={{ transform: `translateX(-${index * 105}%)` }}>
+                {announcements.map((announcement, idx) => (
+                    <div key={idx} className="announcement">
+                        <div className="announcementContent">
+                            <h2>{announcement.title}</h2>
+                            <p>{announcement.description}</p>
+                        </div>
+                    </div>
+                ))}
             </div>
-            <div className="carousel-controls" style={{marginTop: '20px'}}>
-                <button onClick={nextAnnouncement}>{t('next')}</button>
-                <button onClick={previousSlide}>{t('previous')}</button>
+            <div className="carousalControls">
+                <button onClick={nextSlide}>Next</button>
+            </div>
+            <div style={{display:'flex', justifyContent:'flex-start'}} className="carousalControls">
+                <button onClick={previousSlide}>Previous</button>
             </div>
         </div>
     );

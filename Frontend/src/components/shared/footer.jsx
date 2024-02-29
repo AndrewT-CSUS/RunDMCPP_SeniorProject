@@ -14,28 +14,30 @@ function Footer() {
 
     return (
         <footer>
-        {/* Footer left side: Address */}
+            {/* Footer left side: Address */}
             <p className="footer__left">
-                Sacramento Glory Korean Church<br></br>
+                <b>Sacramento Glory Korean Church</b><br></br>
                 1820 Bell Street<br></br>
                 Sacramento, CA. 95825
             </p>
-        {/* Footer right side: Links to email, YouTube, FaceBook */}
-        {/* TODO: YouTube & Facebook links & names have placeholders for now */}
+            <p style={{textAlign: 'center'}}>Powered by Run DMC++ @ 2023-2024</p>
+            {/* Footer right side: Links to email, YouTube, FaceBook */}
+            {/* TODO: YouTube & Facebook links & names have placeholders for now */}
             <div className="footer__right">
                 <p>Contact Us: <a href="mailto:sacglorychurch@hotmail.com">sacglorychurch@hotmail.com</a></p>
-                  
+
                 <div className="container-link-and-logo">
                     <img src={YouTubeLogo} alt="YouTube Logo"></img>
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">YouTube Channel</a>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">YouTube
+                        Channel</a>
                 </div>
-                
+
                 <div className="container-link-and-logo">
                     <img src={FaceBookLogo} alt="Facebook Logo"></img>
                     <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook Page</a>
                 </div>
             </div>
-        </footer>       
+        </footer>
     );
 
 }
