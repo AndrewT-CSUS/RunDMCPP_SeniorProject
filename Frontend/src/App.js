@@ -16,6 +16,7 @@ import AdminSermonEdit from './components/adminSermonEdit';
 import Events from './components/events';
 import PastEvents from './components/pastEvents';
 import PhotoGallery from './components/photoGallery';
+import Albums from './components/albums';
 import PreviousSerms from './components/previousSerms';
 import Services from './components/services';
 import UpcomingSerms from './components/upcomingSerms';
@@ -52,6 +53,7 @@ function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/pastEvents" element={<PastEvents />} />
         <Route path="/photoGallery" element={<PhotoGallery />} />
+        <Route path="/albums/:albumId" element={<Albums />} />
         <Route path="/previousSerms" element={<PreviousSerms />} />
         <Route path="/services" element={<Services />} />
         <Route path="/upcomingSerms" element={<UpcomingSerms />} />
