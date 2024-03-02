@@ -129,7 +129,7 @@ public class SermonControllerTest {
 
     @Test
     public void searchByTitle_Success() throws BackendErrorException {
-        when(sermonService.searchSermonsByTitle(any(String.class))).thenReturn(TestSermonData.listOfSermons());
+        when(sermonService.searchSermonsByTitle(any(String.class))).thenReturn(TestSermonData.smallListOfSermons());
 
         ResponseEntity result = sermonController.searchByTitle("Test");
         List<Sermon> resultList =  (List<Sermon>)result.getBody();
@@ -158,7 +158,7 @@ public class SermonControllerTest {
 
     @Test
     public void searchByDateRange_Success() throws BackendErrorException {
-        when(sermonService.searchSermonsByDateRange(any(String.class), any(String.class))).thenReturn(TestSermonData.listOfSermons());
+        when(sermonService.searchSermonsByDateRange(any(String.class), any(String.class))).thenReturn(TestSermonData.smallListOfSermons());
 
         ResponseEntity result = sermonController.searchByDateRange("Date1", "Date2");   //Just for test, these don't really matter
         List<Sermon> resultList =  (List<Sermon>)result.getBody();
@@ -177,6 +177,39 @@ public class SermonControllerTest {
         when(sermonService.searchSermonsByDateRange(any(String.class), any(String.class))).thenThrow(TestExceptionData.backendError_NotFound());
 
         ResponseEntity result = sermonController.searchByDateRange("Date1", "Date2");   //Just for test, these don't really matter
+
+        assertThat(result).isNotNull();
+        assertThat(result.getBody()).isNotNull();
+        assertThat(((BackendErrorResponse) result.getBody()).getCode()).isEqualTo(1);
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+    }
+
+
+    @Test
+    public void get10RecentSermons_Success() throws BackendErrorException {
+        when(sermonService.get10Recent()).thenReturn(TestSermonData.largeListOfSermons());
+
+        ResponseEntity result = sermonController.get10RecentSermons();
+        List<Sermon> list = (List<Sermon>) result.getBody();
+
+        assertThat(result).isNotNull();
+        assertThat(result.getBody()).isNotNull();
+        assertThat(list).isNotNull();
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        assertThat(list).contains(TestSermonData.sermon1());
+        assertThat(list).contains(TestSermonData.sermon2());
+        assertThat(list).contains(TestSermonData.sermon3());
+        assertThat(list).contains(TestSermonData.sermon4());
+        assertThat(list).contains(TestSermonData.sermon5());
+        assertThat((list).contains(TestSermonData.sermon11())).isEqualTo(false);
+    }
+
+    @Test
+    public void get10RecentSermons_Failure() throws BackendErrorException {
+        when(sermonService.get10Recent()).thenThrow(TestExceptionData.backendError_NotFound());
+
+        ResponseEntity result = sermonController.get10RecentSermons();
 
         assertThat(result).isNotNull();
         assertThat(result.getBody()).isNotNull();

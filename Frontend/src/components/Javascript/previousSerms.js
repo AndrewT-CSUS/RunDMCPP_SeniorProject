@@ -1,10 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
 const SearchByName = "Search By Name Results"
 const SearchByDate = "Search By Date Results"
+const DefaultSermons = "Recent Sermons"
 const NoSearchTerm = "Please supply a search term!"
 const NoSearchResults = "No results found!"
+const NoDefaults = "Default sermons can not be loaded. Try searching!"
+
+var defaultSermons;
 
 export async function searchByName(){
     var request = new XMLHttpRequest();
@@ -21,7 +22,7 @@ export async function searchByName(){
 
     request.onload = async () => {
         if (request.status === 200) {
-            showResults(request, true);
+            showResults(request, SearchByName);
         } else if (request.status === 404){
             alert(NoSearchResults);
         } else {
@@ -63,7 +64,7 @@ export async function searchByDate(){
 
     request.onload = async () => {
         if (request.status === 200) {
-            showResults(request, false);
+            showResults(request, SearchByDate);
         } else if (request.status === 404){
             alert(NoSearchResults);
         } else {
@@ -90,7 +91,7 @@ export async function getSermonById(sermonId){
     }
 }
 
-function showResults(request, searchByName){
+function showResults(request, searchType){
     var objectText = JSON.parse(request.response);
     console.log(objectText);
 
@@ -98,11 +99,10 @@ function showResults(request, searchByName){
     document.getElementById("resultsField").innerHTML = "";
 
     var legend = document.createElement("legend");
-    if(searchByName == true){
-        legend.innerText = SearchByName;
-    }else{
-        legend.innerText = SearchByDate;
+    if(searchType != null){
+        legend.innerText = searchType;
     }
+    
     document.getElementById("resultsField").appendChild(legend);
 
     for (let i = 0; i < objectText.length; i++) {
@@ -140,6 +140,31 @@ function showResults(request, searchByName){
     // Show Results
     document.getElementById("resultsField").hidden = false;
     
+}
+
+export async function showDefaults(){
+    if(defaultSermons != null){
+        showResults(defaultSermons, DefaultSermons)
+        return;
+    }
+
+    var request = new XMLHttpRequest();
+    var url = "http://localhost:8080/api/sermons/getDefault";
+
+    request.open("GET", url);
+    request.send();
+
+    request.onload = async () => {
+        if (request.status === 200) {
+            defaultSermons = request;
+            showResults(request, DefaultSermons);
+        } else if (request.status === 404){
+            alert(NoDefaults);
+        } else {
+            alert("Something went wrong. Try again later!");
+            console.log(`error ${request.status}`);
+        }
+    }
 }
 
 

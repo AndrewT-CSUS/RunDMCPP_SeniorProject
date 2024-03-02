@@ -8,9 +8,9 @@ import com.RunDMCPP.Backend.validation.SermonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.stream.Collectors;
 
 // SermonService. Services are Springs components that deal w/ business logic.
 @Service
@@ -132,5 +132,37 @@ public class SermonService {
             throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
         }
         return results;
+    }
+
+    public List<Sermon> get10Recent() throws BackendErrorException{
+        List<Sermon> sermons = (List<Sermon>) sermonRepository.findAll();
+        if (sermons.isEmpty()){
+           throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
+        }
+        List<Sermon> filteredList = sermons
+                .stream()
+                .filter(sermon -> {
+                    try {
+                        LocalDateTime.parse(sermon.getDateTime());
+                    } catch (Exception e) {
+                        return false;
+                    }
+                    return true;
+                })
+                .sorted(Comparator.comparing(s ->
+                        LocalDateTime.parse(s.getDateTime()))
+                )
+                .collect(Collectors.toList());
+
+        if (filteredList.isEmpty()){
+            throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
+        }
+
+        List<Sermon> results = filteredList;
+        if(filteredList.size() >= 10) {
+            results = (filteredList.subList(filteredList.size() - 10, filteredList.size()));
+        }
+        Collections.reverse(results);
+       return results;
     }
 }

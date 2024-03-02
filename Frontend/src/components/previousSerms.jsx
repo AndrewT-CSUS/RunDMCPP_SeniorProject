@@ -1,10 +1,15 @@
-import React from 'react';
-import {searchByName, searchByDate} from './Javascript/previousSerms.js'
+import React, { useEffect } from 'react';
+import {searchByName, searchByDate, showDefaults} from './Javascript/previousSerms.js'
 import { useTranslation } from 'react-i18next';
 
 // Define your functional component
 function PreviousSerms() {
     const { t } = useTranslation();
+
+    useEffect(() => {       //should only showDefaults once on loading the page, but it doesn't seem to. Fix in future sprint
+        showDefaults();
+    }, []);
+
 
     return (
         <>
@@ -36,6 +41,7 @@ function PreviousSerms() {
                     <div style={{display: "flex", flexWrap: "wrap",  alignItems: "left", justifyContent: "left"}}>
                         <button type="button" id="searchByDateButton" onClick={searchByDate} style={{ align: "left"}}>{t('searchByDate')}</button>
                     </div>
+                    <button type="button" id="showDefaultsButton" onClick={showDefaults} style={{ align: "left"}}>{t('clear')}</button>
                 </fieldset>
                 <br></br>
                 <fieldset id="resultsField" className="resultBox" hidden>
@@ -47,5 +53,10 @@ function PreviousSerms() {
     );
 }
 
-export default PreviousSerms;
+var App = () => {
+    return(<PreviousSerms />)
+}
+
+export default App;
+export {PreviousSerms};
 
