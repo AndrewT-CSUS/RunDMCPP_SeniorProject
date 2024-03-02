@@ -99,5 +99,14 @@ public class SermonController {
         }
     }
 
-
+    @GetMapping
+    @RequestMapping("/getDefault")
+    public ResponseEntity get10RecentSermons() {
+        // Try to get the sermon by id & return HTTP status OK; else return error
+        try {
+            return new ResponseEntity<>(sermonService.get10Recent(), HttpStatus.OK);
+        } catch (BackendErrorException e) {
+            return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
+        }
+    }
 }
