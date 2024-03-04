@@ -83,7 +83,7 @@ public class EventController {
         }
     }
 
-    // Method searches for sermons by title
+    // Method searches for events by title
     @GetMapping("/search/title/{title}")
     public ResponseEntity searchByTitle(@PathVariable String title) {
         // Try to return matching sermons w/ HTTP status OK; else return error
@@ -95,7 +95,7 @@ public class EventController {
     }
 
 
-    // Method searches for sermons by date range
+    // Method searches for events by date range
     @GetMapping("/search/date")
     public ResponseEntity searchByDateRange(
             @RequestParam String startDate,
