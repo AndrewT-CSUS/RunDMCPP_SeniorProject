@@ -19,6 +19,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -268,5 +270,55 @@ public class EventServiceTest {
     public void autoDeleteEvents_Failure_OtherStuff(){ }
 
     */
+
+    @Test
+    public void searchEventByTitle_Success() throws BackendErrorException{
+        when(eventRepository.findByNameContaining(any(String.class))).thenReturn(TestEventData.listOfEvents());
+
+        List<Event> events = eventService.searchEventByTitle("Test"); //actual value doesn't matter, this is just for testing
+
+        assertThat(events).isNotNull();
+        assertThat(events.isEmpty()).isFalse();
+        assertThat(events.contains(TestEventData.event1())).isTrue();
+        assertThat(events.contains(TestEventData.event2())).isTrue();
+    }
+
+    @Test
+    public void searchEventByTitle_Failure() {
+        when(eventRepository.findByNameContaining(any(String.class))).thenReturn(Collections.emptyList());
+
+        BackendErrorException exception = assertThrows(BackendErrorException.class, () -> {
+            List<Event> events = eventService.searchEventByTitle("Test"); //actual value doesn't matter, this is just for testing
+        });
+
+        assertThat(exception).isNotNull();
+        assertThat(exception.getHttpStatus()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);  //TODO: UPDATE
+        assertThat(exception.getErrorEnum()).isEqualTo(ErrorEnum.NOT_FOUND);
+    }
+
+    @Test
+    public void searchEventByDateRange_Success() throws BackendErrorException{
+        when(eventRepository.findByDateTimeBetween(any(String.class), any(String.class))).thenReturn(TestEventData.listOfEvents());
+
+        List<Event> events = eventService.searchEventByDateRange("Date1", "Date2"); //actual value doesn't matter, this is just for testing
+
+        assertThat(events).isNotNull();
+        assertThat(events.isEmpty()).isFalse();
+        assertThat(events.contains(TestEventData.event1())).isTrue();
+        assertThat(events.contains(TestEventData.event2())).isTrue();
+    }
+
+    @Test
+    public void searchEventByDateRange_Failure() {
+        when(eventRepository.findByDateTimeBetween(any(String.class), any(String.class))).thenReturn(Collections.emptyList());
+
+        BackendErrorException exception = assertThrows(BackendErrorException.class, () -> {
+            List<Event> events = eventService.searchEventByDateRange("Date1", "Date2"); //actual value doesn't matter, this is just for testing
+        });
+
+        assertThat(exception).isNotNull();
+        assertThat(exception.getHttpStatus()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);  //TODO: UPDATE
+        assertThat(exception.getErrorEnum()).isEqualTo(ErrorEnum.NOT_FOUND);
+    }
 
 }

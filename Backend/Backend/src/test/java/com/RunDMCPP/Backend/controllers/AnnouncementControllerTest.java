@@ -13,6 +13,8 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -132,5 +134,63 @@ public class AnnouncementControllerTest {
         assertThat(result.getBody()).isNotNull();
         assertThat(((BackendErrorResponse) result.getBody()).getCode()).isEqualTo(3);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @Test
+    public void searchByTitle_Success() throws BackendErrorException {
+        when(announcementService.searchAnnouncementsByTitle(any(String.class))).thenReturn(TestAnnouncementData.listOfAnnouncements());
+
+        ResponseEntity result = announcementController.searchByTitle("Test");
+        List<Announcement> announcements =  (List<Announcement>)result.getBody();
+
+        assertThat(result).isNotNull();
+        assertThat(result.getBody()).isNotNull();
+        assertThat(announcements.contains(TestAnnouncementData.announcement1())).isTrue();
+        assertThat(announcements.contains(TestAnnouncementData.announcement2())).isTrue();
+        assertThat(announcements.contains(TestAnnouncementData.announcement3())).isTrue();
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
+
+    @Test
+    public void searchByTitle_Failure() throws BackendErrorException {
+        when(announcementService.searchAnnouncementsByTitle(any(String.class))).thenThrow(TestExceptionData.backendError_NotFound());
+
+        ResponseEntity result = announcementController.searchByTitle("Test");
+
+        assertThat(result).isNotNull();
+        assertThat(result.getBody()).isNotNull();
+        assertThat(((BackendErrorResponse) result.getBody()).getCode()).isEqualTo(1);
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+    }
+
+
+
+    @Test
+    public void getThreeRecent_Success(){
+        when(announcementService.getThreeRecentAnnouncements()).thenReturn(TestAnnouncementData.listOfAnnouncements());
+
+        ResponseEntity<List<Announcement>> result = announcementController.getThreeRecent();
+        List<Announcement> announcements = result.getBody();
+
+        assertThat(result).isNotNull();
+        assertThat(result.getBody()).isNotNull();
+        assertThat(announcements.contains(TestAnnouncementData.announcement1())).isTrue();
+        assertThat(announcements.contains(TestAnnouncementData.announcement2())).isTrue();
+        assertThat(announcements.contains(TestAnnouncementData.announcement3())).isTrue();
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
+
+    @Test
+    public void getThreeRecent_Failure(){
+        when(announcementService.getThreeRecentAnnouncements()).thenReturn(Collections.emptyList());
+
+        ResponseEntity<List<Announcement>> result = announcementController.getThreeRecent();
+        List<Announcement> announcements = result.getBody();
+
+        assertThat(result).isNotNull();
+        assertThat(result.getBody()).isNotNull();
+        assertThat(announcements.isEmpty()).isTrue();
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+
     }
 }
