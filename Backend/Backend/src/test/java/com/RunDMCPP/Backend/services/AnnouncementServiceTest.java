@@ -15,6 +15,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -223,5 +225,70 @@ public class AnnouncementServiceTest {
 
     }
 
+    @Test
+    public void searchAnnouncementByTitle_Success() throws BackendErrorException {
+        when(announcementRepository.findByTitleContaining(any(String.class))).thenReturn(TestAnnouncementData.listOfAnnouncements());
+
+        List<Announcement> announcements = announcementService.searchAnnouncementsByTitle("Test");
+
+        assertThat(announcements).isNotNull();
+        assertThat(announcements.isEmpty()).isFalse();
+        assertThat(announcements.contains(TestAnnouncementData.announcement1())).isTrue();
+        assertThat(announcements.contains(TestAnnouncementData.announcement2())).isTrue();
+        assertThat(announcements.contains(TestAnnouncementData.announcement3())).isTrue();
+    }
+
+    @Test
+    public void searchAnnouncementByTitle_Failure_NoResults(){
+        when(announcementRepository.findByTitleContaining(any(String.class))).thenReturn(Collections.emptyList());
+
+        BackendErrorException exception = assertThrows(BackendErrorException.class, () -> {
+            announcementService.searchAnnouncementsByTitle("Test");
+        });
+
+        assertThat(exception).isNotNull();
+        assertThat(exception.getHttpStatus()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);  //TODO: UPDATE!
+        assertThat(exception.getErrorEnum()).isEqualTo(ErrorEnum.NOT_FOUND);
+    }
+
+    @Test
+    public void getThreeRecentAnnouncements_Success_MoreThanThree(){
+        when(announcementRepository.findAll()).thenReturn(TestAnnouncementData.longListOfAnnouncements());
+
+        List<Announcement> announcements = announcementService.getThreeRecentAnnouncements();
+
+        assertThat(announcements).isNotNull();
+        assertThat(announcements.isEmpty()).isFalse();
+        assertThat(announcements.size()).isEqualTo(3);
+
+        assertThat(announcements.contains(TestAnnouncementData.announcement5())).isTrue();
+        assertThat(announcements.contains(TestAnnouncementData.announcement4())).isTrue();
+        assertThat(announcements.contains(TestAnnouncementData.announcement3())).isTrue();
+        assertThat(announcements.contains(TestAnnouncementData.announcement2())).isFalse();
+        assertThat(announcements.contains(TestAnnouncementData.announcement1())).isFalse();
+    }
+
+    @Test
+    public void getThreeRecentAnnouncements_Success_LessThanThree(){
+        when(announcementRepository.findAll()).thenReturn(TestAnnouncementData.listOfOneAnnouncement());
+
+        List<Announcement> announcements = announcementService.getThreeRecentAnnouncements();
+
+        assertThat(announcements).isNotNull();
+        assertThat(announcements.isEmpty()).isFalse();
+        assertThat(announcements.size()).isEqualTo(1);
+
+        assertThat(announcements.contains(TestAnnouncementData.announcement1())).isTrue();
+    }
+
+    @Test
+    public void getThreeRecentAnnouncements_NoResults(){
+        when(announcementRepository.findAll()).thenReturn(Collections.emptyList());
+
+        List<Announcement> announcements = announcementService.getThreeRecentAnnouncements();
+
+        assertThat(announcements).isNotNull();
+        assertThat(announcements.isEmpty()).isTrue();
+    }
 
 }

@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -134,5 +135,57 @@ public class EventControllerTest {
         assertThat(result.getBody()).isNotNull();
         assertThat(((BackendErrorResponse) result.getBody()).getCode()).isEqualTo(3);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+       @Test
+    public void searchByTitle_Success() throws BackendErrorException {
+        when(eventService.searchEventByTitle(any(String.class))).thenReturn(TestEventData.listOfEvents());
+
+        ResponseEntity result = eventController.searchByTitle("Test");
+        List<Event> events =  (List<Event>)result.getBody();
+
+        assertThat(result).isNotNull();
+        assertThat(result.getBody()).isNotNull();
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(events.contains(TestEventData.event1())).isTrue();
+        assertThat(events.contains(TestEventData.event2())).isTrue();
+    }
+
+    @Test
+    public void searchByTitle_Failure() throws BackendErrorException {
+        when(eventService.searchEventByTitle(any(String.class))).thenThrow(TestExceptionData.backendError_NotFound());
+
+        ResponseEntity result = eventController.searchByTitle("Test");
+
+        assertThat(result).isNotNull();
+        assertThat(result.getBody()).isNotNull();
+        assertThat(((BackendErrorResponse) result.getBody()).getCode()).isEqualTo(1);
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+    }
+
+
+    @Test
+    public void searchByDateRange_Success() throws BackendErrorException {
+        when(eventService.searchEventByDateRange(any(String.class), any(String.class))).thenReturn(TestEventData.listOfEvents());
+
+        ResponseEntity result = eventController.searchByDateRange("Date1", "Date2");   //Just for test, these don't really matter
+        List<Event> events =  (List<Event>)result.getBody();
+
+        assertThat(result).isNotNull();
+        assertThat(result.getBody()).isNotNull();
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(events.contains(TestEventData.event1())).isTrue();
+        assertThat(events.contains(TestEventData.event2())).isTrue();
+    }
+
+    @Test
+    public void searchByDateRange_Failure() throws BackendErrorException {
+        when(eventService.searchEventByDateRange(any(String.class), any(String.class))).thenThrow(TestExceptionData.backendError_NotFound());
+
+        ResponseEntity result = eventController.searchByDateRange("Date1", "Date2");   //Just for test, these don't really matter
+
+        assertThat(result).isNotNull();
+        assertThat(result.getBody()).isNotNull();
+        assertThat(((BackendErrorResponse) result.getBody()).getCode()).isEqualTo(1);
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 }
