@@ -13,6 +13,7 @@ import com.RunDMCPP.Backend.repositories.AnnouncementRepository;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -119,6 +120,7 @@ public class AnnouncementService {
         return results;
     }
 
+    // Method gets the 3 most recent announcements, returns empty list if no announcements are in the db
     public List<Announcement> getThreeRecentAnnouncements(){
         List<Announcement> allAnnouncements = (List<Announcement>) announcementRepo.findAll();
 
