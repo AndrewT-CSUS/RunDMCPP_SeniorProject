@@ -1,6 +1,5 @@
 package com.RunDMCPP.Backend.models;
 
-import java.time.Instant;
 import java.util.Objects;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
@@ -45,10 +44,7 @@ public class Announcement {
 
     @DynamoDBAttribute
     public long getTtl(){ 
-        long now = Instant.now().getEpochSecond(); // Get current time in sec
-        ttl = 60 * 60 * 24 * 28; // Set TTL to 4 weeks in seconds
-        setTtl(ttl + now);       // Set the expiration time to 4 weeks from now.
-        return ttl;
+        return this.ttl;
     }
     public void setTtl(long t){
         ttl = t;
