@@ -4,21 +4,36 @@ import './header.css';
 import ChurchLogo from '../../images/sgkc2_transparent_shadow.png';
 import { useTranslation } from 'react-i18next';
 import {Translate} from './translate.jsx'
+import { useAdmin } from '../Javascript/adminContext.js';
+import starLogo from '../../images/star-icon.png';
 
 // Header component
 function Header() {
-    const { t } = useTranslation();
-  
+    const { t } = useTranslation(); // State: Translation
     const location = useLocation(); // State: Current path. Used so we only render Header on certain pages.
-  
+    const { isAdmin } = useAdmin(); // Use the useAdmin hook to get isAdmin
+
+
     // Conditional: Don't render Header if the current path is '/loginpage'
     if (location.pathname === '/loginpage') {
         return null; // Don't render the Header on the login page
     }
 
+    // Conditional: Increase padding-top by 20px if logged in as admin
+    const headerStyle = {
+        paddingTop: isAdmin ? '40px' : '0', // Increase padding-top by 20px if admin
+    };
+
     // Render the header
     return (
-        <header>
+        <header style={headerStyle}>
+            {/* Conditional Div: Only display when the user is an admin. */}
+            {isAdmin && (
+                <div className="admin-section">
+                    You are logged in as Admin
+                    <img src={starLogo} class="admin-star" alt="Admin Star"/>
+                </div>
+            )}                            
             {/* Church Logo */}
             <img src={ChurchLogo} alt="Sacramento Glory Church Logo" className='sameLine'/>
             {/* Title*/}
