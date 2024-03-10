@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getEvents } from './Javascript/fetchEvent';
+/*import styles from './Events.css'; */
 
 function Events() {
   const [events, setEvents] = useState([]);
@@ -12,7 +13,10 @@ function Events() {
 
   const fetchEvents = async () => {
     try {
-      const eventData = await getEvents(); // Use the getEvents function to fetch events
+      const eventData = await getEvents(); 
+      // Sort events by dateTime from the soonest to the furthest
+      eventData.sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
+
       setEvents(eventData);
     } catch (error) {
       console.error('Error fetching events:', error);
@@ -23,7 +27,6 @@ function Events() {
   };
 
   return (
-
     <main>
       <h1>Events</h1>
       {loading ? (
@@ -45,9 +48,7 @@ function Events() {
         </div>
       )}
     </main>
-
   );
 }
-
 
 export default Events;
