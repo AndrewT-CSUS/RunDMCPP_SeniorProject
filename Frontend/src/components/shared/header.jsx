@@ -31,7 +31,7 @@ function Header() {
             {isAdmin && (
                 <div className="admin-section">
                     You are logged in as Admin
-                    <img src={starLogo} class="admin-star" alt="Admin Star"/>
+                    <img src={starLogo} className="admin-star" alt="Admin Star"/>
                 </div>
             )}                            
             {/* Church Logo */}
@@ -43,33 +43,33 @@ function Header() {
             {/* Eng/Kor Button*/}
             <Translate />
             {/* Navigation bar */}
-            <ul className = "navigation-bar">
+            <ul className="navigation-bar">
                 {/* Dropdown menu for Events */}
-                <li className="dropdown">
-                <div className='dropbtn'>{t('eventsDrop')}</div>
-                    <div className="dropdown-content">
-                        <Link to="/events">{t('events')}</Link>
-                        <Link to="/pastEvents">Past Events</Link>
-                        <Link to="/photoGallery">{t('photos')}</Link>
-                    </div>
+                <li>
+                    <Link to="/">{t('home')}</Link>
                 </li>
-                {/* Dropdown menu for Sermons */}
-                <li className="dropdown">
-                <div className='dropbtn'>{t('sermons')}</div>
-                    <div className="dropdown-content">
-                        <Link to="/upcomingSerms">{t('upcomingSermons')}</Link>
-                        <Link to="/previousSerms">{t('previousSermons')}</Link>
-                    </div>
+                <li>
+                    <Link to="/aboutUs">{t('aboutUs')}</Link>
                 </li>
                 {/* (No dropwdown) Link for Services */}
                 <li>
                     <Link to="/services">{t('services')}</Link>
                 </li>
-                <li>
-                    <Link to="/aboutUs">{t('aboutUs')}</Link>
+                {/* Dropdown menu for Sermons */}
+                <li className="dropdown">
+                    <div className='dropbtn'>{t('sermons')}</div>
+                    <div className="dropdown-content">
+                        <Link to="/upcomingSerms">{t('upcomingSermons')}</Link>
+                        <Link to="/previousSerms">{t('previousSermons')}</Link>
+                    </div>
                 </li>
-                <li>
-                    <Link to="/">{t('home')}</Link>
+                <li className="dropdown">
+                    <div className='dropbtn'>{t('eventsDrop')}</div>
+                    <div className="dropdown-content">
+                        <Link to="/events">{t('events')}</Link>
+                        <Link to="/pastEvents">Past Events</Link>
+                        <Link to="/photoGallery">{t('photos')}</Link>
+                    </div>
                 </li>
             </ul>
         </header>
