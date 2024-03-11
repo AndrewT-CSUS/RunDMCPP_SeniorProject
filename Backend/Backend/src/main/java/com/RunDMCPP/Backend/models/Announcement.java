@@ -1,5 +1,6 @@
 package com.RunDMCPP.Backend.models;
 
+import java.time.Instant;
 import java.util.Objects;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
@@ -49,6 +50,12 @@ public class Announcement {
     public void setTtl(long t){
         ttl = t;
     }
+
+    public Announcement() {
+        long now = Instant.now().getEpochSecond(); // gets current time in seconds
+        this.ttl = now + 60 * 60 * 24 * 28; // sets ttl to 4 weeks in seconds
+    }
+    
    @Override
     public boolean equals(Object o) {
         if (this == o){
