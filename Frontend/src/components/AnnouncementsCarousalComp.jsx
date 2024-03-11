@@ -6,7 +6,7 @@ import './AnnouncementsCarousalComp.css';
 const AnnouncementsCarouselComp = () => {
     const [index, setIndex] = useState(1);
     const [announcements, setAnnouncements] = useState([]);
-    const { t } = useTranslation();    
+    const { t } = useTranslation();
 
     const fetchAnnouncements = async () => {
         try {
@@ -28,7 +28,7 @@ const AnnouncementsCarouselComp = () => {
     }, [index]); // Restart interval when index changes
 
     const totalAnnouncements = announcements ? announcements.length : 0;
-    
+
     const previousSlide = () => {
         setIndex((prevIndex) => (prevIndex === 0 ? announcements.length - 1 : prevIndex - 1));
     };
@@ -38,7 +38,7 @@ const AnnouncementsCarouselComp = () => {
     };
 
     const currentAnnouncement = announcements[index] || {title: 'No Announcement', content: 'No content' };
-    
+
     if(!announcements || totalAnnouncements === 0){
         return (
             <div className="AnnouncementsCarouselContainer" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
