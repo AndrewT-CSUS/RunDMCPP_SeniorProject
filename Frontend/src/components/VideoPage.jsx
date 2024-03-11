@@ -28,7 +28,7 @@ function VideoPage({}){
                <iframe width="560" height ="315" src={youtubeEmbed} title="embedded sermon"></iframe>
                <h2>{title}</h2>
                <p>{description}</p>
-               <p>Date and Time: {formatDate}</p>
+               <p>{formatDate}</p>
             </div>
     );
 }

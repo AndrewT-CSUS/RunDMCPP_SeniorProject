@@ -29,12 +29,12 @@ function PreviousSerms() {
                     {/* Date Search */}
                     <h3>{t('searchByDate')}</h3>
                     <div>
-                        <p style={{margin: "0"}}>Start Date</p>
+                        <p style={{margin: "0"}}>{t('startDate')}</p>
                         <input type="date" id="startDateBox" name="startDateBox"/>
                     </div>
                     <div>
                         <br/>
-                        <p style={{margin: "0"}}>End Date</p>
+                        <p style={{margin: "0"}}>{t('endDate')}</p>
                         <input type="date" id="endDateBox" name="endDateBox"/>
                     </div>
                     <div><br /> </div>
@@ -45,7 +45,7 @@ function PreviousSerms() {
                 </fieldset>
                 <br></br>
                 <fieldset id="resultsField" className="resultBox" hidden>
-                    <legend id="resultsLegend">Search Result</legend>
+                    <legend id="resultsLegend">{t('results')}</legend>
                     <h4 id="resultTitle">{t('title')}</h4>
                 </fieldset>
             </main>

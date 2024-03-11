@@ -65,6 +65,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>sgkc-spring-boot-build</finalName>
 	</build>
 
 </project>
