@@ -3,12 +3,13 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow:hidden;
+    overflow: hidden;
+    text-align: right;
 }
+
 /* Individual link for the navigation bar */
 li {
-    display:inline;
-    float:right;
+    display: inline;
 }
 
 /* Navigation link, including the dropdown list. */
@@ -22,11 +23,13 @@ li a, .dropbtn {
     border-width: medium;
     border-color: white;
 }
+
 /* Hover: Change color of navigation link */
 li a:hover, .dropdown:hover .dropbtn {
     border-style: solid;
     border-width: medium;
-    border-color: #276622;}
+    border-color: #276622;
+}
 
 /* Hover: Change color of dropdown list */
 .active {
@@ -60,18 +63,18 @@ li.dropdown {
     display: block;
 }
 
-button{
-    float: right; 
-    background-color:#276622; 
-    color: white; 
+button {
+    float: right;
+    background-color: #276622;
+    color: white;
     border-style: solid;
     border-width: medium;
     border-color: #276622;
-    font: 16px;
+    
 }
 
 button:hover {
-    background-color:dimgray;
+    background-color: dimgray;
 }
 
 header {
@@ -121,6 +124,7 @@ a {
     background-color: blue;
     color: white;
 }
+
 /* Conditional Image: Only display if user is logged in */
 .admin-star {
     height: 17px;
