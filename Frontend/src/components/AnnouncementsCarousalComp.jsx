@@ -55,6 +55,7 @@ const AnnouncementsCarouselComp = () => {
                         <div className="announcementContent">
                             <h2>{announcement.title}</h2>
                             <p>{announcement.description}</p>
+                            <img src={"/images/TempImage.png"} alt="" className="announcementImage" />
                         </div>
                     </div>
                 ))}
