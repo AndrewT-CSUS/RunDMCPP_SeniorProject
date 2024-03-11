@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {useAuth0 } from '@auth0/auth0-react';  // OAuth
 import {createPreview, addSermon} from './Javascript/sermonAdd.js'
 import { useTranslation } from 'react-i18next';
+import './AdminStyles.css'
 
 
 var accessToken;
@@ -16,7 +17,7 @@ function AdminSermonAdd() {
     function SermonCreationWindow(){
         return (
             <div className = "logged-in-container">
-                        <fieldset className="addSermonBox">
+                        <fieldset className="containerStyle addSermonBox">
                             <legend>Sermon Information</legend>
                             <br></br><textarea rows="1" cols="60" id="nameBox" name="nameBox" placeholder={t('title')}></textarea>
                             <br></br><textarea rows="1" cols="60" id="youtubeLinkBox" name="youtubeLinkBox" placeholder={t('youtubeLink')}></textarea>
@@ -24,7 +25,7 @@ function AdminSermonAdd() {
                             <br></br><textarea rows="4" cols="60" id="descriptionBox" name="descriptionBox" placeholder={t('description')}></textarea>
                             <br></br><button type="button" id="previewButton" onClick={createPreview} style = {{width:"120px"}}>{t('preview')}</button>
                         </fieldset>
-                <fieldset id="resultsField" className="previewBox" hidden>
+                <fieldset id="resultsField" className="containerStyle previewBox" hidden>
                     <legend>{t('preview')}</legend>
                     <h4 id="resultTitle">{t('title')}</h4>
                     <p id="resultDescription">{t('description')}</p>

@@ -19,6 +19,7 @@
       "edit": "Edit",
       "search": "Search",
       "delete": "Delete",
+      "results": "Results",
 
       "serviceSchedule": "Service Schedule",
       "serviceScheduleDay": "Day",
@@ -31,6 +32,8 @@
 
       "sermonSearch": "Search Sermons",
       "searchByName": "Search By Name",
+      "startDate": "Start Date",
+      "endDate": "End Date",
       "sermonName": "Sermon Name",
       "searchByDate": "Search By Date",
       "sermonDate": "Sermon Date",

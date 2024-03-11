@@ -70,19 +70,7 @@ public class EventController {
         return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
     }
     }
-
-    // Method automatically deletes events based on a condition at '/api/events/autoDelete'
-    @DeleteMapping("/autoDelete")
-    public ResponseEntity autoDelete() {
-        // Try to auto delete events & return HTTP status 200; else send back an error
-        try{
-            eventService.autoDeleteEvents();
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (BackendErrorException e) {
-            return new ResponseEntity<>(new BackendErrorResponse(e), e.getHttpStatus());
-        }
-    }
-
+    
     // Method searches for events by title
     @GetMapping("/search/title/{title}")
     public ResponseEntity searchByTitle(@PathVariable String title) {

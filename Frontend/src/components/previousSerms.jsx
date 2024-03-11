@@ -57,6 +57,7 @@ const PreviousSerms = () => {
                             name="startDateBox"
                             onChange={(e) => setStartDate(e.target.value)}
                         />
+
                     </div>
                     <div className="date-input">
                         <p>End Date</p>
