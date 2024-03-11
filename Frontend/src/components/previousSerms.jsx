@@ -9,7 +9,7 @@ const PreviousSerms = () => {
     const [endDate, setEndDate] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
 
-    useEffect(() => {
+    useEffect(() => {       // Should only showDefaults once on loading the page, but it doesn't seem to. Fix in future sprint
         showDefaults();
     }, []);
 
