@@ -58,3 +58,8 @@
     border: 4px solid #74a015; /* Green border */
     background-color: #e6ffe6; /* Light green background */
 }
+
+.announcementImage {
+    opacity: 0.25;
+    /* Add other styles as needed */
+}
