@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {useAuth0 } from '@auth0/auth0-react';  // OAuth
 import {createPreview, editSermon, deleteSermonConfirmation, searchByName} from './Javascript/sermonEdit.js'
 import { useTranslation } from 'react-i18next';
+import './AdminStyles.css'
 
 var accessToken;
 
@@ -9,7 +10,7 @@ var accessToken;
 function AdminSermonEdit() {
     const { t } = useTranslation();
     return (
-        <div class="mainContent" >
+        <div class="containerStyle mainContent" >
             <fieldset id="searchField" className="searchBox">
                 <legend>{t('sermonSearch')}</legend>
                 <div style={{display: "flex", alignItems: "center"}}>
@@ -18,7 +19,7 @@ function AdminSermonEdit() {
                 </div>
             </fieldset>
             <br></br>
-            <fieldset id="resultsField" className="resultBox" hidden>
+            <fieldset id="resultsField" className="containerStyle resultBox" hidden>
                 <legend>Search Result</legend>
                 <h4 id="resultTitle">{t('title')}</h4>
             </fieldset>
