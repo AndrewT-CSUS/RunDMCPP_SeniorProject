@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getEvents } from './Javascript/fetchEvent';
-/*import styles from './Events.css'; */
+import './Events.css';
 
 function Events() {
   const [events, setEvents] = useState([]);
