@@ -2,23 +2,23 @@ import React, {useEffect} from 'react';
 import {useAuth0 } from '@auth0/auth0-react';  // OAuth
 import {searchByName, createPreview, editAnnouncement, deleteAnnouncementConfirmation} from './Javascript/announcementsEdit.js'
 import {useTranslation} from 'react-i18next'
+import './AdminStyles.css'
 
 var accessToken;
 
 // AdminAnnouncementEdit Component
 function AdminAnnouncementsEdit() {
     const { t } = useTranslation();
-
     return (
         <>
             <main>
                 {/* Main content goes here */
                     <div className="mainContent" >
-                        <fieldset id="searchField" className="searchBox">
+                        <fieldset id="searchField" className="containerStyle searchBox">
                             <legend>{t('searchAnnouncement')}</legend>
                             <div style={{ display: "flex", alignItems: "center" }}>
                                 <textarea rows="1" id="nameBox" name="nameBox" placeholder={t('title')}></textarea><br></br>
-                                <button type="button" id="previewButton" onClick={searchByName}>{t('search')}</button>
+                                <button type="button" id="previewButton" onClick={searchByName} style={{fontWeight:'bold'}}>{t('search')}</button>
                             </div>
                         </fieldset>
                         <br></br>
@@ -31,13 +31,13 @@ function AdminAnnouncementsEdit() {
                             <br></br><textarea rows="1" cols="60" id="editNameBox" name="editNameBox" placeholder={t('title')}></textarea>
                             <br></br><textarea rows="4" cols="60" id="editDescriptionBox" name="editDescriptionBox" placeholder={t('description')}></textarea>
                             <br></br><button type="button" onClick={createPreview}>{t('preview')}</button>
-                            <button type="button" onClick={() => deleteAnnouncementConfirmation(accessToken)}>{t('delete')}</button>
+                            <button type="button" onClick={() => deleteAnnouncementConfirmation(accessToken)} style={{fontWeight:'bold'}}>{t('delete')}</button>
                         </fieldset>
                         <fieldset id="previewField" className="previewBox" hidden>
                             <legend>{t('preview')}</legend>
                             <h4 id="resultTitle">{t('title')}</h4>
                             <p id="resultDescription">{t('description')}</p>
-                            <br></br><button type="button" onClick={() => editAnnouncement(accessToken)} style={{ width: "120px" }}>{t('editAnnouncement')}</button>
+                            <br></br><button type="button" onClick={() => editAnnouncement(accessToken)} style={{ width: "120px" , fontWeight:'bold'}}>{t('editAnnouncement')}</button>
                         </fieldset>
                     </div>
                 }

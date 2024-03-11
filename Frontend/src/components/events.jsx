@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getEvents } from './Javascript/fetchEvent';
 import { useTranslation } from 'react-i18next';
 /*import styles from './Events.css'; */
+import './Events.css';
 
 function Events() {
   const [events, setEvents] = useState([]);
