@@ -19,6 +19,7 @@
       "edit": "편집",
       "search": "검색",
       "delete": "삭제",
+      "results": "검색결과",
 
       "serviceSchedule": "교회일정",
       "serviceScheduleDay": "일",
@@ -31,6 +32,8 @@
 
       "sermonSearch": "설교검색",
       "searchByName": "키워드로 검색",
+      "startDate": "시작날짜",
+      "endDate": "끝날짜",
       "sermonName": "키워드",
       "searchByDate": "날짜로 검색",
       "sermonDate": "날짜",
