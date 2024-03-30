@@ -1,0 +1,2384 @@
+{
+	"info": {
+		"_postman_id": "9961413f-9da1-4c8a-8ad1-84089b1aa2d9",
+		"name": "Automated API Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30245055"
+	},
+	"item": [
+		{
+			"name": "Ignores Auth",
+			"item": [
+				{
+					"name": "Sermons",
+					"item": [
+						{
+							"name": "Get Sermons",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const statusCode = pm.response.code;\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Have found an array of Sermon objects\", function (){\r",
+											"    if(statusCode==200){\r",
+											"        pm.expect(response).to.be.an(\"array\");\r",
+											"        for(let i = 0; i < response.length; i++){\r",
+											"            pm.expect(response[i].id).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].name).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].description).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].dateTime).to.be.an(\"string\");\r",
+											"        }\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/sermons/get",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"sermons",
+										"get"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get 10 Recent Sermons",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const statusCode = pm.response.code;\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should have no error code\", function (){\r",
+											"    pm.expect(response.code).to.be.undefined;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Have found an array of Sermon objects\", function (){\r",
+											"    pm.expect(response).to.be.an(\"array\");\r",
+											"    for(let i = 0; i < response.length; i++){\r",
+											"        pm.expect(response[i].id).to.be.an(\"string\");\r",
+											"        pm.expect(response[i].name).to.be.an(\"string\");\r",
+											"        pm.expect(response[i].description).to.be.an(\"string\");\r",
+											"        pm.expect(response[i].dateTime).to.be.an(\"string\");\r",
+											"    }\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Have found an array of Sermons that is the correct size\", function () {\r",
+											"   pm.expect(response.length).to.be.within(0, 10); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/sermons/getDefault",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"sermons",
+										"getDefault"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search By Date - Success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should have no error code\", function () {\r",
+											"    pm.expect(response.code).to.be.undefined;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Have found an array\", function () {\r",
+											"    pm.expect(response).to.be.an(\"array\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Have found an array of sermon objects\", function () {\r",
+											"    pm.expect(response).to.be.an(\"array\");\r",
+											"    for (let i = 0; i < response.length; i++) {\r",
+											"        pm.expect(response[i].id).to.be.an(\"string\");\r",
+											"        pm.expect(response[i].name).to.be.an(\"string\");\r",
+											"        pm.expect(response[i].description).to.be.an(\"string\");\r",
+											"        pm.expect(response[i].dateTime).to.be.an(\"string\");\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/sermons/search/date?startDate=0001&endDate=9999",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"sermons",
+										"search",
+										"date"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "0001"
+										},
+										{
+											"key": "endDate",
+											"value": "9999"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search By Date - No Results",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Error code should be 1\", function () {\r",
+											"    pm.expect(response.code).to.eql(1);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/sermons/search/date?startDate=0000&endDate=0000",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"sermons",
+										"search",
+										"date"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "0000"
+										},
+										{
+											"key": "endDate",
+											"value": "0000"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search By Title - Success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function () {\r",
+											"    pm.response.to.have.status(200)\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should have no error code\", function () {\r",
+											"    pm.expect(response.code).to.be.undefined;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Have found an array of Sermon objects\", function () {\r",
+											"    pm.expect(response).to.be.an(\"array\");\r",
+											"    for (let i = 0; i < response.length; i++) {\r",
+											"        pm.expect(response[i].id).to.be.an(\"string\");\r",
+											"        pm.expect(response[i].name).to.be.an(\"string\");\r",
+											"        pm.expect(response[i].description).to.be.an(\"string\");\r",
+											"        pm.expect(response[i].dateTime).to.be.an(\"string\");\r",
+											"    }\r",
+											"\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/sermons/search/title/:title",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"sermons",
+										"search",
+										"title",
+										":title"
+									],
+									"variable": [
+										{
+											"key": "title",
+											"value": "City"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search By Title - No Results",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Error code should be 1\", function () {\r",
+											"    pm.expect(response.code).to.eql(1);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/sermons/search/title/:title",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"sermons",
+										"search",
+										"title",
+										":title"
+									],
+									"variable": [
+										{
+											"key": "title",
+											"value": "",
+											"description": "Empty!"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By Id - Success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should have no error code\", function () {\r",
+											"    pm.expect(response.code).to.be.undefined;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Have found a Sermon object\", function () {\r",
+											"    pm.expect(response).to.be.an(\"object\");\r",
+											"    pm.expect(response.id).to.be.an(\"string\");\r",
+											"    pm.expect(response.name).to.be.an(\"string\");\r",
+											"    pm.expect(response.description).to.be.an(\"string\");\r",
+											"    pm.expect(response.dateTime).to.be.an(\"string\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/sermons/get/:id",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"sermons",
+										"get",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1fc1a6de-e279-4055-ad34-3da074c29c20"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Sermon By Id - No Result",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Error code should be 1\", function () {\r",
+											"    pm.expect(response.code).to.eql(1);\r",
+											"});\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/sermons/get/:id",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"sermons",
+										"get",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "null"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Announcements",
+					"item": [
+						{
+							"name": "Get Announcements",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const statusCode = pm.response.code;\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Have found an array of Announcement objects\", function (){\r",
+											"    if(statusCode==200){\r",
+											"        pm.expect(response).to.be.an(\"array\");\r",
+											"        for(let i = 0; i < response.length; i++){\r",
+											"            pm.expect(response[i].id).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].title).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].description).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].ttl).to.be.an(\"number\");\r",
+											"        }\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/announcements/get",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"announcements",
+										"get"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get 3 Recent Announcements",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const statusCode = pm.response.code;\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Have found an array of Announcement objects\", function (){\r",
+											"    if(statusCode==200){\r",
+											"        pm.expect(response).to.be.an(\"array\");\r",
+											"        for(let i = 0; i < response.length; i++){\r",
+											"            pm.expect(response[i].id).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].title).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].description).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].ttl).to.be.an(\"number\");\r",
+											"        }\r",
+											"    }\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Have found an array of Announcements that is the correct size\", function () {\r",
+											"   pm.expect(response.length).to.be.within(0, 3); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/announcements/recent",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"announcements",
+										"recent"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Announcement By Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Have found an Announcement object\", function (){\r",
+											"        pm.expect(response.id).to.be.an(\"string\");\r",
+											"        pm.expect(response.title).to.be.an(\"string\");\r",
+											"        pm.expect(response.description).to.be.an(\"string\");\r",
+											"        pm.expect(response.ttl).to.be.an(\"number\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/announcements/get/:id",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"announcements",
+										"get",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "ec10de61-4702-4b96-96d6-be8b9638313b"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Announcement By Id - No Result",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Error code should be 1\", function () {\r",
+											"    pm.expect(response.code).to.eql(1);\r",
+											"});\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/announcements/get/:id",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"announcements",
+										"get",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "null"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Events",
+					"item": [
+						{
+							"name": "Get Events",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const statusCode = pm.response.code;\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Have found an array of Event objects\", function (){\r",
+											"    if(statusCode==200){\r",
+											"        pm.expect(response).to.be.an(\"array\");\r",
+											"        for(let i = 0; i < response.length; i++){\r",
+											"            pm.expect(response[i].id).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].name).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].eventDescription).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].eventLocation).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].ttl).to.be.an(\"number\");\r",
+											"            pm.expect(response[i].dateTime).to.be.an(\"string\");\r",
+											"        }\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/events/get",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"get"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search Event By Date - Success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const statusCode = pm.response.code;\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Have found an array of Event objects\", function (){\r",
+											"    if(statusCode==200){\r",
+											"        pm.expect(response).to.be.an(\"array\");\r",
+											"        for(let i = 0; i < response.length; i++){\r",
+											"            pm.expect(response[i].id).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].name).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].eventDescription).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].eventLocation).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].ttl).to.be.an(\"number\");\r",
+											"            pm.expect(response[i].dateTime).to.be.an(\"string\");\r",
+											"        }\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/events/search/date?startDate=0001&endDate=9999",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"search",
+										"date"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "0001"
+										},
+										{
+											"key": "endDate",
+											"value": "9999"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search Event By Date - No Result",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 500\", function () {\r",
+											"    pm.response.to.have.status(500);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Error code should be 1\", function () {\r",
+											"    pm.expect(response.code).to.eql(1);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/events/search/date?startDate=0000&endDate=0000",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"search",
+										"date"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "0000"
+										},
+										{
+											"key": "endDate",
+											"value": "0000"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search Event By Title - Success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const statusCode = pm.response.code;\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Have found an array of Event objects\", function (){\r",
+											"    if(statusCode==200){\r",
+											"        pm.expect(response).to.be.an(\"array\");\r",
+											"        for(let i = 0; i < response.length; i++){\r",
+											"            pm.expect(response[i].id).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].name).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].eventDescription).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].eventLocation).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].ttl).to.be.an(\"number\");\r",
+											"            pm.expect(response[i].dateTime).to.be.an(\"string\");\r",
+											"        }\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/events/search/title/:title",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"search",
+										"title",
+										":title"
+									],
+									"variable": [
+										{
+											"key": "title",
+											"value": "event"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search Event By Title - No Result",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 500\", function (){\r",
+											"    pm.response.to.have.status(500);\r",
+											"});\r",
+											"\r",
+											"const statusCode = pm.response.code;\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Have found an array of Event objects\", function (){\r",
+											"    if(statusCode==200){\r",
+											"        pm.expect(response).to.be.an(\"array\");\r",
+											"        for(let i = 0; i < response.length; i++){\r",
+											"            pm.expect(response[i].id).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].name).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].eventDescription).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].eventLocation).to.be.an(\"string\");\r",
+											"            pm.expect(response[i].ttl).to.be.an(\"number\");\r",
+											"            pm.expect(response[i].dateTime).to.be.an(\"string\");\r",
+											"        }\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/events/search/title/:title",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"search",
+										"title",
+										":title"
+									],
+									"variable": [
+										{
+											"key": "title",
+											"value": "null"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Event by Id - Success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Have found an Event object\", function (){\r",
+											"        pm.expect(response).to.be.an(\"object\");\r",
+											"        pm.expect(response.id).to.be.an(\"string\");\r",
+											"        pm.expect(response.name).to.be.an(\"string\");\r",
+											"        pm.expect(response.eventDescription).to.be.an(\"string\");\r",
+											"        pm.expect(response.eventLocation).to.be.an(\"string\");\r",
+											"        pm.expect(response.ttl).to.be.an(\"number\");\r",
+											"        pm.expect(response.dateTime).to.be.an(\"string\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/events/get/:id",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"get",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "ff400d10-2d08-4ed0-bcc3-341c0e9a5536"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Event By Id - No Result",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Error code should be 1\", function () {\r",
+											"    pm.expect(response.code).to.eql(1);\r",
+											"});\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/api/sermons/get/:id",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"sermons",
+										"get",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "null"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Missing Auth",
+			"item": [
+				{
+					"name": "Sermons",
+					"item": [
+						{
+							"name": "Create Sermon - Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 401\", function (){\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"name\": \"{{$randomColor}}\",\r\n        \"description\": \"{{$randomPhrase}}\",\r\n        \"youtubeLink\": \"https://www.youtube.com/watch?v=YMRR-l1q5p4\",\r\n        \"dateTime\": \"{{$isoTimestamp}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/sermons/create",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"sermons",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Sermon - Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 401\", function (){\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"id\": \"{{SermonId}}\",\r\n        \"name\": \"{{$randomColor}}\",\r\n        \"description\": \"{{$randomPhrase}}\",\r\n        \"youtubeLink\": \"https://www.youtube.com/watch?v=RlsEDrlg7OU\",\r\n        \"dateTime\": \"{{$isoTimestamp}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/sermons/edit",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"sermons",
+										"edit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Sermon - Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 401\", function (){\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"id\": \"{{SermonId}}\",\r\n        \"name\": \"{{SermonName}}\",\r\n        \"description\": \"{{SermonDescription}}\",\r\n        \"youtubeLink\": \"{{SermonLink}}\",\r\n        \"dateTime\": \"{{SermonDateTime}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/sermons/delete",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"sermons",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									"pm.collectionVariables.set(\"token\", null);"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Announcements",
+					"item": [
+						{
+							"name": "Create Announcement - Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 401\", function (){\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"{{$randomColor}}\",\r\n    \"description\": \"{{$randomPhrase}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/announcements/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"announcements",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Announcement - Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 401\", function (){\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"{{AnnouncementId}}\",\r\n    \"title\": \"{{$randomColor}}\",\r\n    \"description\": \"{{$randomPhrase}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/announcements/edit",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"announcements",
+										"edit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Announcement - Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 401\", function (){\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"{{AnnouncementId}}\",\r\n    \"title\": \"{{AnnouncementTitle}}\",\r\n    \"description\": \"{{AnnouncementDescription}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/announcements/delete",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"announcements",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Events",
+					"item": [
+						{
+							"name": "Create Event - Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 401\", function (){\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{$randomColor}}\",\r\n    \"eventDescription\": \"{{$randomPhrase}}\",\r\n    \"eventLocation\": \"{{$randomCity}}\",\r\n    \"eventDateTime\": \"{{$isoTimestamp}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/events/create",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Event - Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 401\", function (){\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"{{EventId}}\",\r\n    \"name\": \"{{$randomColor}}\",\r\n    \"eventDescription\": \"{{$randomPhrase}}\",\r\n    \"eventLocation\": \"{{$randomCity}}\",\r\n    \"eventDateTime\": \"{{$isoTimestamp}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/events/edit",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"edit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Event - Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 401\", function (){\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"{{EventId}}\",\r\n    \"name\": \"{{EventName}}\",\r\n    \"eventDescription\": \"{{EventDescription}}\",\r\n    \"eventLocation\": \"{{EventLocation}}\",\r\n    \"eventDateTime\": \"{{EventDateTime}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/events/delete",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Has Auth",
+			"item": [
+				{
+					"name": "Sermons",
+					"item": [
+						{
+							"name": "Create Sermon - Authorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 201\", function (){\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should have no error code\", function () {\r",
+											"    pm.expect(response.code).to.be.undefined;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Have Created a Sermon object\", function () {\r",
+											"    pm.expect(response).to.be.an(\"object\");\r",
+											"    pm.expect(response.id).to.be.an(\"string\");\r",
+											"    pm.expect(response.name).to.be.an(\"string\");\r",
+											"    pm.expect(response.description).to.be.an(\"string\");\r",
+											"    pm.expect(response.dateTime).to.be.an(\"string\");\r",
+											"});\r",
+											"\r",
+											"pm.collectionVariables.set(\"SermonId\", response.id);\r",
+											"pm.collectionVariables.set(\"SermonName\", response.name);\r",
+											"pm.collectionVariables.set(\"SermonDescription\", response.description);\r",
+											"pm.collectionVariables.set(\"SermonLink\", response.youtubeLink);\r",
+											"pm.collectionVariables.set(\"SermonDateTime\", response.dateTime);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"name\": \"{{$randomColor}}\",\r\n        \"description\": \"{{$randomPhrase}}\",\r\n        \"youtubeLink\": \"https://www.youtube.com/watch?v=YMRR-l1q5p4\",\r\n        \"dateTime\": \"{{$isoTimestamp}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/sermons/create",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"sermons",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Sermon - Authorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should have no error code\", function () {\r",
+											"    pm.expect(response.code).to.be.undefined;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Have edited a Sermon object\", function () {\r",
+											"    pm.expect(response).to.be.an(\"object\");\r",
+											"    pm.expect(response.id).to.be.an(\"string\");\r",
+											"    pm.expect(response.name).to.be.an(\"string\");\r",
+											"    pm.expect(response.description).to.be.an(\"string\");\r",
+											"    pm.expect(response.dateTime).to.be.an(\"string\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Sermon was changed\", function () {\r",
+											"    pm.expect(response.id).to.equal(pm.collectionVariables.get(\"SermonId\"));\r",
+											"    pm.expect(response.name).to.not.equal(pm.collectionVariables.get(\"SermonName\"));\r",
+											"    pm.expect(response.description).to.not.equal(pm.collectionVariables.get(\"SermonDescription\"));\r",
+											"    pm.expect(response.dateTime).to.not.equal(pm.collectionVariables.get(\"SermonDateTime\"));\r",
+											"    pm.expect(response.youtubeLink).to.not.equal(pm.collectionVariables.get(\"SermonLink\"));\r",
+											"});\r",
+											"\r",
+											"pm.collectionVariables.set(\"SermonId\", response.id);\r",
+											"pm.collectionVariables.set(\"SermonName\", response.name);\r",
+											"pm.collectionVariables.set(\"SermonDescription\", response.description);\r",
+											"pm.collectionVariables.set(\"SermonLink\", response.youtubeLink);\r",
+											"pm.collectionVariables.set(\"SermonDateTime\", response.dateTime);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"id\": \"{{SermonId}}\",\r\n        \"name\": \"{{$randomColor}}\",\r\n        \"description\": \"{{$randomPhrase}}\",\r\n        \"youtubeLink\": \"https://www.youtube.com/watch?v=RlsEDrlg7OU\",\r\n        \"dateTime\": \"{{$isoTimestamp}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/sermons/edit",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"sermons",
+										"edit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Sermon - Authorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"id\": \"{{SermonId}}\",\r\n        \"name\": \"{{SermonName}}\",\r\n        \"description\": \"{{SermonDescription}}\",\r\n        \"youtubeLink\": \"{{SermonLink}}\",\r\n        \"dateTime\": \"{{SermonDateTime}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/sermons/delete",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"sermons",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Announcements",
+					"item": [
+						{
+							"name": "Create Announcement - Authorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 201\", function (){\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should have no error code\", function () {\r",
+											"    pm.expect(response.code).to.be.undefined;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Have created an Announcement object\", function (){\r",
+											"        pm.expect(response.id).to.be.an(\"string\");\r",
+											"        pm.expect(response.title).to.be.an(\"string\");\r",
+											"        pm.expect(response.description).to.be.an(\"string\");\r",
+											"        pm.expect(response.ttl).to.be.an(\"number\");\r",
+											"});\r",
+											"\r",
+											"pm.collectionVariables.set(\"AnnouncementId\", response.id);\r",
+											"pm.collectionVariables.set(\"AnnouncementTitle\", response.title);\r",
+											"pm.collectionVariables.set(\"AnnouncementDescription\", response.description);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"{{$randomColor}}\",\r\n    \"description\": \"{{$randomPhrase}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/announcements/create",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"announcements",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Announcement - Authorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should have no error code\", function () {\r",
+											"    pm.expect(response.code).to.be.undefined;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Have updated an Announcement object\", function (){\r",
+											"        pm.expect(response.id).to.be.an(\"string\");\r",
+											"        pm.expect(response.title).to.be.an(\"string\");\r",
+											"        pm.expect(response.description).to.be.an(\"string\");\r",
+											"        pm.expect(response.ttl).to.be.an(\"number\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Have actually changed the Announcement\", function (){\r",
+											"    pm.expect(response.id).to.equal(pm.collectionVariables.get(\"AnnouncementId\"));\r",
+											"    pm.expect(response.title).to.not.equal(pm.collectionVariables.get(\"AnnouncementTitle\"));\r",
+											"    pm.expect(response.description).to.not.equal(pm.collectionVariables.get(\"AnnouncementDescription\"));\r",
+											"});\r",
+											"\r",
+											"pm.collectionVariables.set(\"AnnouncementId\", response.id);\r",
+											"pm.collectionVariables.set(\"AnnouncementTitle\", response.title);\r",
+											"pm.collectionVariables.set(\"AnnouncementDescription\", response.description);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"{{AnnouncementId}}\",\r\n    \"title\": \"{{$randomColor}}\",\r\n    \"description\": \"{{$randomPhrase}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/announcements/edit",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"announcements",
+										"edit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Announcement - Authorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"{{AnnouncementId}}\",\r\n    \"title\": \"{{AnnouncementTitle}}\",\r\n    \"description\": \"{{AnnouncementDescription}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/announcements/delete",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"announcements",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Events",
+					"item": [
+						{
+							"name": "Create Event - Authorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 201\", function (){\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should have no error code\", function () {\r",
+											"    pm.expect(response.code).to.be.undefined;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Have created an Event object\", function (){\r",
+											"        pm.expect(response).to.be.an(\"object\");\r",
+											"        pm.expect(response.id).to.be.an(\"string\");\r",
+											"        pm.expect(response.name).to.be.an(\"string\");\r",
+											"        pm.expect(response.eventDescription).to.be.an(\"string\");\r",
+											"        pm.expect(response.eventLocation).to.be.an(\"string\");\r",
+											"        pm.expect(response.ttl).to.be.an(\"number\");\r",
+											"        pm.expect(response.dateTime).to.be.an(\"string\");\r",
+											"});\r",
+											"\r",
+											"pm.collectionVariables.set(\"EventId\", response.id);\r",
+											"pm.collectionVariables.set(\"EventName\", response.name);\r",
+											"pm.collectionVariables.set(\"EventDescription\", response.eventDescription);\r",
+											"pm.collectionVariables.set(\"EventLocation\", response.eventLocation);\r",
+											"pm.collectionVariables.set(\"EventDateTime\", response.dateTime);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{$randomColor}}\",\r\n    \"eventDescription\": \"{{$randomPhrase}}\",\r\n    \"eventLocation\": \"{{$randomCity}}\",\r\n    \"dateTime\": \"{{$isoTimestamp}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/events/create",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Event - Authorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 201\", function (){\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should have no error code\", function () {\r",
+											"    pm.expect(response.code).to.be.undefined;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Have edited an Event object\", function (){\r",
+											"        pm.expect(response).to.be.an(\"object\");\r",
+											"        pm.expect(response.id).to.be.an(\"string\");\r",
+											"        pm.expect(response.name).to.be.an(\"string\");\r",
+											"        pm.expect(response.eventDescription).to.be.an(\"string\");\r",
+											"        pm.expect(response.eventLocation).to.be.an(\"string\");\r",
+											"        pm.expect(response.ttl).to.be.an(\"number\");\r",
+											"        pm.expect(response.dateTime).to.be.an(\"string\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Have actually updated the Event object\", function (){\r",
+											"    pm.expect(response.id).to.equal(pm.collectionVariables.get(\"EventId\"));\r",
+											"    pm.expect(response.name).to.not.equal(pm.collectionVariables.get(\"EventName\"));\r",
+											"    pm.expect(response.description).to.not.equal(pm.collectionVariables.get(\"EventDescription\"));\r",
+											"    pm.expect(response.eventLocation).to.not.equal(pm.collectionVariables.get(\"EventLocation\"));\r",
+											"    pm.expect(response.dateTime).to.not.equal(pm.collectionVariables.get(\"EventDateTime\"));\r",
+											"});\r",
+											"\r",
+											"pm.collectionVariables.set(\"EventId\", response.id);\r",
+											"pm.collectionVariables.set(\"EventName\", response.name);\r",
+											"pm.collectionVariables.set(\"EventDescription\", response.eventDescription);\r",
+											"pm.collectionVariables.set(\"EventLocation\", response.eventLocation);\r",
+											"pm.collectionVariables.set(\"EventDateTime\", response.dateTime);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"{{EventId}}\",\r\n    \"name\": \"{{$randomColor}}\",\r\n    \"eventDescription\": \"{{$randomPhrase}}\",\r\n    \"eventLocation\": \"{{$randomCity}}\",\r\n    \"dateTime\": \"{{$isoTimestamp}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/events/edit",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"edit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Event - Authorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code 200\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"{{EventId}}\",\r\n    \"name\": \"{{EventName}}\",\r\n    \"eventDescription\": \"{{EventDescription}}\",\r\n    \"eventLocation\": \"{{EventLocation}}\",\r\n    \"dateTime\": \"{{EventDateTime}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/api/events/delete",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Get Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"token\", jsonData.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client_id\": \"4MM5WgF4OvPuV0aoxNIvpVHs6pS2AASG\",\r\n  \"client_secret\": \"d_5gXh4S5M-Wfm8YEXFuUD44RE-_RE4VGRXxw8EbY8Kppv1tW9W1YqB54qFz503O\",\r\n  \"audience\": \"https://dev-uwwvwuxa5yyo6k20.us.auth0.com/api/v2/\",\r\n  \"grant_type\": \"client_credentials\"\r\n}"
+						},
+						"url": {
+							"raw": "https://{{Auth0ApiPrefix}}.auth0.com/oauth/token",
+							"protocol": "https",
+							"host": [
+								"{{Auth0ApiPrefix}}",
+								"auth0",
+								"com"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "hostname",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "SermonId",
+			"value": ""
+		},
+		{
+			"key": "SermonName",
+			"value": ""
+		},
+		{
+			"key": "SermonDescription",
+			"value": ""
+		},
+		{
+			"key": "SermonLink",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "SermonDateTime",
+			"value": ""
+		},
+		{
+			"key": "AnnouncementId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "AnnouncementTitle",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "AnnouncementDescription",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "EventId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "EventName",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "EventDescription",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "EventDateTime",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "EventLocation",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
