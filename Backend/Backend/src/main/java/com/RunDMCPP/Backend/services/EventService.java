@@ -121,38 +121,6 @@ public class EventService {
         }
     }
 
-    // Method deletes all events that are older than __ days (currently 28)
-    public void autoDeleteEvents() throws BackendErrorException {
-        // Loop through all events in the DB
-        for (int i = 0; i < eventRepository.count(); i++) {
-            // Get the event from the DB
-            Optional<Event> dbEntity = eventRepository.findById(Integer.toString(i));
-            // Get the event's date
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Calendar cal = Calendar.getInstance();
-
-            // Try to parse the date, throw error if it fails
-            try {
-                cal.setTime(sdf.parse(dbEntity.get().getDateTime()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            // Add 28 days to the date
-            cal.add(Calendar.DAY_OF_MONTH, 28);
-
-            // Format the date
-            String expiryDate = sdf.format(cal.getTime());
-            String currDate = sdf.format(Calendar.DAY_OF_MONTH);
-
-            // If the event is older than 28 days, delete it
-            if (currDate.equals(expiryDate)) {
-                eventRepository.deleteById(dbEntity.get().getId());
-            } else {
-                throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
-            }
-        }
-    }
     // Method searches for sermons by title, throws error if not found
     public List<Event> searchEventByTitle(String title) throws BackendErrorException {
         List<Event> results = eventRepository.findByNameContaining(title);

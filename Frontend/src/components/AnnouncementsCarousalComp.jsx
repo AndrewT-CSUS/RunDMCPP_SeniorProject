@@ -61,10 +61,10 @@ const AnnouncementsCarouselComp = () => {
                 ))}
             </div>
             <div className="carousalControls">
-                <button onClick={nextSlide}>Next</button>
+                <button onClick={nextSlide}>{t('next')}</button>
             </div>
             <div style={{display:'flex', justifyContent:'flex-start'}} className="carousalControls">
-                <button onClick={previousSlide}>Previous</button>
+                <button onClick={previousSlide}>{t('previous')}</button>
             </div>
         </div>
     );

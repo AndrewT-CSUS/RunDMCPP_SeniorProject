@@ -1,0 +1,78 @@
+/* Main container styling for the specific component */
+.main-container {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styling for the search box fieldset within the specific component */
+.searchBox {
+    border: 4px solid #74a015; /* Set border color to match Recent Sermons box */
+    background-color: #e6ffe6; /* Set background color to match Recent Sermons box */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for each search section within the specific component */
+.search-section {
+    margin-bottom: 20px;
+}
+
+/* Styling for the legend in the fieldset within the specific component */
+.legend {
+    font-size: 1.2em;
+    color: #74a015; /* Set color to match Recent Sermons box */
+    margin-bottom: 10px;
+}
+
+/* Header styling within search sections for the specific component */
+.h3 {
+    color: #000000;
+}
+
+/* Styling for text input fields within search sections for the specific component */
+.search-input textarea,
+.date-input input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+/* Styling for buttons within the specific component */
+.main-container button {
+    padding: 8px 16px;
+    background-color: #006400; /* Set dark green color for buttons */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover effect for buttons within the specific component */
+.main-container button:hover {
+    background-color: #004d00; /* Darken the green color on hover */
+}
+
+/* Styling for the result box fieldset within the specific component */
+.resultBox {
+    border: 4px solid #74a015;
+    background-color: #e6ffe6;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for the legend within the result box fieldset within the specific component */
+.resultsLegend {
+    font-size: 1.2em;
+    color: #74a015;
+    margin-bottom: 10px;
+}
+
+/* Styling for the result title within the result box fieldset within the specific component */
+.resultTitle {
+    color: #576017;
+}

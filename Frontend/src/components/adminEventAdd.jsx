@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {useAuth0 } from '@auth0/auth0-react';  // OAuth
 import {createPreview, addEvent} from './Javascript/eventAdd.js'
 import {useTranslation} from 'react-i18next'
+import './AdminStyles.css'
 
 var accessToken;
 
@@ -16,13 +17,13 @@ function AdminEventAdd() {
             <main>
                 {/* Main content goes here */}
                 <div className="mainContent" >
-            <fieldset className="addEventBox">
+            <fieldset className="containerStyle addEventBox">
                 <legend>{t('events')}</legend>
                 <br /><textarea rows="1" cols="60" id="nameBox" name="nameBox" placeholder={t('title')}></textarea>
                 <br /> <input type="datetime-local" id="eventDateTime" name={t('eventDate')}/>
                 <br /><textarea rows="2" cols="60" id="locationBox" name="locationBox" placeholder={t('eventLocation')}></textarea>
                 <br /><textarea rows="4" cols="60" id="descriptionBox" name="descriptionBox" placeholder={t('description')}></textarea>
-                <br /><button type="button" id="previewButton" onClick={createPreview} style = {{width: '120 px'}}>{t('preview')}</button>
+                <br /><button type="button" id="previewButton" onClick={createPreview} style = {{width: '120 px', fontWeight: 'bold'}}>{t('preview')}</button>
             </fieldset>
 
             <fieldset id="resultsField" className="previewBox" hidden>
@@ -31,7 +32,7 @@ function AdminEventAdd() {
                 <p id="resultLocation">{t('eventLocation')}</p>
                 <p id="resultDescription">{t('description')}</p>
                 <p id="resultDateTime">{t('eventDate')}</p>
-                <br /><button type="button" onClick={() => addEvent(accessToken)} style = {{width: '120 px'}}>{t('addEvent')}</button>
+                <br /><button type="button" onClick={() => addEvent(accessToken)} style = {{width: '120 px', fontWeight:'bold'}}>{t('addEvent')}</button>
             </fieldset>
         </div>
             </main>
