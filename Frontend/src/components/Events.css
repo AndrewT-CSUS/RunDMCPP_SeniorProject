@@ -1,35 +1,36 @@
-/* Center the events  */
+/* Center the events and allow them to wrap to the next line */
 .eventsList {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .event {
-    width: 300px; 
-    margin-right : 20px; 
-    border: 4px solid #537802;
-    background-color: #e6ffe6; 
-    padding: 15px; 
-    border-radius: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-image: linear-gradient(to bottom, #e6ffe6, #ccffcc); 
-    animation: border-animation 1.5s ease-out;
-    
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; 
+}
 
-  .event:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); 
-    transform: scale(1.05);
-    
-  }
+.event {
+  width: 300px;
+  border: 4px solid #537802;
+  background-color: #e6ffe6;
+  padding: 15px;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(to bottom, #e6ffe6, #ccffcc);
+  animation: border-animation 1.5s ease-out;
+  margin-bottom: 20px;
+}
 
-  .event h2 {
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
-    
+.event:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05);
+}
+
+.event h2 {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes border-animation {
+  0% {
+    border-width: 0;
   }
-  
-  @keyframes border-animation {
-    0% { border-width: 0; }
-    100% { border-width: 4px; }
+  100% {
+    border-width: 4px;
   }
-  
+}

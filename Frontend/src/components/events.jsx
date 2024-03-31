@@ -26,6 +26,12 @@ function Events() {
     }
   };
 
+  const handleEventClick = (index) => {
+    const updatedEvents = [...events];
+    updatedEvents[index].expanded = !updatedEvents[index].expanded;
+    setEvents(updatedEvents);
+  };
+
   return (
     <main>
       <h1>Events</h1>
@@ -38,11 +44,12 @@ function Events() {
       ) : (
         <div className="eventsList">
           {events.map((event, index) => (
-            <div key={index} className="event">
+            <div key={index} className="event" onClick={() => handleEventClick(index)}>
               <h2>{event.name}</h2>
               <p>Date & Time: {new Date(event.dateTime).toLocaleString()}</p>
               <p>Location: {event.eventLocation}</p>
-              <p>Description: {event.eventDescription}</p>
+              <p>Description: {event.expanded ? event.eventDescription : `${event.eventDescription.slice(0, 100)}...`}</p>
+              {event.expanded && <button>See Less</button>}
             </div>
           ))}
         </div>
