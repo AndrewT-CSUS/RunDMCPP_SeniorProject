@@ -59,7 +59,6 @@ function Header() {
                 <li className="dropdown">
                     <div className='dropbtn'>{t('sermons')}</div>
                     <div className="dropdown-content">
-                        <Link to="/upcomingSerms">{t('upcomingSermons')}</Link>
                         <Link to="/previousSerms">{t('previousSermons')}</Link>
                     </div>
                 </li>

@@ -19,7 +19,6 @@ import PhotoGallery from './components/photoGallery';
 import Albums from './components/albums';
 import PreviousSerms from './components/previousSerms';
 import Services from './components/services';
-import UpcomingSerms from './components/upcomingSerms';
 import LoginPage from './components/loginPage'; // Login Page for OAuth
 import VideoPage from './components/VideoPage';
 
@@ -56,7 +55,6 @@ function App() {
         <Route path="/albums/:albumId" element={<Albums />} />
         <Route path="/previousSerms" element={<PreviousSerms />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/upcomingSerms" element={<UpcomingSerms />} />
         <Route path="/loginpage" element={<LoginPage />} />
         <Route path="/sermons/:sermonId" element={<VideoPage />} />
       </Routes>
