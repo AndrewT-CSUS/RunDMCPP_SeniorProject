@@ -22,7 +22,7 @@ function MainNavBits() {
 }
 
 const mainContainerStyle = {
-    border: '4px solid darkgreen',
+    border: '2px solid #74a015',
     background: '#e6ffe6',
     padding: '15px',
     marginTop: '40px',
@@ -38,7 +38,7 @@ const containerGroupStyle = {
 };
 
 const containerStyle = (backgroundColor) => ({
-    border: '1px solid black',
+    border: '1px solid #74a015',
     backgroundColor: backgroundColor,
     padding: '10px',
     flex: 1,

@@ -33,7 +33,7 @@
 .carousalControls button {
     margin: 0 10px;
     padding: 5px 10px;
-    background-color: #1b1760;
+    background-color: #006400;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -41,7 +41,7 @@
 }
 
 .carousalControls button:hover {
-    background-color: #333399;
+    background-color: #004d00;
 }
 
 .announcement:nth-child(1) .announcementContent {

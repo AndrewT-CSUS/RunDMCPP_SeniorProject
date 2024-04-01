@@ -16,7 +16,7 @@
 .video-container {
     border-radius: 15px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-color:#5de987;
+    background-color:#e6ffe6;
     overflow: hidden; /* Ensure that video doesn't extend beyond the container */
 }
 

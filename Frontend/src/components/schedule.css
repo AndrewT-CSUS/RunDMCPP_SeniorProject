@@ -9,13 +9,13 @@
 /* Schedule table */
 .schedule-table {
   width: 20%; 
-  border: 10px solid #537802;
+  border: 10px solid #74a015;
   background-color: #e6ffe6;
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-collapse: collapse;
-  overflow: hidden; 
+  overflow: hidden;
   transition: box-shadow 0.3s ease; 
 }
 

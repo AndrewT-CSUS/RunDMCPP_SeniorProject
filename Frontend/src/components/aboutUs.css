@@ -1,12 +1,13 @@
 .aboutUs_body {
-    display: 'flex';
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: 25px;
     padding: 10px;
     border-style: solid;
-    border-color: #499a41;
+    border-color: #74a015;
+    border-radius: 10px;
 }
 
 .aboutUs_sections {

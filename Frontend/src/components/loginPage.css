@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: darkgreen;
+    background: #006400;
 
 }
 
@@ -15,6 +15,7 @@
     width: 300px;
     padding: 25px;
     background-color: white;
+    border-radius: 5px;
 }
 
 /* Login Form Container blocks with rounded corners */
