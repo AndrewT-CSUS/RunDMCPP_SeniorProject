@@ -4,16 +4,16 @@ function MainNavBits() {
     return (
         <div style={mainContainerStyle}>
             <div style={containerGroupStyle}>
-                <div style={containerStyle('#276622')}>
+                <div style={containerStyle('#51A454')}>
                     <a href="#"><b>Events</b></a>
                 </div>
-                <div style={containerStyle('#0082b4')}>
+                <div style={containerStyle('#51A454')}>
                     <a href="#"><b>Photos</b></a>
                 </div>
-                <div style={containerStyle('#bd479b')}>
+                <div style={containerStyle('#51A454')}>
                     <a href="#"><b>Past Sermons</b></a>
                 </div>
-                <div style={containerStyle('#e60002')}>
+                <div style={containerStyle('#51A454')}>
                     <a href="#"><b>About Us</b></a>
                 </div>
             </div>
