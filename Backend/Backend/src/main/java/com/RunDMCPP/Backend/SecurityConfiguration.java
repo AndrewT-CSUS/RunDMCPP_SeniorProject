@@ -22,13 +22,13 @@ public class SecurityConfiguration {
                     requestMatchers(HttpMethod.PUT).authenticated().
                     requestMatchers(HttpMethod.DELETE).authenticated().
                     requestMatchers(HttpMethod.GET).permitAll())
-            .httpBasic(Customizer.withDefaults())
-            .csrf(csrf -> csrf.disable())
-                .cors(Customizer.withDefaults())
-                .oauth2ResourceServer(oauth2 -> oauth2
+                    .httpBasic(Customizer.withDefaults())
+                    .csrf(csrf -> csrf.disable())
+                    .cors(Customizer.withDefaults()) // Allow all origins for CORS
+                    .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(withDefaults())
-                )
-                ;
-        return httpSecurity.build();
-    }
-}
+                    );
+        
+                return httpSecurity.build();
+            }
+        }
