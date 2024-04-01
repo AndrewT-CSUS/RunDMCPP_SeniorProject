@@ -30,13 +30,13 @@ function Footer() {
 
                 <div className="container-link-and-logo">
                     <img src={YouTubeLogo} alt="YouTube Logo"></img>
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">YouTube Channel</a>
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">{t('youtubeChannel')}</a>
+                    <a href="https://www.youtube.com/@jun0698" target="_blank" rel="noopener noreferrer">YouTube Channel</a>
+                    <a href="https://www.youtube.com/@jun0698" target="_blank" rel="noopener noreferrer">{t('youtubeChannel')}</a>
                 </div>
 
                 <div className="container-link-and-logo">
                     <img src={FaceBookLogo} alt="Facebook Logo"></img>
-                    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">{t('facebook')}</a>
+                    <a href="https://www.facebook.com/sacglorychurch?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer">{t('facebook')}</a>
                 </div>
             </div>
         </footer>
