@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { Card, CardMedia, CardContent, Typography, styled } from '@mui/material';
 
 // Just guessing on how to fetch photos. You can ignore this
@@ -7,6 +7,11 @@ const fetchAlbumData = async (albumId) => {
   const response = await fetch(`http://localhost:8080/api/albums/${albumId}`);
   const data = await response.json();
   return data;
+};
+
+// Function to extract URL parameters
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
 };
 
 // Component: Card component for each individual card. Has a photo & caption.
@@ -50,6 +55,21 @@ const albumPhotos = (id) => {
       { src: 'https://getordained.org/assets/getordained/images/thumbs/sermon-preach-871fd0.jpg', title: 'Photo Title 1' },
       { src: 'https://redeeminggod.com/wp-content/uploads/2011/09/preaching.jpg', title: 'Photo Title 2' },
       // ... add more photos as needed for Album 3
+    ],
+    '4': [
+      { src: 'https://getordained.org/assets/getordained/images/thumbs/sermon-preach-871fd0.jpg', title: 'Photo Title 1' },
+      { src: 'https://redeeminggod.com/wp-content/uploads/2011/09/preaching.jpg', title: 'Photo Title 2' },
+      // ... add more photos as needed for Album 4
+    ],
+    '5': [
+      { src: 'https://getordained.org/assets/getordained/images/thumbs/sermon-preach-871fd0.jpg', title: 'Photo Title 1' },
+      { src: 'https://redeeminggod.com/wp-content/uploads/2011/09/preaching.jpg', title: 'Photo Title 2' },
+      // ... add more photos as needed for Album 4
+    ],
+    '6': [
+      { src: 'https://getordained.org/assets/getordained/images/thumbs/sermon-preach-871fd0.jpg', title: 'Photo Title 1' },
+      { src: 'https://redeeminggod.com/wp-content/uploads/2011/09/preaching.jpg', title: 'Photo Title 2' },
+      // ... add more photos as needed for Album 4
     ]
     // ... add more albums if needed
   };
@@ -60,7 +80,9 @@ const albumPhotos = (id) => {
 // Functional component for displaying albums
 const Albums = () => {
   const { albumId } = useParams(); // Retrieve albumId from the route parameters
+  const query = useQuery(); // Retrieve URL query parameters
   const [album, setAlbum] = useState(null); // State to store the album data
+  const albumTitle = query.get('title'); // Extract album title from query parameters
 
   // Fetch album data when the component mounts or when albumId changes
   useEffect(() => {
@@ -69,8 +91,8 @@ const Albums = () => {
 
   // Rendering the photo gallery
   return (
-    <div>
-      <h2>{album?.title}</h2>
+    <div style={{ marginLeft: '20px' }}> {/* Adjust left margin to move the cards to the right */}
+      <h2>{albumTitle}</h2>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {album?.photos.map((photo, index) => (
           <StyledCard key={index}>
