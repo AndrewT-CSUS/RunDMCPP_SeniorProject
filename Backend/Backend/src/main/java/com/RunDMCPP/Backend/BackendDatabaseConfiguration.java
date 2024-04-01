@@ -1,5 +1,8 @@
 package com.RunDMCPP.Backend;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBAsyncClientBuilder;
@@ -21,26 +24,22 @@ public class BackendDatabaseConfiguration {
     private String dBEndpoint;
     @Value("${amazon.dynamodb.region}")
     private String dBRegion;
-    @Value("${ttl.enabled}")
-    private boolean ttlEnabled; 
+    //@Value("${ttl.enabled}")
+    //private boolean ttlEnabled; 
     // Method makes bean (Spring object) for AmazonDynamoDB client
     @Bean
     public AmazonDynamoDB amazonDynamoDB(){
+
+        DefaultAWSCredentialsProviderChain credentialsProvider = new DefaultAWSCredentialsProviderChain();
+
         // Build and configure AmazonDynamoDB client
         AmazonDynamoDB amazonDynamoDB = AmazonDynamoDBAsyncClientBuilder.standard()
-                //When we eventually deploy, we should probably use this if we can get it working
-                //                .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretKey)))
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(dBEndpoint, dBRegion))
-                .build();
-        if(!ttlEnabled) {
-            enableTTL(amazonDynamoDB, "announcement"); //enables ttl for announcements
-
-            enableTTL(amazonDynamoDB, "event"); //enables ttl for events
-        }
+                .withCredentials(credentialsProvider).build();
         return amazonDynamoDB;
     }
 
-    private void enableTTL(AmazonDynamoDB amazonDynamoDB, String tableName) { //specifies and enables ttl attribute for a table
+    /*private void enableTTL(AmazonDynamoDB amazonDynamoDB, String tableName) { //specifies and enables ttl attribute for a table
         
             UpdateTimeToLiveRequest updateTimeToLiveRequest = new UpdateTimeToLiveRequest().withTableName(tableName)
             .withTimeToLiveSpecification(new TimeToLiveSpecification().withAttributeName("ttl").withEnabled(true)); 
@@ -49,7 +48,7 @@ public class BackendDatabaseConfiguration {
         
          
 
-    }
+    }*/
 
     
 }
