@@ -2,13 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { Card, CardMedia, CardContent, Typography, styled } from '@mui/material';
 
-// Just guessing on how to fetch photos. You can ignore this
-const fetchAlbumData = async (albumId) => {
-  const response = await fetch(`http://localhost:8080/api/albums/${albumId}`);
-  const data = await response.json();
-  return data;
-};
-
 // Function to extract URL parameters
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -29,53 +22,45 @@ const StyledCard = styled(Card)( {
   },
 });
 
+
 // Function to fetch album data
 const fetchAlbum = async (albumId, setAlbum) => {
   const albumData = {
     title: `Album ${albumId}`,
-    photos: albumPhotos(albumId), // Use a function to use unique photos on each album
+    photos: collectAlbumImages(albumId), // Use a function to use unique photos on each album
   };
   setAlbum(albumData);
 };
 
-// Function to specify unique photo URLs for each album
-const albumPhotos = (id) => {
-  const albumPhotos = {
-    '1': [
-      { src: 'https://www.holyspiritspeaks.org/wp-content/uploads/2018/04/The-Sermon-on-the-Mount.jpg', title: 'Photo Title 1' },
-      { src: 'https://knowhy.bookofmormoncentral.org/sites/default/files/knowhy-img/sermon.jpg', title: 'Photo Title 2' },
-      // ... add more photos as needed for Album 1
-    ],
-    '2': [
-      { src: 'https://knowhy.bookofmormoncentral.org/sites/default/files/knowhy-img/2016/10/extra/sermon/sermon-mount-400.jpg', title: 'Photo Title 1' },
-      { src: 'https://central-baptist-church.org.uk/wp-content/uploads/2017/08/xIMG_7022-2000x1200.jpg.pagespeed.ic.wRJSiQsGB4.webp', title: 'Photo Title 2' },
-      // ... add more photos as needed for Album 2
-    ],
-    '3': [
-      { src: 'https://getordained.org/assets/getordained/images/thumbs/sermon-preach-871fd0.jpg', title: 'Photo Title 1' },
-      { src: 'https://redeeminggod.com/wp-content/uploads/2011/09/preaching.jpg', title: 'Photo Title 2' },
-      // ... add more photos as needed for Album 3
-    ],
-    '4': [
-      { src: 'https://getordained.org/assets/getordained/images/thumbs/sermon-preach-871fd0.jpg', title: 'Photo Title 1' },
-      { src: 'https://redeeminggod.com/wp-content/uploads/2011/09/preaching.jpg', title: 'Photo Title 2' },
-      // ... add more photos as needed for Album 4
-    ],
-    '5': [
-      { src: 'https://getordained.org/assets/getordained/images/thumbs/sermon-preach-871fd0.jpg', title: 'Photo Title 1' },
-      { src: 'https://redeeminggod.com/wp-content/uploads/2011/09/preaching.jpg', title: 'Photo Title 2' },
-      // ... add more photos as needed for Album 4
-    ],
-    '6': [
-      { src: 'https://getordained.org/assets/getordained/images/thumbs/sermon-preach-871fd0.jpg', title: 'Photo Title 1' },
-      { src: 'https://redeeminggod.com/wp-content/uploads/2011/09/preaching.jpg', title: 'Photo Title 2' },
-      // ... add more photos as needed for Album 4
-    ]
-    // ... add more albums if needed
-  };
+const collectAlbumImages = (id) => {
+    // Function to get all images in the folder with the correct album ID
+    const albumImageBasePath = require.context('./photoAlbums/', true );
+    const albumImagePaths = albumImageBasePath.keys();
 
-  return albumPhotos[id]; // Return the specified photos for the given album ID
-};
+    const albumImages = albumImagePaths.map((imagePath) => {
+
+        var splits = imagePath.split('/');
+
+        // Check if the image path contains exactly 3 segments ('./', '<album number>', '<image name>' )
+        if (splits.length != 3) {
+            return null;
+        }
+
+        //Filter for images in album
+        if(splits[1] != id){
+            return null;
+        }
+
+        // Extract album number and image source
+        const imageSrc = albumImageBasePath(imagePath);
+        // Return album object
+        return {
+            src: imageSrc, title: splits[2]
+        };
+    }).filter(photo => photo !== null);
+
+    return albumImages;
+} 
 
 // Functional component for displaying albums
 const Albums = () => {
