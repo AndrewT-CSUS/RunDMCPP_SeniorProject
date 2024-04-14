@@ -79,7 +79,7 @@ button:hover {
 
 header {
     background-color: white;
-    color: #276622;
+    color: #1b1760;
     padding: 20px;
 }
 
@@ -105,7 +105,39 @@ a {
 
 .sameLine {
     display: inline-block;
+    vertical-align: middle;
     margin: 0;
+    font-size: 28px;
+}
+
+.church-title {
+    
+    letter-spacing: 1px;
+    line-height: 1.5;
+    font-weight: 600;
+    display: inline-block;
+    vertical-align: middle;
+    background: linear-gradient(to top, #276622 1%, #55c24d 99%);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+}
+
+.church-logo {
+    padding: 20px;
+    display: inline-block;
+    transition: transform 0.1s ease;
+}
+
+.church-logo img {
+    width: 40px;
+    height: auto;
+
+}
+
+.church-logo:hover {
+    transform: scale(1.02);
+    opacity: 0.8;
 }
 
 /* Conditional Div: Only display if admin is logged in */
