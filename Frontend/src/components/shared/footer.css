@@ -6,6 +6,7 @@
     which makes aligning items much easier :) */
 
     footer {
+        position: fixed;
         bottom: 0;
         box-sizing: border-box;
         display: flex;
