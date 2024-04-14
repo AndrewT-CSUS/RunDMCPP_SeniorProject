@@ -70,6 +70,10 @@ function Header() {
                         <Link to="/photoGallery">{t('photos')}</Link>
                     </div>
                 </li>
+                {/* Login button */}
+                <li>
+                    <Link to= "/loginpage">Login</Link>
+                </li>
             </ul>
         </header>
     );
