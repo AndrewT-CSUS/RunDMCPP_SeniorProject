@@ -76,3 +76,15 @@
 .resultTitle {
     color: #576017;
 }
+
+.linkElement {
+    display: flex; 
+    align-items: center; 
+}
+
+.divider {
+    border-top: 4px groove #136e32;
+    margin: 20px 0; 
+    padding: 0 10px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}

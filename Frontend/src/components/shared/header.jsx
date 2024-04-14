@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './header.css';
-import ChurchLogo from '../../images/sgkc2_transparent_shadow.png';
+import ChurchLogo from '../../images/sgkc.png';
 import { useTranslation } from 'react-i18next';
 import {Translate} from './translate.jsx'
 import { useAdmin } from '../Javascript/adminContext.js';
@@ -35,11 +35,17 @@ function Header() {
                 </div>
             )}                            
             {/* Church Logo */}
-            <img src={ChurchLogo} alt="Sacramento Glory Church Logo" className='sameLine'/>
+            <Link to="/">
+                <div className = "church-logo">
+                    <img src={ChurchLogo} alt="Sacramento Glory Church Logo" className='sameLine'/>
+                </div>
+            </Link>
             {/* Title*/}
-            <h1 className="sameLine" id="sgkc">
-                {t('sgkc')}
-            </h1>
+            <div className = "church-title">
+                <h1 className="sameLine" id="sgkc">
+                    {t('sgkc')}
+                </h1>
+            </div>
             {/* Eng/Kor Button*/}
             <Translate />
             {/* Navigation bar */}
