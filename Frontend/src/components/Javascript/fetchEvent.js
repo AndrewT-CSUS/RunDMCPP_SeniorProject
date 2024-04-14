@@ -1,6 +1,6 @@
 export async function getEvents() {
     try {
-        const response = await fetch("http://localhost:8080/api/events/get");
+        const response = await fetch("http://sacglorychurch.org:8080/api/events/get");
         if (!response.ok) {
             throw new Error("Failed to fetch events");
         }
