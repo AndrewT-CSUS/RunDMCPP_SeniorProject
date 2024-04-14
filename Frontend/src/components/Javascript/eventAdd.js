@@ -43,7 +43,7 @@ function showResults(event) {
 export async function addEvent(accessToken){
     console.log(ValEvent)
     var request = new XMLHttpRequest();
-    var url = "http://sacglorychurch.org:8080/api/events/create";
+    var url = "https://sacglorychurch.org:8080/api/events/create";
 
     request.open("POST", (url));
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
