@@ -4,7 +4,7 @@ import { Card, CardMedia, CardContent, Typography, styled } from '@mui/material'
 
 // Just guessing on how to fetch photos. You can ignore this
 const fetchAlbumData = async (albumId) => {
-  const response = await fetch(`http://sacglorychurch.org:8080/api/albums/${albumId}`);
+  const response = await fetch(`https://sacglorychurch.org:8080/api/albums/${albumId}`);
   const data = await response.json();
   return data;
 };
