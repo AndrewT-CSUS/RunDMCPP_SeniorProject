@@ -38,7 +38,7 @@ function showResults(announcement) {
 
 export async function editAnnouncement(accessToken){
     var request = new XMLHttpRequest();
-    var url = "http://localhost:8080/api/announcements/edit";
+    var url = "https://sacglorychurch.org:8080/api/announcements/edit";
 
     request.open("PUT", (url));
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -89,7 +89,7 @@ function validateAnnouncement(announcement) {
 
 export async function searchByName(){
     var request = new XMLHttpRequest();
-    var url = "http://localhost:8080/api/announcements/search/title/";
+    var url = "https://sacglorychurch.org:8080/api/announcements/search/title/";
 
     request.open("GET", url + document.getElementById("nameBox").value.replace(" ", "%20"));
     request.send();
@@ -134,9 +134,15 @@ export async function searchByName(){
 
             // Show Results
             document.getElementById("resultsField").hidden = false;
-        } else {
-            alert("Something went wrong. Try again later!");
-            console.log(`error ${request.status}`);
+
+        }else if(request.status === 404){
+            if(request.code === 1){
+                alert("No results. Try searching for something else");
+            }else {
+                alert("Something went wrong. Try again later!");
+                console.log(`error ${request.status}`);
+
+            }        
         }
     }
 }
@@ -158,7 +164,7 @@ async function editAnnouncementByAnnouncement(e){
 async function searchById(id){
     return new Promise(function (resolve, reject) {
         var request = new XMLHttpRequest();
-        var url = "http://localhost:8080/api/announcements/get/";
+        var url = "https://sacglorychurch.org:8080/api/announcements/get/";
 
         request.open("GET", (url + id));
         request.send();
@@ -187,7 +193,7 @@ export function deleteAnnouncementConfirmation(accessToken){
 
 async function deleteAnnouncement(accessToken){
     var request = new XMLHttpRequest();
-    var url = "http://localhost:8080/api/announcements/delete";
+    var url = "https://sacglorychurch.org:8080/api/announcements/delete";
 
     request.open("DELETE", (url));
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");

@@ -50,7 +50,7 @@ function showResults(sermon) {
 
 export async function editSermon(accessToken){
     var request = new XMLHttpRequest();
-    var url = "http://localhost:8080/api/sermons/edit";
+    var url = "https://sacglorychurch.org:8080/api/sermons/edit";
 
     request.open("PUT", (url));
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -114,7 +114,7 @@ function validateSermon(sermon) {
 
 export async function searchByName(){
     var request = new XMLHttpRequest();
-    var url = "http://localhost:8080/api/sermons/search/title/";
+    var url = "https://sacglorychurch.org:8080/api/sermons/search/title/";
 
     request.open("GET", url + document.getElementById("nameBox").value.replace(" ", "%20"));
     request.send();
@@ -197,7 +197,7 @@ async function editSermonBySermon(e){
 async function searchById(id){
     return new Promise(function (resolve, reject) {
         var request = new XMLHttpRequest();
-        var url = "http://localhost:8080/api/sermons/get/";
+        var url = "https://sacglorychurch.org:8080/api/sermons/get/";
 
         request.open("GET", (url + id));
         request.send();
@@ -228,7 +228,7 @@ export function deleteSermonConfirmation(accessToken){
 
 async function deleteSermon(accessToken){
     var request = new XMLHttpRequest();
-    var url = "http://localhost:8080/api/sermons/delete";
+    var url = "https://sacglorychurch.org:8080/api/sermons/delete";
 
     request.open("DELETE", (url));
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");

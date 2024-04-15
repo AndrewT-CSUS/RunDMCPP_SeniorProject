@@ -46,7 +46,7 @@ function showResults(sermon) {
 
 export async function addSermon(accessToken){
     var request = new XMLHttpRequest();
-    var url = "http://localhost:8080/api/sermons/create";
+    var url = "https://sacglorychurch.org:8080/api/sermons/create";
 
     request.open("POST", (url));
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");

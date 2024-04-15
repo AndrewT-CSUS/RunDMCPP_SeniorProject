@@ -247,7 +247,7 @@ public class AnnouncementServiceTest {
         });
 
         assertThat(exception).isNotNull();
-        assertThat(exception.getHttpStatus()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);  //TODO: UPDATE!
+        assertThat(exception.getHttpStatus()).isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(exception.getErrorEnum()).isEqualTo(ErrorEnum.NOT_FOUND);
     }
 

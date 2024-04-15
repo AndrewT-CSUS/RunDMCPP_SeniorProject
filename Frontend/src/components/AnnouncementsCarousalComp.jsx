@@ -3,31 +3,37 @@ import { useTranslation } from 'react-i18next';
 import { fetchRecentAnnouncements } from './Javascript/announcementsAdd.js';
 import './AnnouncementsCarousalComp.css';
 
+import TempImage1 from '../images/TempImage1.jpg';
+import TempImage2 from '../images/TempImage2.jpg';
+import TempImage3 from '../images/TempImage3.jpg';
+
+const MaxDisplayed = 3;
+
 const AnnouncementsCarouselComp = () => {
-    const [index, setIndex] = useState(1);
+    const [index, setIndex] = useState(0);
     const [announcements, setAnnouncements] = useState([]);
     const { t } = useTranslation();
 
-    const fetchAnnouncements = async () => {
-        try {
-            const data = await fetchRecentAnnouncements();
-            setAnnouncements(data || []);
-        } catch (error) {
-            console.error('Error getting announcements:', error);
-        }
-    };
-
-    fetchAnnouncements();
-
     useEffect(() => {
+        const fetchAnnouncements = async () => {
+            try {
+                const data = await fetchRecentAnnouncements();
+                setAnnouncements(data || []);
+            } catch (error) {
+                console.error('Error getting announcements:', error);
+            }
+        };
+
+        fetchAnnouncements();
+
         const interval = setInterval(() => {
-            nextSlide();
-        }, 5000); // Change slide every 5 seconds
+            setIndex((prevIndex) => (prevIndex === announcements.length - 1 ? 0 : prevIndex + 1));
+        }, 10000); // Change slide every 15 seconds
 
         return () => clearInterval(interval);
-    }, [index]); // Restart interval when index changes
+    }, [announcements.length]); // Depend on announcements.length for updates
 
-    const totalAnnouncements = announcements ? announcements.length : 0;
+    const displayedAnnouncements = announcements.slice(0, MaxDisplayed);
 
     const previousSlide = () => {
         setIndex((prevIndex) => (prevIndex === 0 ? announcements.length - 1 : prevIndex - 1));
@@ -37,34 +43,26 @@ const AnnouncementsCarouselComp = () => {
         setIndex((prevIndex) => (prevIndex === announcements.length - 1 ? 0 : prevIndex + 1));
     };
 
-    const currentAnnouncement = announcements[index] || {title: 'No Announcement', content: 'No content' };
-
-    if(!announcements || totalAnnouncements === 0){
-        return (
-            <div className="AnnouncementsCarouselContainer" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                <p>No announcements</p>
-            </div>
-        );
-    }
-
     return (
         <div className="carouselContainer">
-            <div className="announcementCarousal" style={{ transform: `translateX(-${index * 105}%)` }}>
-                {announcements.map((announcement, idx) => (
+            <div className="announcementCarousal" style={{ transform: `translateX(-${index * 106.4}%)` }}>
+                {displayedAnnouncements.map((announcement, idx) => (
                     <div key={idx} className="announcement">
-                        <div className="announcementContent">
+                        <div className="announcementContent" style={{
+                            backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(${idx === 0 ? TempImage1 : idx === 1 ? TempImage2 : TempImage3})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
+                        }}>
                             <h2>{announcement.title}</h2>
                             <p>{announcement.description}</p>
-                            <img src={"/images/TempImage.png"} alt="" className="announcementImage" />
                         </div>
                     </div>
                 ))}
             </div>
             <div className="carousalControls">
-                <button onClick={nextSlide}>{t('next')}</button>
-            </div>
-            <div style={{display:'flex', justifyContent:'flex-start'}} className="carousalControls">
-                <button onClick={previousSlide}>{t('previous')}</button>
+                <button onClick={previousSlide}>{('Previous')}</button>
+                <button onClick={nextSlide}>{('Next')}</button>
             </div>
         </div>
     );

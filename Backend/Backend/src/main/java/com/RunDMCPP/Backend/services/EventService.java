@@ -125,7 +125,7 @@ public class EventService {
     public List<Event> searchEventByTitle(String title) throws BackendErrorException {
         List<Event> results = eventRepository.findByNameContaining(title);
         if(results.isEmpty()){
-            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+            throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
         }
         return results;
     }
@@ -134,7 +134,7 @@ public class EventService {
     public List<Event> searchEventByDateRange(String startDate, String endDate) throws BackendErrorException {
         List<Event> results = eventRepository.findByDateTimeBetween(startDate, endDate);
         if(results.isEmpty()){
-            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+            throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
         }
         return results;
     }

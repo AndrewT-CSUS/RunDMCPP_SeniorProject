@@ -21,6 +21,7 @@ import PreviousSerms from './components/previousSerms';
 import Services from './components/services';
 import LoginPage from './components/loginPage'; // Login Page for OAuth
 import VideoPage from './components/VideoPage';
+import AdminPage from './components/adminPage'; 
 
 // Components: Importing Header and Footer for every page
 import Header from './components/shared/header';
@@ -57,6 +58,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/loginpage" element={<LoginPage />} />
         <Route path="/sermons/:sermonId" element={<VideoPage />} />
+        <Route path="/adminPage" element={<AdminPage />} />
       </Routes>
         <Footer />                {/* Footer: Contact information & Links */}
     </Router>

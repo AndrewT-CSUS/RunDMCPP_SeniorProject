@@ -47,7 +47,7 @@ function showResults(event) {
 
 export async function editEvent(accessToken){
     var request = new XMLHttpRequest();
-    var url = "http://localhost:8080/api/events/edit";
+    var url = "https://sacglorychurch.org:8080/api/events/edit";
 
     request.open("PUT", (url));
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -106,7 +106,7 @@ function validateEvent(event) {
 
 export async function searchByName(){
     var request = new XMLHttpRequest();
-    var url = "http://localhost:8080/api/events/search/title/";
+    var url = "https://sacglorychurch.org:8080/api/events/search/title/";
     console.log("starting up!!!");
 
     request.open("GET", url + document.getElementById("nameBox").value.replace(" ", "%20"));
@@ -115,7 +115,6 @@ export async function searchByName(){
     console.log("sending response!!!");
 
     request.onload = async () => {
-        console.log(":_)");
         if (request.status === 200) {
             var objectText = JSON.parse(request.response);
             console.log(objectText);
@@ -156,14 +155,23 @@ export async function searchByName(){
 
             // Show Results
             document.getElementById("resultsField").hidden = false;
-        } else {
+        } else if(request.status === 404){
+                if(request.code === 1){
+                    alert("No results. Try searching for something else");
+                }else{
+                    alert("Something went wrong. Try again later!")
+                    console.log(`error ${request.status}`)
+                    reject({
+                        status: request.status,
+                        statusText: "error"
+                    })
+                }
+        }else{
             alert("Something went wrong. Try again later!");
             console.log(`error ${request.status}`);
             console.log("Hahahaha");
         }
     }
-
-    console.log(":D");
 }
 
 async function editEventByEvent(e){
@@ -192,7 +200,7 @@ async function editEventByEvent(e){
 async function searchById(id){
     return new Promise(function (resolve, reject) {
         var request = new XMLHttpRequest();
-        var url = "http://localhost:8080/api/events/get/";
+        var url = "https://sacglorychurch.org:8080/api/events/get/";
 
         request.open("GET", (url + id));
         request.send();
@@ -201,13 +209,17 @@ async function searchById(id){
                 var result = JSON.parse(request.response);
                 console.log(result);
                 resolve(result);
-            }else{
-                alert("Something went wrong. Try again later!")
-                console.log(`error ${request.status}`)
-                reject({
-                    status: request.status,
-                    statusText: "error"
-                })
+            }else if(request.status === 404){
+                if(request.code === 1){
+                    alert("No results. Try searching for something else");
+                }else{
+                    alert("Something went wrong. Try again later!")
+                    console.log(`error ${request.status}`)
+                    reject({
+                        status: request.status,
+                        statusText: "error"
+                    })
+                }
             }
         }
     });
@@ -221,7 +233,7 @@ export function deleteEventConfirmation(accessToken){
 
 async function deleteEvent(accessToken){
     var request = new XMLHttpRequest();
-    var url = "http://localhost:8080/api/events/delete";
+    var url = "https://sacglorychurch.org:8080/api/events/delete";
 
     request.open("DELETE", (url));
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");

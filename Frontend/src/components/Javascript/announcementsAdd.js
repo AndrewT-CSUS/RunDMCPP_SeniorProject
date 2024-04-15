@@ -34,7 +34,7 @@ function showResults(announcement) {
 
 export async function addAnnouncement(accessToken) {
     var request = new XMLHttpRequest()
-    var url = "http://localhost:8080/api/announcements/create";
+    var url = "https://sacglorychurch.org:8080/api/announcements/create";
 
     request.open("POST", (url))
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
@@ -85,7 +85,7 @@ function validateAnnouncement(announcement) {
 
 export async function fetchRecentAnnouncements(){
     try {
-        const response = await fetch(`http://localhost:8080/api/announcements/recent`);
+        const response = await fetch(`https://sacglorychurch.org:8080/api/announcements/recent`);
 
         if(!response.ok){
             console.error(`Error: ${response.status}`);
