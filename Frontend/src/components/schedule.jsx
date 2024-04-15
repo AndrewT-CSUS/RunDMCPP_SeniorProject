@@ -11,7 +11,7 @@ function Schedule() {
     const { t } = useTranslation(); 
     return (
         <>
-            <main>
+            <main className="schedule-main">
                 <AnnouncementsCarousalComp />
                 <MainNavBits />
                 <div className="schedule-container">

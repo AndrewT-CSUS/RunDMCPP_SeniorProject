@@ -12,7 +12,7 @@ function AdminEventEdit() {
 
     return (
         <>
-            <main>
+            <main className="event-edit-main">
                 {/* Main content goes here */
                     <div className="mainContent" >
                         <fieldset id="searchField" className="containerStyle searchBox">

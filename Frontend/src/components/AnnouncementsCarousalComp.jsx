@@ -45,20 +45,38 @@ const AnnouncementsCarouselComp = () => {
 
     return (
         <div className="carouselContainer">
-            <div className="announcementCarousal" style={{ transform: `translateX(-${index * 106.4}%)` }}>
-                {displayedAnnouncements.map((announcement, idx) => (
-                    <div key={idx} className="announcement">
-                        <div className="announcementContent" style={{
-                            backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(${idx === 0 ? TempImage1 : idx === 1 ? TempImage2 : TempImage3})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            backgroundRepeat: 'no-repeat',
-                        }}>
-                            <h2>{announcement.title}</h2>
-                            <p>{announcement.description}</p>
+            <div className="announcementCarousal" style={{ transform: `translateX(-${index * 100}%)` }}>
+            {displayedAnnouncements.map((announcement, idx) => {
+                if (idx === index) {
+                    return (
+                        <div key={idx} className="announcement">
+                            <div className="announcementContent" style={{
+                                backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(${idx === 0 ? TempImage1 : idx === 1 ? TempImage2 : TempImage3})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat',
+                            }}>
+                                <h2>{announcement.title}</h2>
+                                <p>{announcement.description}</p>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    );
+                } else {
+                    return (
+                        <div key={idx} className="announcement" style={{ opacity: 0 }}>
+                            <div className="announcementContent" style={{
+                                backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(${idx === 0 ? TempImage1 : idx === 1 ? TempImage2 : TempImage3})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat',
+                            }}>
+                                <h2>{announcement.title}</h2>
+                                <p>{announcement.description}</p>
+                            </div>
+                        </div>
+                    );
+                }
+            })}
             </div>
             <div className="carousalControls">
                 <button onClick={previousSlide}>{('Previous')}</button>

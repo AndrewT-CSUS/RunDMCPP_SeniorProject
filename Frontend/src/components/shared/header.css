@@ -1,10 +1,19 @@
+/* Change Language Button */
+.change-language-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+
 /* Container for the entire navigation bar. */
 ul {
     list-style-type: none;
-    margin: 0;
+    margin-top: 10px;
     padding: 0;
     overflow: hidden;
     text-align: right;
+    font-size: var(--med-font-size);
 }
 
 /* Individual link for the navigation bar */
@@ -17,7 +26,7 @@ li a, .dropbtn {
     display: inline-block;
     color: #276622;
     text-align: left;
-    padding: 10px;
+    padding: clamp(0px, 1vw, 10px); /* Dynamic gap between links */
     text-decoration: none;
     border-style: solid;
     border-width: medium;
@@ -81,6 +90,7 @@ header {
     background-color: white;
     color: #1b1760;
     padding: 20px;
+    margin: 10px 10px 0 10px;
 }
 
 body {
@@ -107,7 +117,7 @@ a {
     display: inline-block;
     vertical-align: middle;
     margin: 0;
-    font-size: 28px;
+    font-size: var(--app-title-font-size);
 }
 
 .church-title {
@@ -163,3 +173,4 @@ a {
     width: 14px;
     margin-left: 5px;
 }
+

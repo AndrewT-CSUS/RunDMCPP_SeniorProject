@@ -1,10 +1,33 @@
+:root {
+  /* Dynamic variables to be reused across all files */
+  /* Notes: 
+    - 'Clamp' is a CSS function that takes three parameters: min size, size, max size
+    - Rem is used over px as it scales with custom font changes in browser, like Chrome settings
+    - Calc is used to easily see what the px equivalent is. Ex) 'calc(10rem/16)' = 10 px */
+  --app-title-font-size: clamp(calc(16rem/16), 4.5vw, calc(30rem/16));
+  --very-large-font-size: clamp(calc(16rem/16), 4vw, calc(30rem/16));
+  --large-font-size: clamp(calc(15rem/16), 3vw, calc(25rem/16));
+  --small-font-size: clamp(calc(10rem/16), 1vw, calc(12rem/16)); 
+  --med-font-size: clamp(calc(14rem/16), 2.7vw, calc(20rem/16)); 
+  --button-font-size: clamp(calc(10rem/16), 1.5vw, calc(15rem/16)); 
+}
+
+#root {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  height: 100%;
 }
 
 code {

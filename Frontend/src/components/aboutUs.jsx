@@ -4,13 +4,13 @@ import frontview from '../images/frontview_church.jpg'
 
 function AboutUs() {
   return (
-    <main>
+    <main className="aboutUs_main">
       <div className='aboutUs_body'>
         <img src={frontview} className='aboutUs_img'></img>
         <section className='aboutUs_sections'>
           <h3 className='aboutUs_titles'>사명</h3>
           <p>땅끝까지 이르러 예수 그리스도의 증인이 되는 교회</p>
-          <p>
+          <p className="aboutUs_quote_and_source">
               <blockquote className='aboutUs_quote_border'>
               <b>
                 "오직 성령이 너희에게 임하시면 너희가 권능을 받고 예루살렘과

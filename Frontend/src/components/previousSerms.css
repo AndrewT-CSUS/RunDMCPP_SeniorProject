@@ -1,6 +1,6 @@
 /* Main container styling for the specific component */
-.main-container {
-    width: 50%;
+.main-sermons-container {
+    width: clamp(300px, 65vw, 600px); 
     margin: 0 auto;
     padding: 20px;
 }
@@ -41,7 +41,7 @@
 }
 
 /* Styling for buttons within the specific component */
-.main-container button {
+.main-sermons-container button {
     padding: 8px 16px;
     background-color: #006400; /* Set dark green color for buttons */
     color: #fff;
@@ -51,7 +51,7 @@
 }
 
 /* Hover effect for buttons within the specific component */
-.main-container button:hover {
+.main-sermons-container button:hover {
     background-color: #004d00; /* Darken the green color on hover */
 }
 

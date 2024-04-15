@@ -16,8 +16,8 @@ function AdminAnnouncementsAdd() {
             <title>ChurchTemplate</title>
             <link rel="stylesheet" href="header.css" />
             <main>
-                {/* Main content goes here */
-                    <div>
+                {
+                    <div className="announcementsBox">
                         <fieldset className="containerStyle addAnnounementBox">
                             <legend>{t('announcements')}</legend>
                             <br></br><textarea rows="1" cols="60" id="titleBox" name="titleBox" placeholder={t('title')}></textarea>
