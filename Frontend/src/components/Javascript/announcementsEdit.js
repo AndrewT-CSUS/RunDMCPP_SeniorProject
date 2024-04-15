@@ -134,9 +134,15 @@ export async function searchByName(){
 
             // Show Results
             document.getElementById("resultsField").hidden = false;
-        } else {
-            alert("Something went wrong. Try again later!");
-            console.log(`error ${request.status}`);
+
+        }else if(request.status === 404){
+            if(request.code === 1){
+                alert("No results. Try searching for something else");
+            }else {
+                alert("Something went wrong. Try again later!");
+                console.log(`error ${request.status}`);
+
+            }        
         }
     }
 }
