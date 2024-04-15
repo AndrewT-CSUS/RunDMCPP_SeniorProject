@@ -12,7 +12,7 @@ export function Translate() {
     } 
 
     return (  
-        <button  type="button"  onClick={handleChangeLanguage}>
+        <button type="button" className="change-language-button" onClick={handleChangeLanguage}>
             Change Language
         </button>
     );

@@ -4,7 +4,7 @@ import React from 'react';
 function PastEvents() {
     return (
         <>
-            <main>
+            <main className="past-events-main">
                 {/* Main content goes here */}
                 <p>This is the past events page</p>
             </main>

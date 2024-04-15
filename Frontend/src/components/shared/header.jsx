@@ -12,8 +12,6 @@ function Header() {
     const { t } = useTranslation(); // State: Translation
     const location = useLocation(); // State: Current path. Used so we only render Header on certain pages.
     const { isAdmin } = useAdmin(); // Use the useAdmin hook to get isAdmin
-
-
     // Conditional: Don't render Header if the current path is '/loginpage'
     if (location.pathname === '/loginpage') {
         return null; // Don't render the Header on the login page
@@ -34,20 +32,23 @@ function Header() {
                     <img src={starLogo} className="admin-star" alt="Admin Star"/>
                 </div>
             )}                            
-            {/* Church Logo */}
-            <Link to="/">
-                <div className = "church-logo">
-                    <img src={ChurchLogo} alt="Sacramento Glory Church Logo" className='sameLine'/>
+            <div className="app-title-logo-wrapper">
+                {/* Church Logo */}
+                <Link to="/">
+                    <div className = "church-logo">
+                        <img src={ChurchLogo} alt="Sacramento Glory Church Logo" className='sameLine'/>
+                    </div>
+                </Link>
+                {/* Title*/}
+                <div className = "church-title">
+                    <h1 className="sameLine" id="sgkc">
+                        {t('sgkc')}
+                    </h1>
                 </div>
-            </Link>
-            {/* Title*/}
-            <div className = "church-title">
-                <h1 className="sameLine" id="sgkc">
-                    {t('sgkc')}
-                </h1>
             </div>
             {/* Eng/Kor Button*/}
             <Translate />
+
             {/* Navigation bar */}
             <ul className="navigation-bar">
                 {/* Dropdown menu for Events */}

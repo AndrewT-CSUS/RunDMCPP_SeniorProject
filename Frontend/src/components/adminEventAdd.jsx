@@ -14,8 +14,7 @@ function AdminEventAdd() {
             <meta charSet="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <title>adminEventCreate</title>
-            <main>
-                {/* Main content goes here */}
+            <main className="event-add-main">
                 <div className="mainContent" >
             <fieldset className="containerStyle addEventBox">
                 <legend>{t('events')}</legend>

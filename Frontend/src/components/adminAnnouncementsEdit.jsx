@@ -11,8 +11,8 @@ function AdminAnnouncementsEdit() {
     const { t } = useTranslation();
     return (
         <>
-            <main>
-                {/* Main content goes here */
+            <main className="announcements-main">
+                {
                     <div className="mainContent" >
                         <fieldset id="searchField" className="containerStyle searchBox">
                             <legend>{t('searchAnnouncement')}</legend>

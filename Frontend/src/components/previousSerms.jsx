@@ -26,7 +26,7 @@ const PreviousSerms = () => {
     };
 
     return (
-        <main className="main-container">
+        <main className="main-sermons-container">
             <fieldset id="searchField" className="searchBox">
                 <legend>{t('sermonSearch')}</legend>
                 {/* Name Search */}

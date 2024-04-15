@@ -22,8 +22,16 @@
   transform: scale(1.05);
 }
 
+.events-header {
+  margin-top: clamp(0px, 1vw, 10px);
+}
+
 .event h2 {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.events-main p {
+  font-size: var(-small-font-size);
 }
 
 @keyframes border-animation {

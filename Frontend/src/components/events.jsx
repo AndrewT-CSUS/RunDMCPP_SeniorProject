@@ -36,8 +36,8 @@ function Events() {
   };
 
   return (
-    <main>
-      <h1>{t('events')}</h1>
+    <main className="events-main">
+      <h1 className="events-header">{t('events')}</h1>
       {loading ? (
         <p>Loading...</p>
       ) : error ? (

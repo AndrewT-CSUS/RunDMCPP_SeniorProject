@@ -109,6 +109,43 @@ function PhotoGallery() {
     <Box sx={{ width: '100%', paddingLeft: '15px' }}>
       <Grid container spacing={3}>
         {albums.map((album) => (
+          <Grid item xs={11} sm={6} md={4} lg={3.5} key={album.id}>
+            <Card sx={{ height: 'clamp(150px, 80vw, 365px);', transition: 'transform 0.3s', '&:hover': { transform: 'scale(1.05)' } }}>
+              <Link to={`/albums/${album.id}?title=${encodeURIComponent(album.title)}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <CardMedia component="img" image={album.photos[0].src} alt={album.title} sx={{ objectFit: 'cover', height: 300 }} />
+              </Link>
+              <CardContent sx={{ height: 100 }}>
+                {editMode === album.id && isAuthenticated ? (
+                  <Box>
+                    <TextField
+                      fullWidth
+                      autoFocus
+                      defaultValue={album.title}
+                      onBlur={(e) => handleSave(album.id, e.target.value)}
+                    />
+                    <Button onClick={() => handleSave(album.id, album.title)}>Save</Button>
+                  </Box>
+                ) : (
+                  <Typography
+                    variant="h5"
+                    component="div"
+                    sx={{ cursor: 'pointer' }}
+                    onClick={() => isAuthenticated && handleEdit(album.id)}
+                  >
+                    {album.title}
+                  </Typography>
+                )}
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  );
+  return (
+    <Box sx={{ width: '100%', paddingLeft: '15px' }}>
+      <Grid container spacing={3}>
+        {albums.map((album) => (
           <Grid item xs={6} sm={4} md={2.95} key={album.id}>
             <Card sx={{ height: '92%', transition: 'transform 0.3s', '&:hover': { transform: 'scale(1.05)' } }}>
               <Link to={`/albums/${album.id}?title=${encodeURIComponent(album.title)}`} style={{ textDecoration: 'none', color: 'inherit' }}>

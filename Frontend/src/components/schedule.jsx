@@ -9,7 +9,7 @@ function Schedule() {
     const { t } = useTranslation(); 
     return (
         <>
-            <main>
+            <main className="schedule-main">
                 <AnnouncementsCarousalComp />
                 <MainNavBits />
                 {/* Main content goes here*/}

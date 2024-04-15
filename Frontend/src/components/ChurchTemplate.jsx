@@ -12,7 +12,7 @@ function Schedule() {
 
     return (
         <>
-            <main>
+            <main className="service-schedule-main">
                 {/* Main content goes here*/}
                 <h2 id="serviceSchedule">Church Service Schedule</h2>
                 {/*Schedule description maybe? */}
