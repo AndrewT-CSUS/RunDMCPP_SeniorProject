@@ -1,43 +1,61 @@
+/* Container for the schedule */
 .schedule-container {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 40px;
+  min-height: 200px;
+  height: 100%;
+  gap: 10px;
 }
 
-.schedule-box {
+/* Container for individual schedule boxes */
+.schedule-box, .schedule-box2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: clamp(200px, 20vw, 400px);
   width: 30%;
+  min-width: clamp(180px, 20vw, 300px);
 }
 
-.schedule-box2 {
-  width: 30%;
-}
-
+/* Container for schedule content in the box; the text and image */
 .schedule-content {
   display: block;
+  justify-content: center;
   align-items: center;
   text-align: center;
+  height: 100%;
+  width: 100%;
   border-radius: 5px;
   border: 10px solid #537802;
   background-color: #e6ffe6;
-  margin-right: 10px;
 }
 
-.schedule-img1 {
-  padding: 10px;
-  width: auto;
-  height: 210px;
-  object-fit: contain;
-  margin-bottom: 5px;
-  margin-top: 5px;
+/* Schedule images */
+.schedule-img1, .schedule-img2{
+  height: 70%;
+  width: 80%;
+  margin: 12px 8px 8px 8px;
+  border: 2px solid #537802;
+  border-radius: 5px;
 }
 
-.schedule-img2 {
-  padding: 10px;
-  width: 320px;
-  height: 210px;
-  object-fit: contain;
-  margin-bottom: 5px;
-  margin-top: 5px;
+/* Schedule text */
+.schedule-content p {
+  margin: 0;
+  font-size: clamp(.8rem, 1.7vw, 2.5rem);
+}
+
+/* On small screens, stack the schedule boxes vertically */
+@media screen and (max-width: 400px) {
+  .schedule-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .schedule-box, .schedule-box2 {
+    width: 75%;
+    min-width: 200px;
+  }
 }

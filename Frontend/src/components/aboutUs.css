@@ -36,10 +36,8 @@
     float: right;
     width: auto;
     height: 500px;
+    height: clamp(300px, 50vw, 500px);
     padding: 10px;
-    margin: 10px;
+    margin: 20px 10px 10px 10px;
 }
-
-
-
 

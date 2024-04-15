@@ -18,14 +18,14 @@ function Schedule() {
                     {/* Sunday Schedule */}
                     <div className="schedule-box">
                         <div className="schedule-content">
-                            <img src={Image1} className='schedule-img1'></img>
+                            <img src={Image1} className='schedule-img1' alt="Church 1"></img>
                             <p>{t('serviceScheduleSunday')} 11:00 AM</p>
                         </div>
                     </div>
                     {/* Wednesday Schedule */}
                     <div className="schedule-box2">
                         <div className="schedule-content">
-                            <img src={Image2} className='schedule-img2'></img>
+                            <img src={Image2} className='schedule-img2' alt="Church 2"></img>
                             <p>{t('serviceScheduleWednesday')} 7:30 PM</p>
                         </div>
                     </div>

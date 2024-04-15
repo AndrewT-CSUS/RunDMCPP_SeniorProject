@@ -103,7 +103,7 @@ main {
     padding: 20px;
 }
 
-img {
+header img {
     display: flex;
     width: 220px;
     height: auto;
