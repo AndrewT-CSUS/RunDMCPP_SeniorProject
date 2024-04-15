@@ -57,10 +57,6 @@ function Header() {
                 <li>
                     <Link to="/aboutUs">{t('aboutUs')}</Link>
                 </li>
-                {/* (No dropwdown) Link for Services */}
-                <li>
-                    <Link to="/services">{t('services')}</Link>
-                </li>
                 {/* Dropdown menu for Sermons */}
                 <li className="dropdown">
                     <div className='dropbtn'>{t('sermons')}</div>
@@ -72,7 +68,6 @@ function Header() {
                     <div className='dropbtn'>{t('eventsDrop')}</div>
                     <div className="dropdown-content">
                         <Link to="/events">{t('events')}</Link>
-                        <Link to="/pastEvents">Past Events</Link>
                         <Link to="/photoGallery">{t('photos')}</Link>
                     </div>
                 </li>

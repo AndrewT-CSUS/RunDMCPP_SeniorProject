@@ -14,11 +14,9 @@ import AdminEventEdit from './components/adminEventEdit';
 import AdminSermonAdd from './components/adminSermonAdd';
 import AdminSermonEdit from './components/adminSermonEdit';
 import Events from './components/events';
-import PastEvents from './components/pastEvents';
 import PhotoGallery from './components/photoGallery';
 import Albums from './components/albums';
 import PreviousSerms from './components/previousSerms';
-import Services from './components/services';
 import LoginPage from './components/loginPage'; // Login Page for OAuth
 import VideoPage from './components/VideoPage';
 import AdminPage from './components/adminPage'; 
@@ -51,11 +49,9 @@ function App() {
         <Route path="/adminAnnouncementsAdd" element={<AdminAnnouncementsAdd />} />
         <Route path="/adminAnnouncementsEdit" element={<AdminAnnouncementsEdit />} />
         <Route path="/events" element={<Events />} />
-        <Route path="/pastEvents" element={<PastEvents />} />
         <Route path="/photoGallery" element={<PhotoGallery />} />
         <Route path="/albums/:albumId" element={<Albums />} />
         <Route path="/previousSerms" element={<PreviousSerms />} />
-        <Route path="/services" element={<Services />} />
         <Route path="/loginpage" element={<LoginPage />} />
         <Route path="/sermons/:sermonId" element={<VideoPage />} />
         <Route path="/adminPage" element={<AdminPage />} />
