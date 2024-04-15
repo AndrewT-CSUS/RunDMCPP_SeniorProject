@@ -161,10 +161,6 @@ export async function searchByName(){
                 }else{
                     alert("Something went wrong. Try again later!")
                     console.log(`error ${request.status}`)
-                    reject({
-                        status: request.status,
-                        statusText: "error"
-                    })
                 }
         }else{
             alert("Something went wrong. Try again later!");
