@@ -115,7 +115,6 @@ export async function searchByName(){
     console.log("sending response!!!");
 
     request.onload = async () => {
-        console.log(":_)");
         if (request.status === 200) {
             var objectText = JSON.parse(request.response);
             console.log(objectText);
@@ -156,14 +155,23 @@ export async function searchByName(){
 
             // Show Results
             document.getElementById("resultsField").hidden = false;
-        } else {
+        } else if(request.status === 404){
+                if(request.code === 1){
+                    alert("No results. Try searching for something else");
+                }else{
+                    alert("Something went wrong. Try again later!")
+                    console.log(`error ${request.status}`)
+                    reject({
+                        status: request.status,
+                        statusText: "error"
+                    })
+                }
+        }else{
             alert("Something went wrong. Try again later!");
             console.log(`error ${request.status}`);
             console.log("Hahahaha");
         }
     }
-
-    console.log(":D");
 }
 
 async function editEventByEvent(e){
@@ -201,13 +209,17 @@ async function searchById(id){
                 var result = JSON.parse(request.response);
                 console.log(result);
                 resolve(result);
-            }else{
-                alert("Something went wrong. Try again later!")
-                console.log(`error ${request.status}`)
-                reject({
-                    status: request.status,
-                    statusText: "error"
-                })
+            }else if(request.status === 404){
+                if(request.code === 1){
+                    alert("No results. Try searching for something else");
+                }else{
+                    alert("Something went wrong. Try again later!")
+                    console.log(`error ${request.status}`)
+                    reject({
+                        status: request.status,
+                        statusText: "error"
+                    })
+                }
             }
         }
     });

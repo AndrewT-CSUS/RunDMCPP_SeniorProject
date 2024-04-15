@@ -115,7 +115,7 @@ public class AnnouncementService {
     public List<Announcement> searchAnnouncementsByTitle(String title) throws BackendErrorException {
         List<Announcement> results = announcementRepo.findByTitleContaining(title);
         if(results.isEmpty()){
-            throw new BackendErrorException(ErrorEnum.NOT_FOUND);
+            throw new BackendErrorException(HttpStatus.NOT_FOUND, ErrorEnum.NOT_FOUND);
         }
         return results;
     }
