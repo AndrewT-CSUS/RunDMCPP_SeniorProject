@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { fetchRecentAnnouncements } from './Javascript/announcementsAdd.js';
 import './AnnouncementsCarousalComp.css';
 
-import TempImage1 from '../images/TempImage1.jpg';
-import TempImage2 from '../images/TempImage2.jpg';
-import TempImage3 from '../images/TempImage3.jpg';
+import TempImage1 from '../images/dayview_church.jpg';
+import TempImage2 from '../images/nightview_church.jpg';
+import TempImage3 from '../images/dayview2_church.jpg';
 
 const MaxDisplayed = 3;
 

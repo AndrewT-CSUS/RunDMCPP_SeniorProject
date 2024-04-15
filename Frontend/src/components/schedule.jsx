@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import AnnouncementsCarousalComp from './AnnouncementsCarousalComp';
 import MainNavBits from './MainNavBits.jsx';
 import './schedule.css'; 
+import Image1 from '../images/dayview_church.jpg';
+import Image2 from '../images/nightview_church.jpg';
 
 // Schedule Component
 function Schedule() {
@@ -12,25 +14,21 @@ function Schedule() {
             <main className="schedule-main">
                 <AnnouncementsCarousalComp />
                 <MainNavBits />
-                {/* Main content goes here*/}
-                <div className="schedule-container"> {}
-                    <h2 className="schedule-heading">{t('serviceSchedule')}</h2> {}
-                    <table className="schedule-table"> {}
-                        <tbody>
-                            <tr>
-                                <th id="serviceScheduleDay">{t('serviceScheduleDay')}</th>
-                                <th id="serviceScheduleTime">{t('serviceScheduleTime')}</th>
-                            </tr>
-                            <tr>
-                                <td id="serviceScheduleSunday">{t('serviceScheduleSunday')}</td>
-                                <td>11:00 AM</td>
-                            </tr>
-                            <tr>
-                                <td id="serviceScheduleWednesday">{t('serviceScheduleWednesday')}</td>
-                                <td> 07:30 PM</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div className="schedule-container">
+                    {/* Sunday Schedule */}
+                    <div className="schedule-box">
+                        <div className="schedule-content">
+                            <img src={Image1} className='schedule-img1'></img>
+                            <p>{t('serviceScheduleSunday')} 11:00 AM</p>
+                        </div>
+                    </div>
+                    {/* Wednesday Schedule */}
+                    <div className="schedule-box2">
+                        <div className="schedule-content">
+                            <img src={Image2} className='schedule-img2'></img>
+                            <p>{t('serviceScheduleWednesday')} 7:30 PM</p>
+                        </div>
+                    </div>
                 </div>
                 <p></p>
             </main>
@@ -39,5 +37,3 @@ function Schedule() {
 }
 
 export default Schedule;
-
-

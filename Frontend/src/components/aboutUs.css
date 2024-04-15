@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: var(--large-font-size);
+    font-size: 20px;
     padding: 10px;
     border-style: solid;
     border-color: #499a41;
@@ -15,15 +15,29 @@
 
 .aboutUs_sections {
     padding: 0 25px 0 25px;
+    display: block;
+    text-align: center;
+
 }
 
 .aboutUs_titles {
-    font-size: var(--very-large-font-size);
+    font-size: 30px;
     color: #276622;
+    text-align: left;
 }
 
 .aboutUs_quote_border {
-    text-align: end;
+    margin: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+.aboutUs_img {
+    float: right;
+    width: auto;
+    height: 500px;
+    padding: 10px;
+    margin: 10px;
 }
 
 
