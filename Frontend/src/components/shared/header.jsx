@@ -28,7 +28,7 @@ function Header() {
             {/* Conditional Div: Only display when the user is an admin. */}
             {isAdmin && (
                 <div className="admin-section">
-                    You are logged in as Admin
+                    <a href={`${window.location.origin}/adminpage`}>You are logged in as Admin</a>
                     <img src={starLogo} className="admin-star" alt="Admin Star"/>
                 </div>
             )}                            
