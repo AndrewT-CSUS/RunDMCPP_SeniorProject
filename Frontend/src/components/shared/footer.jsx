@@ -19,15 +19,13 @@ function Footer() {
         <footer>
             {/* Footer left side: Address */}
             <p className="footer__left">
-                <b>Sacramento Glory Korean Church</b><br></br>
+                <b className="footer-title">Sacramento Glory Korean Church</b><br></br>
                 1820 Bell Street<br></br>
                 Sacramento, CA. 95825
             </p>
-            <p className="footer__powered-by">Powered by Run DMC++ @ 2023-2024</p>
             {/* Footer right side: Links to email, YouTube, FaceBook */}
             <div className="footer__right">
                 <p>{t('contactUs')}<a href="mailto:sacglorychurch@hotmail.com">sacglorychurch@hotmail.com</a></p>
-
                 <div className="container-link-and-logo">
                     <img src={YouTubeLogo} alt="YouTube Logo"></img>
                     <a href="https://www.youtube.com/@jun0698" target="_blank" rel="noopener noreferrer">YouTube Channel</a>

@@ -22,10 +22,6 @@ footer p {
     margin: 0; /* Remove default margin */
 }
 
-.footer__left {
-    margin-right: 20px; /* Add space between left and right content */
-}
-
 .footer__powered-by {
     text-align: center; /* Center the text */
 }
@@ -54,11 +50,4 @@ footer p {
 .container-link-and-logo {
     display: flex;
     flex-direction: row;
-}
-
-/* On smaller screens, hide the 'Powered by' text */
-@media (max-width: 720px) {
-    .footer__powered-by {
-        display: none;
-    }
 }
