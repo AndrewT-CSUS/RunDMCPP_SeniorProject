@@ -5,6 +5,12 @@
     right: 5px;
 }
 
+.login-button {
+    position: absolute;
+    top: 5px;
+    right: 75px;
+}
+
 
 /* Container for the entire navigation bar. */
 ul {
@@ -52,7 +58,7 @@ li.dropdown {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: white;
+    background-color: #fffdd0;
     z-index: 1;
 }
 
@@ -160,7 +166,7 @@ a {
     left: 0;
     padding-top: 3px;
     padding-left: 5px;
-    height: 25px;
+    height: 30px;
     width: 100%;
     margin-bottom: 10px;
     background-color: blue;

@@ -9,7 +9,7 @@ var defaultSermons;
 
 export async function searchByName(){
     var request = new XMLHttpRequest();
-    var url = "https://sacglorychurch.org:8080/api/sermons/search/title/";
+    var url = "http://localhost:8080/api/sermons/search/title/";
     var name = document.getElementById("searchBox").value.replace(" ", "%20");
 
     if(!name){
@@ -34,7 +34,7 @@ export async function searchByName(){
 
 export async function searchByDate(){
     var request = new XMLHttpRequest();
-    var url = "https://sacglorychurch.org:8080/api/sermons/search/date?";
+    var url = "http://sacglorychurch.org:8080/api/sermons/search/date?";
     var startDate = document.getElementById("startDateBox").value;
     var endDate = document.getElementById("endDateBox").value;
     
@@ -76,7 +76,7 @@ export async function searchByDate(){
 
 export async function getSermonById(sermonId){
     try {
-        const response = await fetch(`https://sacglorychurch.org:8080/api/sermons/get/${sermonId}`);
+        const response = await fetch(`http://sacglorychurch.org:8080/api/sermons/get/${sermonId}`);
 
         if(!response.ok){
             console.error(`Error: ${response.status}`);
@@ -121,7 +121,6 @@ function showResults(request, searchType){
         var link = `/sermons/${result.id}`;
 
         var linkElement = document.createElement("div");
-        linkElement.classList.add("linkElement");
         var anchor = document.createElement("a");
         anchor.href = link;
         var button = document.createElement("button");
@@ -135,13 +134,6 @@ function showResults(request, searchType){
         container.appendChild(description);
         container.appendChild(dateTime);
         container.appendChild(linkElement);
-
-        if (i < objectText.length - 1) {
-            var divider = document.createElement("hr");
-            divider.classList.add("divider");
-            container.appendChild(divider);
-        }
-
         document.getElementById("resultsField").appendChild(container);
     }
 
@@ -157,7 +149,7 @@ export async function showDefaults(){
     }
 
     var request = new XMLHttpRequest();
-    var url = "https://sacglorychurch.org:8080/api/sermons/getDefault";
+    var url = "http://sacglorychurch.org:8080/api/sermons/getDefault";
 
     request.open("GET", url);
     request.send();

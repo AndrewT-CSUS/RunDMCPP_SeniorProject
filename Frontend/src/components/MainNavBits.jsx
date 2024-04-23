@@ -14,8 +14,8 @@ function MainNavBits() {
                 <Link to="/photoGallery" className="container">
                     {t('photos')}
                 </Link>
-                <Link to="/previousSerms" className="container">
-                    {t('previousSermons')}
+                <Link to="/sermons" className="container">
+                    {t('sermons')}
                 </Link>
                 <Link to="/aboutUs" className="container">
                     {t('aboutUs')}
