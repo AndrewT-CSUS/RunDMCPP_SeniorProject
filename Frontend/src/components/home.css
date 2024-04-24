@@ -7,7 +7,7 @@
   margin-top: 40px;
   min-height: 200px;
   height: 100%;
-  gap: 10px;
+  gap: 30px;
 }
 
 /* Container for individual schedule boxes */
@@ -29,8 +29,8 @@
   height: 100%;
   width: 100%;
   border-radius: 5px;
-  border: 10px solid #537802;
-  background-color: #e6ffe6;
+  border: 5px solid #145a32;
+  background-color: #f1ebe9;
 }
 
 /* Schedule images */

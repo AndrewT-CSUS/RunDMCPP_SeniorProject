@@ -8,11 +8,11 @@
 .event {
   width: 300px;
   border: 4px solid #537802;
-  background-color: #e6ffe6;
+  background-color: #f1ebe9;
   padding: 15px;
   border-radius: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-image: linear-gradient(to bottom, #e6ffe6, #ccffcc);
+  background-image: linear-gradient(to bottom, #f1ebe9, #e9dfd0);
   animation: border-animation 1.5s ease-out;
   margin-bottom: 20px;
 }
@@ -32,13 +32,4 @@
 
 .events-main p {
   font-size: var(-small-font-size);
-}
-
-@keyframes border-animation {
-  0% {
-    border-width: 0;
-  }
-  100% {
-    border-width: 4px;
-  }
 }

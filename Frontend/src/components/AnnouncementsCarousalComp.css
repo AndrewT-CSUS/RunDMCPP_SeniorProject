@@ -1,8 +1,8 @@
 .carouselContainer {
     display: flex;
     flex-direction: column;
-    width: 80%;
-    height: 20%;
+    width: 100%;
+    height: 100%;
     min-width: 300px;
     margin: 0 auto;
 }
@@ -16,6 +16,7 @@
     box-sizing: border-box;
     flex: 0 0 auto;
     width: 100%; 
+    height: 350px;
     padding: 20px;
     text-align: center;
     transition: visibility 0s, opacity 0.5s linear;
@@ -23,8 +24,8 @@
 
 .announcementContent {
     width: 80%;
+    height: 80%;
     margin: 0 auto;
-    border: 4px solid black;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 4px 8px #0000004d;
@@ -38,7 +39,7 @@
 .carousalControls button {
     margin: 0 10px;
     padding: 5px 10px;
-    background-color: #1b1760;
+    background-color: #145a32;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -46,22 +47,7 @@
 }
 
 .carousalControls button:hover {
-    background-color: #333399;
-}
-
-.announcement:nth-child(1) .announcementContent {
-    border: 4px solid #74a015; /* Green border */
-    background-color: rgba(230, 255, 230, 0.5); /* Background color */
-}
-
-.announcement:nth-child(2) .announcementContent {
-    border: 4px solid #74a015; /* Green border */
-    background-color: rgba(230, 255, 230, 0.5); /* Background color */
-}
-
-.announcement:nth-child(3) .announcementContent {
-    border: 4px solid #74a015; /* Green border */
-    background-color: rgba(230, 255, 230, 0.5); /* Background color */
+    background-color: #208e50;
 }
 
 

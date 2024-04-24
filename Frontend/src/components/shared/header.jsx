@@ -46,13 +46,7 @@ function Header() {
                         {t('sgkc')}
                     </h1>
                 </div>
-            </div>
-            {/* Eng/Kor Button*/}
-            <Translate />
-            <button type="button" className='login-button'>
-                <Link to="/loginPage">{t('login')}</Link>
-            </button>
-            {/* Navigation bar */}
+                {/* Navigation bar */}
             <ul className="navigation-bar">
                 {/* Dropdown menu for Events */}
                 <li>
@@ -77,6 +71,12 @@ function Header() {
                     </li>
                 )}
             </ul>
+            </div>
+            {/* Eng/Kor Button*/}
+            <Translate />
+            <button type="button" className='login-button'>
+                <Link to="/loginPage">{t('login')}</Link>
+            </button>
         </header>
     );
 }

@@ -15,8 +15,8 @@
 /* Container for the entire navigation bar. */
 ul {
     list-style-type: none;
-    margin-top: 10px;
-    padding: 0;
+    padding: 5;
+    float: right;
     overflow: hidden;
     text-align: right;
     font-size: var(--med-font-size);
@@ -30,7 +30,7 @@ li {
 /* Navigation link, including the dropdown list. */
 li a, .dropbtn {
     display: inline-block;
-    color: #276622;
+    color: #145A32;
     text-align: left;
     padding: clamp(0px, 1vw, 10px); /* Dynamic gap between links */
     text-decoration: none;
@@ -43,7 +43,9 @@ li a, .dropbtn {
 li a:hover, .dropdown:hover .dropbtn {
     border-style: solid;
     border-width: medium;
-    border-color: #276622;
+    color: white;
+    border-color: white;
+    background-color: #145A32;
 }
 
 /* Hover: Change color of dropdown list */
@@ -58,12 +60,12 @@ li.dropdown {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #fffdd0;
+    background-color: white;
     z-index: 1;
 }
 
 .dropdown-content a {
-    color: #276622;
+    color: #145A32;
     padding: 10px 15px;
     text-decoration: none;
     display: block;
@@ -71,7 +73,7 @@ li.dropdown {
 }
 
 .dropdown-content a:hover {
-    border-color: #276622;
+    border-color: #145A32;
 }
 
 .dropdown:hover .dropdown-content {
@@ -80,16 +82,15 @@ li.dropdown {
 
 button {
     float: right;
-    background-color: #276622;
+    background-color: #145A32;
     color: white;
     border-style: solid;
-    border-width: medium;
-    border-color: #276622;
-    
+    border-width: 1px;
+    border-color: white;
 }
 
 button:hover {
-    background-color: dimgray;
+    background-color: grey;
 }
 
 header {
@@ -126,11 +127,10 @@ a {
     font-size: var(--app-title-font-size);
 }
 
-.church-title {
-    
+.church-title {   
     letter-spacing: 1px;
     line-height: 1.5;
-    font-weight: 600;
+    font-weight: 750;
     display: inline-block;
     vertical-align: middle;
     background: linear-gradient(to top, #276622 1%, #55c24d 99%);
@@ -148,7 +148,6 @@ a {
 .church-logo img {
     width: 40px;
     height: auto;
-
 }
 
 .church-logo:hover {
@@ -166,10 +165,10 @@ a {
     left: 0;
     padding-top: 3px;
     padding-left: 5px;
-    height: 30px;
+    height: 25px;
     width: 100%;
     margin-bottom: 10px;
-    background-color: blue;
+    background-color: #145A32;
     color: white;
 }
 

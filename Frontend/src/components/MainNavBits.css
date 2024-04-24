@@ -1,7 +1,7 @@
 /* Container for the buttons (Events, Photos, Previous Sermons) */
 .main-container {
-    border: 3px solid #006400;
-    background: #e6ffe6;
+    border: 3px solid #b2babb;
+    background: #f1ebe9; 
     padding: 15px;
     margin-top: 40px;
     width: 50%;
@@ -29,7 +29,7 @@
     font-weight: bold;
     font-size: var(--button-font-size);
     /* white-space: nowrap; */
-    background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+    background-image: linear-gradient(to right, #44624a, #8ba888, #c0cfb2, #a1bdad);
     background-size: 300% 100%;
     border-radius: 50px;
     -moz-transition: all .3s ease-in-out;
@@ -50,6 +50,3 @@
 .container:focus {
     outline: none;
 }
-
-
-
