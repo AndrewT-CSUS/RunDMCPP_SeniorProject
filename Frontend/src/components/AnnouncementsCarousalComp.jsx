@@ -79,8 +79,8 @@ const AnnouncementsCarouselComp = () => {
             })}
             </div>
             <div className="carousalControls">
-                <button onClick={previousSlide}>{t('previous')}</button>
                 <button onClick={nextSlide}>{t('next')}</button>
+                <button onClick={previousSlide}>{t('previous')}</button>
             </div>
         </div>
     );
