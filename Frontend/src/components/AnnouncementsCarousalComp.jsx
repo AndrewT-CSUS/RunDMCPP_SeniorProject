@@ -28,7 +28,7 @@ const AnnouncementsCarouselComp = () => {
 
         const interval = setInterval(() => {
             setIndex((prevIndex) => (prevIndex === announcements.length - 1 ? 0 : prevIndex + 1));
-        }, 10000); // Change slide every 15 seconds
+        }, 12500); // Change slide every 20 seconds
 
         return () => clearInterval(interval);
     }, [announcements.length]); // Depend on announcements.length for updates
@@ -70,8 +70,8 @@ const AnnouncementsCarouselComp = () => {
                                 backgroundPosition: 'center',
                                 backgroundRepeat: 'no-repeat',
                             }}>
-                                <h2>{announcement.title}</h2>
-                                <p>{announcement.description}</p>
+                                <h1>{announcement.title}</h1>
+                                <h3>{announcement.description}</h3>
                             </div>
                         </div>
                     );
@@ -79,8 +79,8 @@ const AnnouncementsCarouselComp = () => {
             })}
             </div>
             <div className="carousalControls">
-                <button onClick={previousSlide}>{('Previous')}</button>
-                <button onClick={nextSlide}>{('Next')}</button>
+                <button onClick={previousSlide}>{t('previous')}</button>
+                <button onClick={nextSlide}>{t('next')}</button>
             </div>
         </div>
     );
