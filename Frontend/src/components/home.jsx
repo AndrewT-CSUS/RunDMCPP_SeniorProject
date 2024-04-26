@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import AnnouncementsCarousalComp from './AnnouncementsCarousalComp';
+import AnnouncementsCarousalComp from './AnnouncementsCarousalComp.jsx';
 import MainNavBits from './MainNavBits.jsx';
-import './schedule.css'; 
+import './home.css'; 
 import Image1 from '../images/dayview_church.jpg';
 import Image2 from '../images/nightview_church.jpg';
 
-// Schedule Component
-function Schedule() {
+// Home Page
+function Home() {
     const { t } = useTranslation(); 
     return (
         <>
@@ -36,4 +36,4 @@ function Schedule() {
     );
 }
 
-export default Schedule;
+export default Home

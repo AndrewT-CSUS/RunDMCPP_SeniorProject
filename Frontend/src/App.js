@@ -5,7 +5,7 @@ import { AdminProvider } from './components/Javascript/adminContext';
 import { ThemeProvider, createTheme } from '@mui/material/styles'; 
 
 // Components: Importing all the different pages
-import Schedule from './components/schedule';
+import Schedule from './components/home';
 import AboutUs from './components/aboutUs';
 import AdminAnnouncementsAdd from './components/adminAnnouncementsAdd';
 import AdminAnnouncementsEdit from './components/adminAnnouncementsEdit';
@@ -16,7 +16,7 @@ import AdminSermonEdit from './components/adminSermonEdit';
 import Events from './components/events';
 import PhotoGallery from './components/photoGallery';
 import Albums from './components/albums';
-import PreviousSerms from './components/previousSerms';
+import Sermons from './components/sermons';
 import LoginPage from './components/loginPage'; // Login Page for OAuth
 import VideoPage from './components/VideoPage';
 import AdminPage from './components/adminPage'; 
@@ -51,7 +51,7 @@ function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/photoGallery" element={<PhotoGallery />} />
         <Route path="/albums/:albumId" element={<Albums />} />
-        <Route path="/previousSerms" element={<PreviousSerms />} />
+        <Route path="/sermons" element={<Sermons />} />
         <Route path="/loginpage" element={<LoginPage />} />
         <Route path="/sermons/:sermonId" element={<VideoPage />} />
         <Route path="/adminPage" element={<AdminPage />} />

@@ -46,7 +46,7 @@ function AdminSermonEdit() {
 }
 
 var App = () => {
-    const {getAccessTokenWithPopup } = useAuth0(); //while it would be nice to use getAccessTokenSilently, we can't, as localhost is blocked from that call. Change when on prod?
+    const {getAccessTokenSilently } = useAuth0(); //while it would be nice to use getAccessTokenSilently, we can't, as localhost is blocked from that call. Change when on prod?
 
     useEffect(() => {
 
@@ -54,7 +54,7 @@ var App = () => {
             const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 
             try {
-                accessToken = await getAccessTokenWithPopup({
+                accessToken = await getAccessTokenSilently({
                     authorizationParams: {
                         audience: `https://${domain}/api/v2/`,
                     },
@@ -67,7 +67,7 @@ var App = () => {
 
         getUserToken();
 
-    }, [getAccessTokenWithPopup]);
+    }, [getAccessTokenSilently]);
 
 
 

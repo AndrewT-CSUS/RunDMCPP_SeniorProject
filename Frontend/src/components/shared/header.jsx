@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import {Translate} from './translate.jsx'
 import { useAdmin } from '../Javascript/adminContext.js';
 import starLogo from '../../images/star-icon.png';
+import { LoginPage } from '../loginPage.jsx';
 
 // Header component
 function Header() {
@@ -48,7 +49,9 @@ function Header() {
             </div>
             {/* Eng/Kor Button*/}
             <Translate />
-
+            <button type="button" className='login-button'>
+                <Link to="/loginPage">{t('login')}</Link>
+            </button>
             {/* Navigation bar */}
             <ul className="navigation-bar">
                 {/* Dropdown menu for Events */}
@@ -58,12 +61,8 @@ function Header() {
                 <li>
                     <Link to="/aboutUs">{t('aboutUs')}</Link>
                 </li>
-                {/* Dropdown menu for Sermons */}
-                <li className="dropdown">
-                    <div className='dropbtn'>{t('sermons')}</div>
-                    <div className="dropdown-content">
-                        <Link to="/previousSerms">{t('previousSermons')}</Link>
-                    </div>
+                <li>
+                    <Link to="/sermons">{t('sermons')}</Link>
                 </li>
                 <li className="dropdown">
                     <div className='dropbtn'>{t('eventsDrop')}</div>
@@ -72,6 +71,11 @@ function Header() {
                         <Link to="/photoGallery">{t('photos')}</Link>
                     </div>
                 </li>
+                {isAdmin && (
+                    <li>
+                        <Link to="/adminPage">{t('adminPage')}</Link>
+                    </li>
+                )}
             </ul>
         </header>
     );
