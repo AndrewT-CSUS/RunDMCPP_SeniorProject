@@ -8,10 +8,10 @@
       "eventsDrop": "Events ▼",
       "events": "Events",
       "photos": "Photos",
-      "sermons": "Sermons ▼",
-      "upcomingSermons": "Upcoming Sermons",
-      "previousSermons": "Previous Sermons",
+      "sermons": "Sermons",
       "home": "Home",
+      "adminPage": "Administration",
+      "changeLanguage": "한국어",
 
       "title": "Title",
       "description": "Description",
@@ -37,6 +37,7 @@
       "sermonName": "Sermon Name",
       "searchByDate": "Search By Date",
       "sermonDate": "Sermon Date",
+      "clear": "clear",
       
       "addAnnouncement": "Add Announcement",
       "editAnnouncement": "Edit Announcement",
@@ -54,7 +55,7 @@
       "login": "Login",
 
       "contactUs": "Contact Us: ",
-      "youtubeChannel": "Youtube Channel: ",
-      "facebook": "Facebook: "
+      "youtubeChannel": "Youtube Channel",
+      "facebook": "Facebook"
     }
   }

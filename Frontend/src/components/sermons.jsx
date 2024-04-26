@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { searchByName, searchByDate, showDefaults } from './Javascript/previousSerms.js';
+import { searchByName, searchByDate, showDefaults } from './Javascript/sermons.js';
 import { useTranslation } from 'react-i18next';
-import './previousSerms.css'; 
+import './sermons.css'; 
 
-const PreviousSerms = () => {
+const Sermons = () => {
     const { t } = useTranslation();
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
@@ -80,4 +80,4 @@ const PreviousSerms = () => {
     );
 };
 
-export default PreviousSerms;
+export default Sermons;

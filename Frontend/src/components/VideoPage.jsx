@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getSermonById } from './Javascript/previousSerms';
+import { getSermonById } from './Javascript/sermons';
 import './VideoPage.css';
 
 function VideoPage() {

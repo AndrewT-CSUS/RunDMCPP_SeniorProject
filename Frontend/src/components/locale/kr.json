@@ -8,10 +8,10 @@
       "eventsDrop": "교회행사 ▼",
       "events": "교회행사",
       "photos": "갤러리",
-      "sermons": "설교 ▼",
-      "upcomingSermons": "다음주 설교",
-      "previousSermons": "지난주 설교",
+      "sermons": "설교",
       "home": "홈",
+      "adminPage": "관리자페이지",
+      "changeLanguage": "English",
 
       "title": "타이틀",
       "description": "요약",
@@ -37,6 +37,7 @@
       "sermonName": "키워드",
       "searchByDate": "날짜로 검색",
       "sermonDate": "날짜",
+      "clear": "삭제",
       
       "addAnnouncement": "소식 올리기",
       "editAnnouncement": "공고 편집",
@@ -54,7 +55,7 @@
       "login": "로그인",
 
       "contactUs": "문의하기: ",
-      "youtubeChannel": "유튜브 채널: ",
-      "facebook": "페이스북: "
+      "youtubeChannel": "유튜브 채널",
+      "facebook": "페이스북"
     }
   }
