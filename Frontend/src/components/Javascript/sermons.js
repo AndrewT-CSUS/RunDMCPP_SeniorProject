@@ -121,6 +121,7 @@ function showResults(request, searchType){
         var link = `/sermons/${result.id}`;
 
         var linkElement = document.createElement("div");
+        linkElement.classList.add("linkElement");
         var anchor = document.createElement("a");
         anchor.href = link;
         var button = document.createElement("button");
@@ -134,6 +135,13 @@ function showResults(request, searchType){
         container.appendChild(description);
         container.appendChild(dateTime);
         container.appendChild(linkElement);
+        
+        if (i < objectText.length - 1) {
+            var divider = document.createElement("hr");
+            divider.classList.add("divider");
+            container.appendChild(divider);
+        }
+
         document.getElementById("resultsField").appendChild(container);
     }
 
