@@ -56,8 +56,8 @@ const AnnouncementsCarouselComp = () => {
                                 backgroundPosition: 'center',
                                 backgroundRepeat: 'no-repeat',
                             }}>
-                                <h2>{announcement.title}</h2>
-                                <p>{announcement.description}</p>
+                                <h1>{announcement.title}</h1>
+                                <h3>{announcement.description}</h3>
                             </div>
                         </div>
                     );

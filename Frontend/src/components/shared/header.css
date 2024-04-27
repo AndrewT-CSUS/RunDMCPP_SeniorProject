@@ -44,6 +44,8 @@ li a:hover, .dropdown:hover .dropbtn {
     border-style: solid;
     border-width: medium;
     border-color: #276622;
+    background-color: #276622;
+    color: white;
 }
 
 /* Hover: Change color of dropdown list */
@@ -68,6 +70,7 @@ li.dropdown {
     text-decoration: none;
     display: block;
     text-align: left;
+    padding: clamp(0px, 1vw, 10px); /* Dynamic gap between links */
 }
 
 .dropdown-content a:hover {
@@ -169,7 +172,7 @@ a {
     height: 30px;
     width: 100%;
     margin-bottom: 10px;
-    background-color: blue;
+    background-color: darkblue;
     color: white;
 }
 

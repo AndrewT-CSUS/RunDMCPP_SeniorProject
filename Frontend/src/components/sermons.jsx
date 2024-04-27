@@ -50,7 +50,7 @@ const Sermons = () => {
                 <div className="search-section">
                     <h3>{t('searchByDate')}</h3>
                     <div className="date-input">
-                        <p>Start Date</p>
+                        <p>{t('startDate')}</p>
                         <input
                             type="date"
                             id="startDateBox"
@@ -60,7 +60,7 @@ const Sermons = () => {
 
                     </div>
                     <div className="date-input">
-                        <p>End Date</p>
+                        <p>{t('endDate')}</p>
                         <input type="date" id="endDateBox" name="endDateBox" onChange={(e) => setEndDate(e.target.value)} />
                     </div>
                     <button type="button" id="searchByDateButton" onClick={handleSearchByDate}>
@@ -73,7 +73,7 @@ const Sermons = () => {
             </fieldset>
             <br />
             <fieldset id="resultsField" className="resultBox" hidden>
-                <legend id="resultsLegend">{t('searchResult')}</legend>
+                <legend id="resultsLegend">{t('results')}</legend>
                 <h4 id="resultTitle">{t('title')}</h4>
             </fieldset>
         </main>
