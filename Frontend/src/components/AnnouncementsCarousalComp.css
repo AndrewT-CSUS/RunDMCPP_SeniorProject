@@ -49,19 +49,9 @@
     background-color: #333399;
 }
 
-.announcement:nth-child(1) .announcementContent {
-    border: 4px solid #74a015; /* Green border */
-    background-color: rgba(230, 255, 230, 0.5); /* Background color */
-}
-
-.announcement:nth-child(2) .announcementContent {
-    border: 4px solid #74a015; /* Green border */
-    background-color: rgba(230, 255, 230, 0.5); /* Background color */
-}
-
+.announcement:nth-child(1) .announcementContent, 
+.announcement:nth-child(2) .announcementContent, 
 .announcement:nth-child(3) .announcementContent {
-    border: 4px solid #74a015; /* Green border */
+    border: 4px solid #276622; /* Green border */
     background-color: rgba(230, 255, 230, 0.5); /* Background color */
 }
-
-

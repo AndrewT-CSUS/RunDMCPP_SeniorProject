@@ -29,7 +29,7 @@
   height: 100%;
   width: 100%;
   border-radius: 5px;
-  border: 10px solid #537802;
+  border: 5px solid #276622;
   background-color: #e6ffe6;
 }
 
@@ -38,7 +38,8 @@
   height: 70%;
   width: 80%;
   margin: 12px 8px 8px 8px;
-  border: 2px solid #537802;
+  /* border: 2px solid #537802; */
+  border: #276622;
   border-radius: 5px;
 }
 

@@ -13,7 +13,6 @@
   border-radius: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-image: linear-gradient(to bottom, #e6ffe6, #ccffcc);
-  animation: border-animation 1.5s ease-out;
   margin-bottom: 20px;
 }
 
@@ -32,13 +31,4 @@
 
 .events-main p {
   font-size: var(-small-font-size);
-}
-
-@keyframes border-animation {
-  0% {
-    border-width: 0;
-  }
-  100% {
-    border-width: 4px;
-  }
 }

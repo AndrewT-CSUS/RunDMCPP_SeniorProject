@@ -5,28 +5,27 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: darkgreen;
+    background: white;
 
 }
 
 /* Containers for both the logo and the logged-in user */
 .logged-in-container, .login-logo-container {
-
     width: 300px;
     padding: 25px;
-    background-color: white;
+    /* This gives a pretty border but also affects adminSermonAdd's container. Don't ask why. */
+    /* border: 1px solid #276622;
+    border-radius: 18px; */
 }
 
 /* Login Form Container blocks with rounded corners */
-.login-logo-container {
+.login-page.login-logo-container {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 25px;
-
-    background-color: white;
     margin-bottom: 25px;
 }
 
