@@ -9,7 +9,6 @@ import {Translate} from './translate.jsx'
 function Footer() {
     const { t } = useTranslation(); // State: Translation
     const location = useLocation(); // State: Current path. Used so we only render Header on certain pages.
-    const stickyFooterPaths = ['/adminPage', '/adminAnnouncementsAdd', '/adminAnnouncementsEdit', '/adminEventAdd', '/adminEventEdit', '/adminSermonAdd', '/adminSermonEdit'];
 
     // Conditional: Don't render Footer if the current path is '/loginpage'
     if (location.pathname === '/loginpage') {
@@ -17,7 +16,7 @@ function Footer() {
     }
 
     return (
-        <footer className={stickyFooterPaths.includes(location.pathname) ? 'sticky-footer' : ''}>
+        <footer>
             {/* Footer left side: Address */}
             <p className="footer__left">
                 <b className="footer-title">{t('sgkc')}</b><br></br>
