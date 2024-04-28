@@ -31,32 +31,35 @@ const theme = createTheme({});
 // App Component
 function App() {
   return (
-
     /* Auth0Provider: Wraps around app to allow login */
     <Auth0Provider domain={process.env.REACT_APP_AUTH0_DOMAIN} clientId={process.env.REACT_APP_AUTH0_CLIENT_ID} redirectUri={window.location.origin}>
     <ThemeProvider theme={theme}> {/* ThemeProvider: Allows for custom themes for photo gallery */}
     <AdminProvider>               {/* AdminProvider: Wraps around app to allow admin access */}
     <Router>                      {/* Router: Allows linking to other pages*/}
-      <Header />                  {/* Header: Navigation bar */}
-      <Routes>                    {/* Routes: Links to different pages */}
-        <Route path="/" element={<Schedule />} />
-        <Route path="/schedule" element={<Schedule />} />
-        <Route path="/aboutUs" element={<AboutUs />} />
-        <Route path="/adminSermonAdd" element={<AdminSermonAdd />} />
-        <Route path="/adminSermonEdit" element={<AdminSermonEdit />} />
-        <Route path="/adminEventAdd" element={<AdminEventAdd />} />
-        <Route path="/adminEventEdit" element={<AdminEventEdit />} />
-        <Route path="/adminAnnouncementsAdd" element={<AdminAnnouncementsAdd />} />
-        <Route path="/adminAnnouncementsEdit" element={<AdminAnnouncementsEdit />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/photoGallery" element={<PhotoGallery />} />
-        <Route path="/albums/:albumId" element={<Albums />} />
-        <Route path="/sermons" element={<Sermons />} />
-        <Route path="/loginpage" element={<LoginPage />} />
-        <Route path="/sermons/:sermonId" element={<VideoPage />} />
-        <Route path="/adminPage" element={<AdminPage />} />
-      </Routes>
+      <div class="app">
+        <Header />                  {/* Header: Navigation bar */}
+        <main className = "app-main-container">
+        <Routes>                    {/* Routes: Links to different pages */}
+          <Route path="/" element={<Schedule />} />
+          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/aboutUs" element={<AboutUs />} />
+          <Route path="/adminSermonAdd" element={<AdminSermonAdd />} />
+          <Route path="/adminSermonEdit" element={<AdminSermonEdit />} />
+          <Route path="/adminEventAdd" element={<AdminEventAdd />} />
+          <Route path="/adminEventEdit" element={<AdminEventEdit />} />
+          <Route path="/adminAnnouncementsAdd" element={<AdminAnnouncementsAdd />} />
+          <Route path="/adminAnnouncementsEdit" element={<AdminAnnouncementsEdit />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/photoGallery" element={<PhotoGallery />} />
+          <Route path="/albums/:albumId" element={<Albums />} />
+          <Route path="/sermons" element={<Sermons />} />
+          <Route path="/loginpage" element={<LoginPage />} />
+          <Route path="/sermons/:sermonId" element={<VideoPage />} />
+          <Route path="/adminPage" element={<AdminPage />} />
+        </Routes>
+        </main>
         <Footer />                {/* Footer: Contact information & Links */}
+      </div>
     </Router>
     </AdminProvider>
     </ThemeProvider>

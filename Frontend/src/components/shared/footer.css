@@ -6,7 +6,6 @@
     which makes aligning items much easier :) */
 
 footer {
-    bottom: 0;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between; /* Align left and right content */
@@ -15,11 +14,6 @@ footer {
     padding: 12px; 
     width: 100%;        
     font-size: var(--small-font-size); /* Dynamic font size */
-}
-
-.sticky-footer {
-    position: fixed;
-    bottom: 0;
 }
 
 footer p {
