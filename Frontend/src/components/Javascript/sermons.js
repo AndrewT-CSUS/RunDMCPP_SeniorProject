@@ -125,7 +125,8 @@ function showResults(request, searchType){
         var anchor = document.createElement("a");
         anchor.href = link;
         var button = document.createElement("button");
-        button.innerText = "Watch";
+        // button.innerText = "Watch";
+        button.innerText = "시청";
         anchor.appendChild(button);
         linkElement.appendChild(anchor);
 
