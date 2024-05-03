@@ -12,9 +12,9 @@ There are three folders:
 <h2>SETUP</h2>
 When using postman, the user can import the collection into their workspace. It comes set up with some collection variables, but a user might need to change some to account for their local development environment. Mainly, "hostname" will change if you have your Java Spring using a non-default port.
 
-The user will also need to create an **Environment Variable:** `Auth0ApiPrefix`
+The user will also need to create three **Environment Variables:** `Auth0ApiPrefix`, `Access Token Id`, and `Access Client Secret`
 
-This variable should be of type Secret, and should be similar in format to `dev-[YOUR_AUTH0_VALUES].us`
+Each variable should be of type Secret. The `Auth0ApiPrefix` should be similar in format to `dev-[YOUR_AUTH0_VALUES].us`, and the Access variables are from Auth0's control panel. 
 
 Now, the user can get their access token. If their database is empty, I reccomend running the **CREATE** endpoints in **Has Auth** a few times (At least 11 times for Sermons, 3 times for Announcements, and 1 time for Events)
 
