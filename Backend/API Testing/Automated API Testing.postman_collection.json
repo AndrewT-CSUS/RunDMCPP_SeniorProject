@@ -2237,7 +2237,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"client_id\": \"4MM5WgF4OvPuV0aoxNIvpVHs6pS2AASG\",\r\n  \"client_secret\": \"d_5gXh4S5M-Wfm8YEXFuUD44RE-_RE4VGRXxw8EbY8Kppv1tW9W1YqB54qFz503O\",\r\n  \"audience\": \"https://dev-uwwvwuxa5yyo6k20.us.auth0.com/api/v2/\",\r\n  \"grant_type\": \"client_credentials\"\r\n}"
+							"raw": "{\r\n  \"client_id\": \"{{Access Token Id}}\",\r\n  \"client_secret\": \"{{Access Client Secret}}\",\r\n  \"audience\": \"https://dev-uwwvwuxa5yyo6k20.us.auth0.com/api/v2/\",\r\n  \"grant_type\": \"client_credentials\"\r\n}"
 						},
 						"url": {
 							"raw": "https://{{Auth0ApiPrefix}}.auth0.com/oauth/token",
