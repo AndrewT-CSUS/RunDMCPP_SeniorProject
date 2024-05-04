@@ -7,6 +7,8 @@
 
 Our project is completed. We're incredibly proud of our project, and we hope that it will serve our client well.
 
+You can view our project here: <a href="https://sacglorychurch.org">sacglorychurch.org</a>
+
 ## 📝 Project Description
 
 <b><i>Sacramento Glory Korean Church</i></b> is a local church that holds Presbyterian sermons for roughly 50 Korean speakers. 
